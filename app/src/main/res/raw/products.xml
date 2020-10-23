@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+	<product>
+		<id>1</id>
+		<name>微波炉</name>
+		<price>399</price>
+	</product>
+	<product>
+		<id>2</id>
+		<name>洗衣机</name>
+		<price>1899</price>
+	</product>
+	<product>
+		<id>3</id>
+		<name>电饭煲</name>
+		<price>788</price>
+	</product>
+	<product>
+		<id>4</id>
+		<name>电冰箱</name>
+		<price>5899</price>
+	</product>
+</products>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="常规模式"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="低配置模式"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="隐藏底部导航栏,任何用户交互会使导航栏可见"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="隐藏顶部状态栏,顶部下拉可使状态栏可见"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="稳定布局"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="导航栏和状态栏会遮挡布局"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="状态栏会遮挡布局"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn8"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="沉浸式模式下隐藏底部导航栏"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn81"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="沉浸式严格模式下隐藏底部导航栏"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn9"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="沉浸式严格模式下隐藏顶部状态栏"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn10"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="SYSTEM_UI_FLAG_LIGHT_STATUS_BAR" />
+
+        <TextView
+            android:id="@+id/btn11"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR" />
+
+        <TextView
+            android:id="@+id/btn14"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="沉浸式模式下设置全屏"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn15"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="沉浸式严格模式下设置全屏"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn19"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="倒数第二个"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/btn20"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="最后一个"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

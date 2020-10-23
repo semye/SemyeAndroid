@@ -1,0 +1,1 @@
+com/semye/android/MainActivity.class

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/rq_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="get请求"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/rq_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="post 表单请求"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rq_post2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="post 传json"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rq_post3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="post 同时传json和表单"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rq_post4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="post form-data 传文件"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rq_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="head请求"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/rq_put"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="put请求"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/rq_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="delete请求"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/rq_patch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="patch请求"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>
