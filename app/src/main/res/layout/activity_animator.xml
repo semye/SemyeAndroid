@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="哈哈哈哈哈哈"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/argb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="argb颜色变化"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/value_int"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="int变化"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/value_float"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="float变化"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/value_object"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="object变化"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/value_property"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="property"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

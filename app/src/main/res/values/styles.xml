@@ -1,13 +1,19 @@
 <resources>
 
-    <!-- 默认黑色主题   -->
-    <style name="AppTheme" parent="Theme.AppCompat" />
+    <!-- 白色主题   -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light" />
 
-    <!-- 默认白色主题   -->
-    <style name="AppTheme2" parent="Theme.AppCompat.Light" />
+    <!-- 黑色主题   -->
+    <style name="AppTheme2" parent="Theme.AppCompat" />
 
     <!-- 随主题变化切换白天黑夜主题  默认为Light主题  -->
     <style name="AppTheme3" parent="Theme.AppCompat.DayNight" />
+
+
+    <style name="FitSystemWindow" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+
+    </style>
 
 
     <style name="AppTheme1" parent="Theme.AppCompat.DayNight">

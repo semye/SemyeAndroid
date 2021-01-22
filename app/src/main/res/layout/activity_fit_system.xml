@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ff00"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:paddingTop="8dp">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="标题"
-        tools:ignore="HardcodedText" />
-
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="set fit system window true"
+        android:text="fit system window true"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 
@@ -30,7 +17,7 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="set fit system window false"
+        android:text="fit system window false"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 </LinearLayout>

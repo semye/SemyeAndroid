@@ -21,7 +21,7 @@ package com.semye.android.webview;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.semye.android.jsbridge.BridgeWebView;
+import com.semye.android.webview.jsbridge.BridgeWebView;
 
 
 /**

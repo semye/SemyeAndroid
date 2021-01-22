@@ -1,56 +1,8 @@
-# 技术
+# readme
 
-## Java
+这个工程是android相关知识的总结,方便自己进行知识点回顾
 
-- io
-- 反射
-- 多线程
-- net
-- nio
-- security 加密
-- text
-- util
-
-## Android
-
-- Handler机制
-- 启动模式
-- 动画
-- Activity
-- Fragment
-- 蓝牙
-- database
-- 手势
-- graphics 图标
-- 硬件,相机 指纹 usb等
-- icu
-- inputmethodservice
-- 定位
-- media
-- 网络
-- nfc
-- opengl
-- os
-- preference
-- provider
-- service
-- tele
-- text
-- transition
-- util 工具类
-- view
-- webkit
-- widget 常用控件
-
-## 源码学习
-AsyncTask
-HandlerThread
-
-
-## 设计模式
-
-
-## 开源库
-- Okhttp
-- Glide
-- Retrofit
+- annotation 自定义注解项目
+- app android项目
+- compiler 自定义注解处理器
+- SemyeJava java项目

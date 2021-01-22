@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+
+
+println rootProject //root project 'SemyeGradle'
+println gradle  //build 'SemyeGradle'
+println project //root project 'SemyeGradle'
+
+
+group = 'com.semye.base'
+version = '1.0-SNAPSHOT'
+
+description = "java base"
+
+ext {
+    extyesheng = "yesheng ext 123"
+}
+
+println rootProject //root project 'SemyeGradle'
+println gradle  //build 'SemyeGradle'
+println project //project ':subjava'
+
+
+
+dependencies {
+    //test
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.7'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.7'
+    //guava
+    implementation 'com.google.guava:guava:28.1-jre'
+    //kotlin
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.1.52.android'
+//    implementation gradleApi()
+}
+apply from: "mytask.gradle"
+
+
+
+
+
+
+
+
+
+
+
+
+

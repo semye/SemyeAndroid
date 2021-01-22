@@ -2,18 +2,23 @@ package com.semye.android.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Rect
+import android.graphics.RectF
 import android.os.Build
 import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.RequiresApi
 
 /**
  * Created by yesheng on 2017/3/6.
  */
-class CustomView : View {
+class CustomView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
     private var rectF = RectF(0f, 0f, 100f, 100f)
     private var rectoval = RectF(100f, 100f, 800f, 800f)
     private var paint = Paint()
@@ -27,28 +32,10 @@ class CustomView : View {
         lineTo(200f, 200f)
     }
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    )
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes)
-
-
     private fun initPaint() {
         paint.isAntiAlias = true //设置抗锯齿
         paint.color = resources.getColor(android.R.color.white)
     }
-
 
     init {
         initPaint()
@@ -59,9 +46,9 @@ class CustomView : View {
         println("从xml加载完成")
     }
 
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         //画布
         //从下往上一层一层绘制
 //        canvas.drawARGB(255, 163, 159, 163) //绘制控件的颜色
@@ -91,7 +78,6 @@ class CustomView : View {
 //        canvas.save()
     }
 
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
@@ -99,7 +85,6 @@ class CustomView : View {
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
     }
-
 
     override fun onFocusChanged(gainFocus: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(gainFocus, direction, previouslyFocusedRect)
@@ -135,7 +120,6 @@ class CustomView : View {
     override fun onTrackballEvent(event: MotionEvent?): Boolean {
         return super.onTrackballEvent(event)
     }
-
 
     companion object {
         const val TAG = "CustomView"

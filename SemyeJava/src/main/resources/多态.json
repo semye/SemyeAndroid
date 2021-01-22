@@ -1,0 +1,20 @@
+[
+  {
+    "type": "a",
+    "field_a": "model a"
+  },
+  {
+    "type": "b",
+    "field_b": "model b",
+    "items": [
+      {
+        "type": "1",
+        "form_a": "a"
+      },
+      {
+        "type": "2",
+        "form_b": "b"
+      }
+    ]
+  }
+]

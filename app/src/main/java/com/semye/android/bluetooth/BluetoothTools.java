@@ -1,144 +1,71 @@
 package com.semye.android.bluetooth;
 
-import java.util.UUID;
-
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 
-/**
- * ??????????
- * @author GuoDong
- *
- */
+import java.util.UUID;
+
+
 public class BluetoothTools {
 
-	private static BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+    private static BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
 
-	/**
-	 * ????????????UUID
-	 */
-	public static final UUID PRIVATE_UUID = UUID.fromString("0f3561b9-bda5-4672-84ff-ab1f98e349b6");
+    public static final UUID PRIVATE_UUID = UUID.fromString("0f3561b9-bda5-4672-84ff-ab1f98e349b6");
 
-	/**
-	 * ????????????????Intent?е??豸????
-	 */
-	public static final String DEVICE = "DEVICE";
+    public static final String DEVICE = "DEVICE";
 
-	/**
-	 * ??????????????????????豸?б??е?λ??
-	 */
-	public static final String SERVER_INDEX = "SERVER_INDEX";
+    public static final String SERVER_INDEX = "SERVER_INDEX";
 
-	/**
-	 * ???????????Intent?е?????
-	 */
-	public static final String DATA = "DATA";
+    public static final String DATA = "DATA";
 
-	/**
-	 * Action??????????Action???? ?????????
-	 */
-	public static final String ACTION_READ_DATA = "ACTION_READ_DATA";
+    public static final String ACTION_READ_DATA = "ACTION_READ_DATA";
 
-	/**
-	 * Action??????????Action????? δ?????豸
-	 */
-	public static final String ACTION_NOT_FOUND_SERVER = "ACTION_NOT_FOUND_DEVICE";
-	/**
-	 * Action??????????Action????? ?????豸???
-	 */
-	public static final String ACTION_FOUND_SERVER_OVER = "ACTION_FOUND_SERVER_OVER";
+    public static final String ACTION_NOT_FOUND_SERVER = "ACTION_NOT_FOUND_DEVICE";
 
-	/**
-	 * Action??????????Action????? ????????豸
-	 */
-	public static final String ACTION_START_DISCOVERY = "ACTION_START_DISCOVERY";
+    public static final String ACTION_FOUND_SERVER_OVER = "ACTION_FOUND_SERVER_OVER";
 
-	/**
-	 * Action???豸?б?
-	 */
-	public static final String ACTION_FOUND_DEVICE = "ACTION_FOUND_DEVICE";
+    public static final String ACTION_START_DISCOVERY = "ACTION_START_DISCOVERY";
 
-	/**
-	 * Action????????????????豸
-	 */
-	public static final String ACTION_SELECTED_DEVICE = "ACTION_SELECTED_DEVICE";
+    public static final String ACTION_FOUND_DEVICE = "ACTION_FOUND_DEVICE";
 
-	/**
-	 * Action????????????
-	 */
-	public static final String ACTION_START_SERVER = "ACTION_STARRT_SERVER";
+    public static final String ACTION_SELECTED_DEVICE = "ACTION_SELECTED_DEVICE";
 
-	/**
-	 * Action???????Service
-	 */
-	public static final String ACTION_STOP_SERVICE = "ACTION_STOP_SERVICE";
+    public static final String ACTION_START_SERVER = "ACTION_STARRT_SERVER";
 
-	/**
-	 * Action????Service??????
-	 */
-	public static final String ACTION_DATA_TO_SERVICE = "ACTION_DATA_TO_SERVICE";
+    public static final String ACTION_STOP_SERVICE = "ACTION_STOP_SERVICE";
 
-	/**
-	 * Action???????????е?????
-	 */
-	public static final String ACTION_DATA_TO_GAME = "ACTION_DATA_TO_GAME";
+    public static final String ACTION_DATA_TO_SERVICE = "ACTION_DATA_TO_SERVICE";
 
-	/**
-	 * Action????????
-	 */
-	public static final String ACTION_CONNECT_SUCCESS = "ACTION_CONNECT_SUCCESS";
+    public static final String ACTION_DATA_TO_GAME = "ACTION_DATA_TO_GAME";
 
-	/**
-	 * Action?????????
-	 */
-	public static final String ACTION_CONNECT_ERROR = "ACTION_CONNECT_ERROR";
+    public static final String ACTION_CONNECT_SUCCESS = "ACTION_CONNECT_SUCCESS";
 
-	/**
-	 * Message????????????????
-	 */
-	public static final int MESSAGE_CONNECT_SUCCESS = 0x00000002;
+    public static final String ACTION_CONNECT_ERROR = "ACTION_CONNECT_ERROR";
 
-	/**
-	 * Message?????????
-	 */
-	public static final int MESSAGE_CONNECT_ERROR = 0x00000003;
+    public static final int MESSAGE_CONNECT_SUCCESS = 0x00000002;
 
-	/**
-	 * Message??????????????
-	 */
-	public static final int MESSAGE_READ_OBJECT = 0x00000004;
+    public static final int MESSAGE_CONNECT_ERROR = 0x00000003;
 
-	/**
-	 * ??????????
-	 */
-	public static void openBluetooth() {
-		adapter.enable();
-	}
+    public static final int MESSAGE_READ_OBJECT = 0x00000004;
 
-	/**
-	 * ???????????
-	 */
-	public static void closeBluetooth() {
-		adapter.disable();
-	}
+    public static void openBluetooth() {
+        adapter.enable();
+    }
 
-	/**
-	 * ???????????????
-	 * @param duration ???????????????????????????0??300??????????
-	 */
-	public static void openDiscovery(int duration) {
-		if (duration <= 0 || duration > 300) {
-			duration = 200;
-		}
-		Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-		intent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, duration);
-	}
+    public static void closeBluetooth() {
+        adapter.disable();
+    }
 
-	/**
-	 * ??????????
-	 */
-	public static void stopDiscovery() {
-		adapter.cancelDiscovery();
-	}
+    public static void openDiscovery(int duration) {
+        if (duration <= 0 || duration > 300) {
+            duration = 200;
+        }
+        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        intent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, duration);
+    }
+
+    public static void stopDiscovery() {
+        adapter.cancelDiscovery();
+    }
 
 }

@@ -7,3 +7,7 @@
 /captures
 .externalNativeBuild
 app/.cxx
+/buildSrc/build/
+build
+subjava/dest
+../subjava/dest

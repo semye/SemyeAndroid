@@ -19,6 +19,7 @@ class FrameAnimationActivity : AppCompatActivity() {
         val imageView = findViewById<ImageView>(R.id.loading)
         imageView.setBackgroundResource(R.drawable.loading)
         val animationDrawable = imageView.background as AnimationDrawable
+        animationDrawable.isOneShot = true//设置只执行一次
         animationDrawable.start()
     }
 }

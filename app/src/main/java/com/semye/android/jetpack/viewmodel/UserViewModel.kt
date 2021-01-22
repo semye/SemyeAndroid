@@ -1,15 +1,18 @@
 package com.semye.android.jetpack.viewmodel
 
 import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class UserViewModel : ViewModel() {
 
-    var user: MutableLiveData<User> = MutableLiveData()
+    val user: MutableLiveData<User> by lazy {
+        MutableLiveData<User>()
+    }
 
     fun request() {
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val zhangsan = User()
             zhangsan.name = "张三"
             user.postValue(zhangsan)

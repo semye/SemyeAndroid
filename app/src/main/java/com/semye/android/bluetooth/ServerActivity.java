@@ -23,7 +23,6 @@ public class ServerActivity extends Activity {
     private TextView tvServerState;
     private EditText etServerMsg, etServerSend;
     private Button btnServerSendMsg;
-    // �㲥������
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
@@ -32,7 +31,6 @@ public class ServerActivity extends Activity {
             String action = intent.getAction();
 
             if (BluetoothTools.ACTION_DATA_TO_GAME.equals(action)) {
-                // ��������
                 byte[] data = intent.getExtras().getByteArray(
                         BluetoothTools.DATA);
                 String msg = "from cmrx:" + new Date().toLocaleString()
@@ -67,7 +65,6 @@ public class ServerActivity extends Activity {
                 etServerMsg.append(msg);
 
             } else if (BluetoothTools.ACTION_CONNECT_SUCCESS.equals(action)) {
-                // ���ӳɹ�
                 tvServerState.setText("���ӳɹ�");
                 btnServerSendMsg.setEnabled(true);
             }
@@ -77,12 +74,10 @@ public class ServerActivity extends Activity {
 
     @Override
     protected void onStart() {
-        // ������̨service
         Intent startService = new Intent(ServerActivity.this,
                 BluetoothServerService.class);
         startService(startService);
 
-        // ע��BoradcasrReceiver
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothTools.ACTION_DATA_TO_GAME);
         intentFilter.addAction(BluetoothTools.ACTION_CONNECT_SUCCESS);
@@ -98,7 +93,6 @@ public class ServerActivity extends Activity {
 
     @Override
     protected void onStop() {
-        // �رպ�̨Service
         Intent startService = new Intent(BluetoothTools.ACTION_STOP_SERVICE);
         sendBroadcast(startService);
 

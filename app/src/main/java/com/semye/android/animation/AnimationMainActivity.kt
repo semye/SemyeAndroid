@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.semye.android.R
 
+/**
+ * 动画
+ */
 class AnimationMainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {

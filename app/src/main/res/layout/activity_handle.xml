@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="360dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="哈哈哈哈哈哈哈哈哈哈哈"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/looper_thread_handler"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="LooperThreadHandler"
+        android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/handler_thread_handler"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="HandlerThreadHandler"
+        android:textAllCaps="false"
         tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/main_thread_handler"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="MainThreadHandler"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_empty_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="发送空消息"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="发送消息"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_delay_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="发送延迟消息"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+
 </LinearLayout>

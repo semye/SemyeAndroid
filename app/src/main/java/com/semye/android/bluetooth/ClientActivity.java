@@ -38,7 +38,6 @@ public class ClientActivity extends Activity {
     private List<BluetoothDevice> finaldeviceList;
     private BaseAdapter baseAdapter;
 
-    // �㲥������
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
@@ -62,12 +61,10 @@ public class ClientActivity extends Activity {
 //				}
 
             } else if (BluetoothTools.ACTION_CONNECT_SUCCESS.equals(action)) {
-                // ���ӳɹ�
                 tvClientState.append("���ӳɹ�");
                 btnClientSendMsg.setEnabled(true);
 
             } else if (BluetoothTools.ACTION_DATA_TO_GAME.equals(action)) {
-                // ��������
                 MsgBean data = (MsgBean) intent.getExtras()
                         .getSerializable(BluetoothTools.DATA);
                 String msg = "from remote " + new Date().toLocaleString()
@@ -85,11 +82,9 @@ public class ClientActivity extends Activity {
     protected void onStart() {
         deviceList.clear();
 
-        // ������̨service
         Intent startService = new Intent(ClientActivity.this, BluetoothClientService.class);
         startService(startService);
 
-        // ע��BoradcasrReceiver
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothTools.ACTION_NOT_FOUND_SERVER);
         intentFilter.addAction(BluetoothTools.ACTION_FOUND_DEVICE);
@@ -138,7 +133,7 @@ public class ClientActivity extends Activity {
         }
     };
 
-    protected void onStop() {// �رպ�̨Service
+    protected void onStop() {
         Intent startService = new Intent(BluetoothTools.ACTION_STOP_SERVICE);
         sendBroadcast(startService);
 
