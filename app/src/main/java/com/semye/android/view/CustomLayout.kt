@@ -14,7 +14,6 @@ class CustomLayout @JvmOverloads constructor(
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (childCount > 1) return
         val view = getChildAt(0)
         measureChild(

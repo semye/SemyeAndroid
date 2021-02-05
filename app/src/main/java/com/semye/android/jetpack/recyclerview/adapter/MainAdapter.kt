@@ -30,6 +30,6 @@ class MainAdapter : BaseAdapter<String, BaseViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 10000
+        return 1
     }
 }
