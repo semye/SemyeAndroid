@@ -33,6 +33,7 @@ abstract class BaseAdapter<Model, ViewHolder : BaseViewHolder> :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         super.onBindViewHolder(holder, position, payloads)
+        Log.d(TAG, "onBindViewHolder $position")
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
         } else {

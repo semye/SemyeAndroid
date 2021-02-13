@@ -17,7 +17,8 @@ class CustomLayout @JvmOverloads constructor(
         if (childCount > 1) return
         val view = getChildAt(0)
         measureChild(
-            view, View.getDefaultSize(suggestedMinimumWidth, widthMeasureSpec),
+            view,
+            View.getDefaultSize(suggestedMinimumWidth, widthMeasureSpec),
             View.getDefaultSize(suggestedMinimumHeight, heightMeasureSpec)
         )
     }
