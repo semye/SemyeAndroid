@@ -5,4 +5,3 @@
 - annotation 自定义注解项目
 - app android项目
 - compiler 自定义注解处理器
-- SemyeJava java项目
