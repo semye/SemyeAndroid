@@ -49,7 +49,7 @@ Java_com_semye_android_jni_SoLoader_createFile(JNIEnv *env, jobject thiz, jstrin
 
 JNIEXPORT jintArray JNICALL
 Java_com_semye_android_jni_SoLoader_bubbleSort(JNIEnv *env, jobject thiz, jintArray array) {
-    // implement bubbleSort()
+    // 冒泡排序
     jint *arrays = (*env)->GetIntArrayElements(env, array, NULL);
     jint length = (*env)->GetArrayLength(env, array);
     for (int i = 0; i < length - 1; ++i) {

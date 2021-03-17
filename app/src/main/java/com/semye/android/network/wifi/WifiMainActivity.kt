@@ -7,14 +7,19 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.semye.android.R
 
 class WifiMainActivity : AppCompatActivity() {
+
     private var wifiManager: WifiManager? = null
+    private var mRecyclerView: RecyclerView? = null
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_wifi)
-        wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        mRecyclerView = findViewById(R.id.recyclerview)
+        wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as? WifiManager
         show()
     }
 
