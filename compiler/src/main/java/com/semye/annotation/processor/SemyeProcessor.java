@@ -1,6 +1,15 @@
 package com.semye.annotation.processor;
 
-import javax.annotation.processing.*;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Filer;
+import javax.annotation.processing.Messager;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -8,9 +17,6 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * 自定义注解处理器
@@ -37,6 +43,7 @@ public class SemyeProcessor extends AbstractProcessor {
         if (annotations.size() == 0) return false;
         Messager messager = processingEnv.getMessager();
         messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + annotations.toString());
+        messager.printMessage(Diagnostic.Kind.NOTE, "=========");
         messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + roundEnv.toString());
         messager.printMessage(Diagnostic.Kind.NOTE, "<<=============>>");
         for (TypeElement typeElement : annotations) {
