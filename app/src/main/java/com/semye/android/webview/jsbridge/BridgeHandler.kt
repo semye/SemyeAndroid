@@ -1,16 +1,14 @@
-package com.semye.android.webview.jsbridge;
+package com.semye.android.webview.jsbridge
 
 /**
  * bridge handler 接口
  */
-public interface BridgeHandler {
-
+interface BridgeHandler {
     /**
      * 处理数据
      *
      * @param data     数据
      * @param function 回调函数
      */
-    void handler(String data, CallBackFunction function);
-
+    fun handler(data: String?, function: CallBackFunction?)
 }
