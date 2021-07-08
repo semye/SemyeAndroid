@@ -1,46 +1,43 @@
-package com.semye.android;
+package com.semye.android
 
-import android.content.Context;
-import android.os.Environment;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
-import android.util.Log;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertEquals;
+import android.os.Environment
+import android.util.Log
+import androidx.test.InstrumentationRegistry
+import androidx.test.runner.AndroidJUnit4
+import org.junit.Assert
+import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * Instrumentation test, which will execute on an Android device.
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-@RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
-
-    public static final String TAG = "ExampleInstrumentedTest";
-
+@RunWith(AndroidJUnit4::class)
+class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() throws Exception {
+    @Throws(Exception::class)
+    fun useAppContext() {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.semye.android", appContext.getPackageName());
+        val appContext = InstrumentationRegistry.getTargetContext()
+        Assert.assertEquals("com.semye.android", appContext.packageName)
     }
 
     @Test
-    public void readLog() {
-        Log.d(TAG, Environment.getExternalStorageDirectory().getAbsolutePath());
+    fun readLog() {
+        Log.d(TAG, Environment.getExternalStorageDirectory().absolutePath)
     }
 
     @Test
-    public void printLog() {
-        Log.d(TAG, Environment.getDownloadCacheDirectory().getAbsolutePath());
+    fun printLog() {
+        Log.d(TAG, Environment.getDownloadCacheDirectory().absolutePath)
     }
 
     @Test
-    public void writeFile() {
+    fun writeFile() {
+    }
 
+    companion object {
+        const val TAG = "ExampleInstrumentedTest"
     }
 }
