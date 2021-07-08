@@ -1,17 +1,16 @@
-package com.semye.android.webview.jsbridge;
+package com.semye.android.webview.jsbridge
 
 /**
  * WebView JavaScriptBridge 接口
  * https://github.com/lzyzsd/JsBridge.git
  */
-public interface WebViewJavascriptBridge {
-
+interface WebViewJavascriptBridge {
     /**
      * 向html页面发送数据
      *
      * @param data data
      */
-    void send(String data);
+    fun send(data: String?)
 
     /**
      * 向html页面发送数据并回调
@@ -19,7 +18,5 @@ public interface WebViewJavascriptBridge {
      * @param data             data
      * @param responseCallback 向html页面发送数据并回调
      */
-    void send(String data, CallBackFunction responseCallback);
-
-
+    fun send(data: String?, responseCallback: CallBackFunction?)
 }

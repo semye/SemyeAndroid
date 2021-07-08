@@ -1,139 +1,116 @@
-package com.semye.android.utils;
+package com.semye.android.utils
 
-import android.os.Environment;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Environment
+import java.io.*
 
 /**
  * Created by yesheng on 2017/1/10.
  * android文件管理类
  */
-public class FileUtils {
-
-    private static FileUtils fileManager;
-
-    private FileUtils() {
-
-    }
+object FileUtils {
+    private val fileManager: FileUtils? = null
 
     /**
      * 获取SD卡的根目录
      *
      * @return 如果SD卡存在, 返回SD卡的根目录,否则返回null
      */
-    public static String getSDCardRootPath() {
-        if (!isSDcardExist())
-            try {
-                throw new Exception("SD卡不存在");
-            } catch (Exception e) {
-                e.printStackTrace();
+    val sDCardRootPath: String
+        get() {
+            if (!isSDcardExist) try {
+                throw Exception("SD卡不存在")
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-        return Environment.getExternalStorageDirectory().getPath();
-    }
-
+            return Environment.getExternalStorageDirectory().path
+        }
 
     /**
      * 判断SDcard是否存在
      *
      * @return 如果存在返回true 如果不存在返回false
      */
-    public static boolean isSDcardExist() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-    }
+    val isSDcardExist: Boolean
+        get() = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
-
-    public static String rename(String fileName, String newName) {
+    fun rename(fileName: String, newName: String): String {
+        var fileName = fileName
         if (fileName.contains(".")) {
-            int index = fileName.lastIndexOf(".");
-            fileName = newName + fileName.substring(index, fileName.length());
-            return fileName;
+            val index = fileName.lastIndexOf(".")
+            fileName = newName + fileName.substring(index, fileName.length)
+            return fileName
         }
-        return newName;
+        return newName
     }
 
-    public static boolean createFolder(String folderName) {
-        String path = Environment.getExternalStorageDirectory().getPath();
-        File file = new File(folderName);
-        if (!file.exists()) {
-            return file.mkdir();
-        }
-        return false;
-
+    fun createFolder(folderName: String?): Boolean {
+        val path = Environment.getExternalStorageDirectory().path
+        val file = File(folderName)
+        return if (!file.exists()) {
+            file.mkdir()
+        } else false
     }
 
     /**
      * 检测SD卡是否存在
      */
-    public static boolean checkSDcard() {
-        return Environment.MEDIA_MOUNTED.equals(Environment
-                .getExternalStorageState());
+    fun checkSDcard(): Boolean {
+        return Environment.MEDIA_MOUNTED == Environment
+                .getExternalStorageState()
     }
 
     /**
      * 获取文件保存点
      */
-    @Nullable
-    public static File getSaveFile(String fileNmae) {
-        File file = null;
+    fun getSaveFile(fileNmae: String): File? {
+        var file: File? = null
         try {
-            file = new File(Environment.getExternalStorageDirectory()
-                    .getCanonicalFile() + "/" + fileNmae);
-        } catch (IOException e) {
+            file = File(Environment.getExternalStorageDirectory()
+                    .canonicalFile.toString() + "/" + fileNmae)
+        } catch (e: IOException) {
         }
-        return file;
+        return file
     }
 
     /**
      * 从指定文件夹获取文件
      */
-    @NonNull
-    public static File getSaveFile(String folder, String fileNmae) {
-        File file = new File(getSavePath(folder), fileNmae);
-        return file;
+    fun getSaveFile(folder: String, fileNmae: String?): File {
+        return File(getSavePath(folder), fileNmae)
     }
 
     /**
      * 获取文件保存路径
      */
-    public static String getSavePath(String folder) {
-        return Environment.getExternalStorageDirectory() + "/" + folder;
+    fun getSavePath(folder: String): String {
+        return Environment.getExternalStorageDirectory().toString() + "/" + folder
     }
 
-    public static void split(File file) throws IOException {
-        File dir = new File("/sdcard/xckyapp/pices/");
-        dir.mkdir();
+    @Throws(IOException::class)
+    fun split(file: File) {
+        val dir = File("/sdcard/xckyapp/pices/")
+        dir.mkdir()
 
         // 计算每一份的大小
-        long partLen = (file.length() + 4) / 5; // (10 + 4) / 5 = 2, (14 + 4) /
+        val partLen = (file.length() + 4) / 5 // (10 + 4) / 5 = 2, (14 + 4) /
         // 5 = 3
-        int fileNum = 1;
-        long len = 0;
-
-        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(
-                file));
-        BufferedOutputStream bos = new BufferedOutputStream(
-                new FileOutputStream(new File(dir, fileNum + ".temp")));
-
-        int b;
-        while ((b = bis.read()) != -1) {
+        var fileNum = 1
+        var len: Long = 0
+        val bis = BufferedInputStream(FileInputStream(
+                file))
+        var bos = BufferedOutputStream(
+                FileOutputStream(File(dir, "$fileNum.temp")))
+        var b: Int
+        while (bis.read().also { b = it } != -1) {
             if (len++ == partLen) {
-                bos.close();
-                bos = new BufferedOutputStream(new FileOutputStream(new File(
-                        dir, ++fileNum + ".temp")));
-                len = 0;
+                bos.close()
+                bos = BufferedOutputStream(FileOutputStream(File(
+                        dir, (++fileNum).toString() + ".temp")))
+                len = 0
             }
-            bos.write(b);
+            bos.write(b)
         }
-        bis.close();
-        bos.close();
+        bis.close()
+        bos.close()
     }
-
 }

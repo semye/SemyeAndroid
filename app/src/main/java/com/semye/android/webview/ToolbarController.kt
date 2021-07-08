@@ -15,20 +15,14 @@
  *
  *
  */
+package com.semye.android.webview
 
-package com.semye.android.webview;
-
-import android.view.View;
+import android.view.View
 
 /**
  * Created by yesheng on 2018/9/30.
  */
-public interface ToolbarController {
-
-
-    void onBackClick(View view);
-
-
-    void onCloseClick(View view);
-
+interface ToolbarController {
+    fun onBackClick(view: View?)
+    fun onCloseClick(view: View?)
 }

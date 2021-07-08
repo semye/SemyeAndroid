@@ -1,89 +1,76 @@
-package com.semye.android.webview.jsbridge;
+package com.semye.android.webview.jsbridge
 
-import android.graphics.Bitmap;
-import android.os.Build;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import android.graphics.Bitmap
+import android.os.Build
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import com.semye.android.webview.jsbridge.BridgeUtil.webViewLoadLocalJs
+import java.io.UnsupportedEncodingException
+import java.net.URLDecoder
 
 /**
  * Created by bruce on 10/28/15.
  * 桥接webview的webviewclient
  */
-public class BridgeWebViewClient extends WebViewClient {
-
-    private BridgeWebView webView;
-
-    public BridgeWebViewClient(BridgeWebView webView) {
-        this.webView = webView;
-    }
-
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+class BridgeWebViewClient(private val webView: BridgeWebView?) : WebViewClient() {
+    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+        var url = url
         try {
-            url = URLDecoder.decode(url, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            url = URLDecoder.decode(url, "UTF-8")
+        } catch (e: UnsupportedEncodingException) {
+            e.printStackTrace()
         }
-
-        if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
-            webView.handlerReturnData(url);
-            return true;
+        return if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
+            webView!!.handlerReturnData(url)
+            true
         } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
-            webView.flushMessageQueue();
-            return true;
+            webView!!.flushMessageQueue()
+            true
         } else {
-            return super.shouldOverrideUrlLoading(view, url);
+            super.shouldOverrideUrlLoading(view, url)
         }
     }
 
     // 增加shouldOverrideUrlLoading在api》=24时
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String url = request.getUrl().toString();
+    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            var url = request.url.toString()
             try {
-                url = URLDecoder.decode(url, "UTF-8");
-            } catch (UnsupportedEncodingException ex) {
-                ex.printStackTrace();
+                url = URLDecoder.decode(url, "UTF-8")
+            } catch (ex: UnsupportedEncodingException) {
+                ex.printStackTrace()
             }
             if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
-                webView.handlerReturnData(url);
-                return true;
+                webView!!.handlerReturnData(url)
+                true
             } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
-                webView.flushMessageQueue();
-                return true;
+                webView!!.flushMessageQueue()
+                true
             } else {
-                return super.shouldOverrideUrlLoading(view, request);
+                super.shouldOverrideUrlLoading(view, request)
             }
-        }else {
-            return super.shouldOverrideUrlLoading(view, request);
+        } else {
+            super.shouldOverrideUrlLoading(view, request)
         }
     }
 
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        super.onPageStarted(view, url, favicon);
+    override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+        super.onPageStarted(view, url, favicon)
     }
 
-    @Override
-    public void onPageFinished(WebView view, String url) {
-        super.onPageFinished(view, url);
-        BridgeUtil.webViewLoadLocalJs(view, BridgeWebView.toLoadJs);
+    override fun onPageFinished(view: WebView, url: String) {
+        super.onPageFinished(view, url)
+        webViewLoadLocalJs(view, BridgeWebView.toLoadJs)
         if (webView != null && webView.getStartupMessage() != null) {
-            for (Message m : webView.getStartupMessage()) {
-                webView.dispatchMessage(m);
+            for (m in webView.getStartupMessage()!!) {
+                webView.dispatchMessage(m)
             }
-            webView.setStartupMessage(null);
+            webView.setStartupMessage(null)
         }
     }
 
-    @Override
-    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-        super.onReceivedError(view, errorCode, description, failingUrl);
+    override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
+        super.onReceivedError(view, errorCode, description, failingUrl)
     }
 }

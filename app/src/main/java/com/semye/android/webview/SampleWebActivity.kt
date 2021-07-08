@@ -15,32 +15,24 @@
  *
  *
  */
+package com.semye.android.webview
 
-package com.semye.android.webview;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.webkit.WebView;
-
-import com.semye.android.R;
-
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.os.Bundle
+import android.view.View
+import android.webkit.WebView
+import com.semye.android.R
 
 /**
  * Created by yesheng on 2018/9/30.
  */
-public class SampleWebActivity extends BaseWebViewToolBarActivity {
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setToolBarBackgroundColor(R.color.colorPrimary);
-        setNavigationIcon(R.drawable.icon_back_white);
-        setToolbarTitleColor(Color.parseColor("#FFFFFF"));
-        WebView.setWebContentsDebuggingEnabled(true);
-
-
+class SampleWebActivity : BaseWebViewToolBarActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setToolBarBackgroundColor(R.color.colorPrimary)
+        setNavigationIcon(R.drawable.icon_back_white)
+        setToolbarTitleColor(Color.parseColor("#FFFFFF"))
+        WebView.setWebContentsDebuggingEnabled(true)
     }
-
 }
