@@ -1,18 +1,15 @@
-package com.semye.android.utils;
+package com.semye.android.utils
 
-import androidx.annotation.NonNull;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 /**
  * Created by yesheng on 2017/1/16.
  * md5 在android上的使用
  */
-public class MD5Utils {
-
-    private static final String MD5 = "MD5";
+object MD5Utils {
+    private const val MD5 = "MD5"
 
     /**
      * 32位MD5
@@ -21,13 +18,14 @@ public class MD5Utils {
      * @return
      * @throws NoSuchAlgorithmException
      */
-    public static String encode(String str) throws NoSuchAlgorithmException {
+    @JvmStatic
+    @Throws(NoSuchAlgorithmException::class)
+    fun encode(str: String): String {
         //消息摘要
-        MessageDigest messageDigest = MessageDigest.getInstance(MD5);
-        byte[] byteArray = str.getBytes(StandardCharsets.UTF_8);
-        byte[] md5Bytes = messageDigest.digest(byteArray);
-
-        return bytes2Hex(md5Bytes);
+        val messageDigest = MessageDigest.getInstance(MD5)
+        val byteArray = str.toByteArray(StandardCharsets.UTF_8)
+        val md5Bytes = messageDigest.digest(byteArray)
+        return bytes2Hex(md5Bytes)
     }
 
     /**
@@ -36,23 +34,21 @@ public class MD5Utils {
      * @param bytes bytes
      * @return
      */
-    private static String bytes2Hex(byte[] bytes) {
-        StringBuffer result = new StringBuffer(bytes.length * 2);
-        int temp;
-        for (byte aByte : bytes) {
-            temp = aByte;
+    private fun bytes2Hex(bytes: ByteArray): String {
+        val result = StringBuffer(bytes.size * 2)
+        var temp: Int
+        for (aByte in bytes) {
+            temp = aByte.toInt()
             if (temp < 0) {
-                temp += 256;
+                temp += 256
             }
             if (temp < 16) {
-                result.append("0");
+                result.append("0")
             }
-            result.append(Integer.toHexString(temp));
+            result.append(Integer.toHexString(temp))
         }
-
-        return result.toString();
+        return result.toString()
     }
-
 
     /**
      * 16位MD5
@@ -61,8 +57,9 @@ public class MD5Utils {
      * @return
      * @throws NoSuchAlgorithmException
      */
-    public static String encode16(@NonNull String str) throws NoSuchAlgorithmException {
-        return encode(str).substring(8, 24);
+    @JvmStatic
+    @Throws(NoSuchAlgorithmException::class)
+    fun encode16(str: String): String {
+        return encode(str).substring(8, 24)
     }
-
 }

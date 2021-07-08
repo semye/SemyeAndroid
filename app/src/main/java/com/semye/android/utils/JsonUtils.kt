@@ -1,92 +1,66 @@
-package com.semye.android.utils;
+package com.semye.android.utils
 
-import android.text.TextUtils;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
+import android.text.TextUtils
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+import java.util.*
 
 /**
  * Created by yesheng on 2017/5/7.
  */
-public class JsonUtils {
-
-    @Nullable
-    public static String getJsonValueByName(@Nullable String jsonStr, @Nullable String name) {
+object JsonUtils {
+    fun getJsonValueByName(jsonStr: String?, name: String?): String? {
         if (TextUtils.isEmpty(jsonStr) || TextUtils.isEmpty(name)) {
-            return null;
+            return null
         }
-        String str = null;
+        var str: String? = null
         try {
-            JSONObject jsonObject = new JSONObject(jsonStr);
-            if (jsonObject.has(name))
-                str = jsonObject.getString(name);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+            val jsonObject = JSONObject(jsonStr)
+            if (jsonObject.has(name)) str = jsonObject.getString(name)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            return null
         }
-        return str;
+        return str
     }
 
-    @Nullable
-    public static String convertToString(Object object) {
-        Gson gson = new Gson();
+    fun convertToString(`object`: Any?): String? {
+        val gson = Gson()
         try {
-            return gson.toJson(object);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return gson.toJson(`object`)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-    @Nullable
-    public static <T> T convertToObject(String gsonString, @NonNull Class<T> cls) {
-        Gson gson = new Gson();
+    fun <T> convertToObject(gsonString: String?, cls: Class<T>): T? {
+        val gson = Gson()
         try {
-            return gson.fromJson(gsonString, cls);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return gson.fromJson(gsonString, cls)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-    @Nullable
-    public static <T> T convertToObject(@NonNull Gson gson, String gsonString, @NonNull Class<T> cls) {
+    fun <T> convertToObject(gson: Gson, gsonString: String?, cls: Class<T>): T? {
         try {
-            return gson.fromJson(gsonString, cls);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return gson.fromJson(gsonString, cls)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-
-    @Nullable
-    public static <T> List<T> convertToObjectList(String gsonString, Class<T> clazz) {
-        Gson gson = new Gson();
+    fun <T> convertToObjectList(gsonString: String?, clazz: Class<T>?): List<T>? {
+        val gson = Gson()
         try {
-            List<T> list = gson.fromJson(gsonString, new TypeToken<List<T>>() {
-            }.getType());
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
+            return gson.fromJson(gsonString, object : TypeToken<List<T>?>() {}.getType())
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
     /**
@@ -94,82 +68,80 @@ public class JsonUtils {
      * @param cls
      * @param <T>
      * @return
-     */
-    @NonNull
-    public static <T> List<T> getObjectList(@NonNull String jsonString, @NonNull Class<T> cls) {
-        List<T> list = new ArrayList<>();
+    </T> */
+    fun <T> getObjectList(jsonString: String, cls: Class<T>): List<T> {
+        val list: MutableList<T> = ArrayList()
         try {
-            Gson gson = new Gson();
-            JsonArray jsonArray = new JsonParser().parse(jsonString).getAsJsonArray();
-            for (JsonElement jsonElement : jsonArray) {
-                list.add(gson.fromJson(jsonElement, cls));
+            val gson = Gson()
+            val jsonArray: JsonArray = JsonParser().parse(jsonString).getAsJsonArray()
+            for (jsonElement in jsonArray) {
+                list.add(gson.fromJson(jsonElement, cls))
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return list;
+        return list
     }
 
-
-    public static <T> List<T> newchangeGsonToList(String gsonString, @NonNull Class<T[]> clazz) {
-        Gson gson = new Gson();
+    fun <T> newchangeGsonToList(gsonString: String?, clazz: Class<Array<T>?>): List<T>? {
+        val gson = Gson()
         try {
-            T[] arr = gson.fromJson(gsonString, clazz);
-            return Arrays.asList(arr);
-        } catch (Exception e) {
-            e.printStackTrace();
+            val arr: Array<T> = gson.fromJson(gsonString, clazz)
+            return Arrays.asList(*arr)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-    public static <T> List<Map<String, T>> changeGsonToListMaps(
-            String gsonString) {
-        List<Map<String, T>> list = null;
-        Gson gson = new Gson();
+    fun <T> changeGsonToListMaps(
+        gsonString: String?
+    ): List<Map<String, T>>? {
+        var list: List<Map<String, T>>? = null
+        val gson = Gson()
         try {
-            list = gson.fromJson(gsonString, new TypeToken<List<Map<String, T>>>() {
-            }.getType());
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
+            list = gson.fromJson(
+                gsonString,
+                object : TypeToken<List<Map<String?, T>?>?>() {}.getType()
+            )
+            return list
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-    public static <T> Map<String, T> changeGsonToMaps(String gsonString) {
-        Map<String, T> map = null;
-        Gson gson = new Gson();
+    fun <T> changeGsonToMaps(gsonString: String?): Map<String, T>? {
+        var map: Map<String, T>? = null
+        val gson = Gson()
         try {
-            map = gson.fromJson(gsonString, new TypeToken<Map<String, T>>() {
-            }.getType());
-            return map;
-        } catch (Exception e) {
-            e.printStackTrace();
+            map = gson.fromJson(gsonString, object : TypeToken<Map<String?, T>?>() {}.getType())
+            return map
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
 
-    public static <T> Object json2Object(String jsonStr, @NonNull Class<T> className) {
-        Gson gson = new Gson();
-        return gson.fromJson(jsonStr, className);
+    fun <T> json2Object(jsonStr: String?, className: Class<T>): Any {
+        val gson = Gson()
+        return gson.fromJson(jsonStr, className)
     }
 
-    public static <T> ArrayList<T> json2List(String jsonStr, Class<T> t) {
-        Type listType = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        Gson gson = new Gson();
-        return gson.fromJson(jsonStr, listType);
+    fun <T> json2List(jsonStr: String?, t: Class<T>?): ArrayList<T> {
+        val listType: Type = object : TypeToken<ArrayList<T>?>() {}.getType()
+        val gson = Gson()
+        return gson.fromJson(jsonStr, listType)
     }
 
-    @Nullable
-    public static String getJsonStr(String JsonStr, String name) {
-        String str = null;
+    fun getJsonStr(JsonStr: String?, name: String?): String? {
+        var str: String? = null
         try {
-            JSONObject jsonObject = new JSONObject(JsonStr);
-            str = jsonObject.getString(name);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            val jsonObject = JSONObject(JsonStr)
+            str = jsonObject.getString(name)
+        } catch (e: JSONException) {
+            e.printStackTrace()
         }
-        return str;
+        return str
     }
 }

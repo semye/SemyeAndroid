@@ -1,27 +1,21 @@
-package com.semye.android.utils;
+package com.semye.android.utils
 
-import android.content.Context;
-import android.util.DisplayMetrics;
-
-import androidx.annotation.NonNull;
+import android.content.Context
 
 /**
  * Created by yesheng on 2016/12/27.
  */
-public class ScreenUtils {
-
-
+object ScreenUtils {
     /**
      * 获取屏幕的高度
      *
      * @param context context
      * @return 屏幕的高度像素
      */
-    public static int getScreenHeight(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.heightPixels;
+    fun getScreenHeight(context: Context): Int {
+        val metrics = context.resources.displayMetrics
+        return metrics.heightPixels
     }
-
 
     /**
      * 获取屏幕宽度
@@ -29,11 +23,10 @@ public class ScreenUtils {
      * @param context context
      * @return 屏幕的宽度像素
      */
-    public static int getScreenWidth(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.widthPixels;
+    fun getScreenWidth(context: Context): Int {
+        val metrics = context.resources.displayMetrics
+        return metrics.widthPixels
     }
-
 
     /**
      * 获得设备屏幕密度
@@ -41,9 +34,9 @@ public class ScreenUtils {
      * @param context context
      * @return 设备屏幕密度
      */
-    public static float getScreenDensity(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.density;
+    fun getScreenDensity(context: Context): Float {
+        val metrics = context.resources.displayMetrics
+        return metrics.density
     }
 
     /**
@@ -52,19 +45,18 @@ public class ScreenUtils {
      * @param context context
      * @return Dpi
      */
-    public static int getScreenDensityDpi(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.densityDpi;
+    fun getScreenDensityDpi(context: Context): Int {
+        val metrics = context.resources.displayMetrics
+        return metrics.densityDpi
     }
 
-    public static float getScreenXDpi(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.xdpi;
+    fun getScreenXDpi(context: Context): Float {
+        val metrics = context.resources.displayMetrics
+        return metrics.xdpi
     }
 
-    public static float getScreenYDpi(@NonNull Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.ydpi;
+    fun getScreenYDpi(context: Context): Float {
+        val metrics = context.resources.displayMetrics
+        return metrics.ydpi
     }
-
 }

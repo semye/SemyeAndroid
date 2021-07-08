@@ -1,38 +1,31 @@
-package com.semye.android.utils;
+package com.semye.android.utils
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Build
+import android.os.Environment
+import android.text.TextUtils
+import android.util.Log
+import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
+import java.util.*
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.Properties;
-
-import androidx.annotation.NonNull;
-
-public class PhoneUtils {
-
-
-
+object PhoneUtils {
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    fun dip2px(context: Context, dpValue: Float): Int {
+        val scale = context.resources.displayMetrics.density
+        return (dpValue * scale + 0.5f).toInt()
     }
 
     /**
      * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
      */
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+    fun px2dip(context: Context, pxValue: Float): Int {
+        val scale = context.resources.displayMetrics.density
+        return (pxValue / scale + 0.5f).toInt()
     }
 
     /**
@@ -42,9 +35,9 @@ public class PhoneUtils {
      * @param context （DisplayMetrics类中属性scaledDensity）
      * @return
      */
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
+    fun sp2px(context: Context, spValue: Float): Int {
+        val fontScale = context.resources.displayMetrics.scaledDensity
+        return (spValue * fontScale + 0.5f).toInt()
     }
 
     /**
@@ -53,41 +46,40 @@ public class PhoneUtils {
      * @param context
      * @return
      */
-    public static int getStatusBarHeight(@NonNull Context context) {
-        int statusHeight = -1;
+    fun getStatusBarHeight(context: Context): Int {
+        var statusHeight = -1
         try {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height")
-                    .get(object).toString());
-            statusHeight = context.getResources().getDimensionPixelSize(height);
-        } catch (Exception e) {
-            e.printStackTrace();
+            val clazz = Class.forName("com.android.internal.R\$dimen")
+            val `object` = clazz.newInstance()
+            val height = clazz.getField("status_bar_height")[`object`].toString().toInt()
+            statusHeight = context.resources.getDimensionPixelSize(height)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return statusHeight;
+        return statusHeight
     }
-
 
     /**
      * 判断EMUI版本是否大于等于3.0
      *
      * @return 如果大于3.0返回true 否则返回false
      */
-    public static boolean isOverEmui3() {
-        String version = PhoneUtils.getEmuiVersion();
-        if (!TextUtils.isEmpty(version)) {
-            String[] array = version.split("_");
-            if (array.length >= 2) {
-                try {
-                    return isOver3(array[1]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return false;
+    val isOverEmui3: Boolean
+        get() {
+            val version = emuiVersion
+            if (!TextUtils.isEmpty(version)) {
+                val array = version.split("_").toTypedArray()
+                if (array.size >= 2) {
+                    return try {
+                        isOver3(array[1])
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        false
+                    }
                 }
             }
+            return false
         }
-        return false;
-    }
 
     /**
      * 判断华为手机的版本号是否大于3.0,这里有两种情况
@@ -97,145 +89,157 @@ public class PhoneUtils {
      * @param number 截取到版本号
      * @return 是否大于3.0
      */
-    public static boolean isOver3(String number) {
-        String versioncode;
-        int flag = number.split("\\.").length;
-        if (flag == 2) {
-            versioncode = number.replace(".", "") + "0";
+    fun isOver3(number: String): Boolean {
+        val versioncode: String
+        val flag = number.split("\\.").toTypedArray().size
+        versioncode = if (flag == 2) {
+            number.replace(".", "") + "0"
         } else if (flag == 3) {
-            versioncode = number.replace(".", "");
+            number.replace(".", "")
         } else {
-            return false;
+            return false
         }
-        return Integer.valueOf(versioncode) >= 300;
+        return Integer.valueOf(versioncode) >= 300
     }
 
-
-    public static final String TAG = "HUAWEI";
+    const val TAG = "HUAWEI"
 
     /**
      * @return 只要返回不是""，则是EMUI版本
      */
-    @NonNull
-    private static String getEmuiVersion() {
-        String emuiVerion = "";
-        Class<?>[] clsArray = new Class<?>[]{String.class};
-        Object[] objArray = new Object[]{"ro.build.version.emui"};
-        try {
-            @SuppressLint("PrivateApi")
-            Class<?> SystemPropertiesClass = Class.forName("android.os.SystemProperties");
-            Method get = SystemPropertiesClass.getDeclaredMethod("get",
-                    clsArray);
-            String version = (String) get.invoke(SystemPropertiesClass,
-                    objArray);
-            Log.d(TAG, "get EMUI version is:" + version);
-            if (!TextUtils.isEmpty(version)) {
-                return version;
+    private val emuiVersion: String
+        private get() {
+            val emuiVerion = ""
+            val clsArray = arrayOf<Class<*>>(String::class.java)
+            val objArray = arrayOf<Any>("ro.build.version.emui")
+            try {
+                @SuppressLint("PrivateApi") val SystemPropertiesClass =
+                    Class.forName("android.os.SystemProperties")
+                val get = SystemPropertiesClass.getDeclaredMethod(
+                    "get",
+                    *clsArray
+                )
+                val version = get.invoke(
+                    SystemPropertiesClass,
+                    *objArray
+                ) as String
+                Log.d(TAG, "get EMUI version is:$version")
+                if (!TextUtils.isEmpty(version)) {
+                    return version
+                }
+            } catch (e: ClassNotFoundException) {
+                Log.e(TAG, " getEmuiVersion wrong, ClassNotFoundException")
+            } catch (e: LinkageError) {
+                Log.e(TAG, " getEmuiVersion wrong, LinkageError")
+            } catch (e: NoSuchMethodException) {
+                Log.e(TAG, " getEmuiVersion wrong, NoSuchMethodException")
+            } catch (e: NullPointerException) {
+                Log.e(TAG, " getEmuiVersion wrong, NullPointerException")
+            } catch (e: Exception) {
+                Log.e(TAG, " getEmuiVersion wrong")
             }
-        } catch (ClassNotFoundException e) {
-            Log.e(TAG, " getEmuiVersion wrong, ClassNotFoundException");
-        } catch (LinkageError e) {
-            Log.e(TAG, " getEmuiVersion wrong, LinkageError");
-        } catch (NoSuchMethodException e) {
-            Log.e(TAG, " getEmuiVersion wrong, NoSuchMethodException");
-        } catch (NullPointerException e) {
-            Log.e(TAG, " getEmuiVersion wrong, NullPointerException");
-        } catch (Exception e) {
-            Log.e(TAG, " getEmuiVersion wrong");
+            return emuiVerion
         }
-        return emuiVerion;
 
-    }
-
-
-//=================================判断手机标识==========================================/
-
+    //=================================判断手机标识==========================================/
     //小米标识
-    private static final String KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code";
-    private static final String KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name";
-    private static final String KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage";
+    private const val KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code"
+    private const val KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name"
+    private const val KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage"
 
     //华为标识
-    private static final String KEY_EMUI_VERSION_CODE = "ro.build.version.emui";
-    private static final String KEY_EMUI_API_LEVEL = "ro.build.hw_emui_api_level";
-    private static final String KEY_EMUI_CONFIG_HW_SYS_VERSION = "ro.confg.hw_systemversion";
+    private const val KEY_EMUI_VERSION_CODE = "ro.build.version.emui"
+    private const val KEY_EMUI_API_LEVEL = "ro.build.hw_emui_api_level"
+    private const val KEY_EMUI_CONFIG_HW_SYS_VERSION = "ro.confg.hw_systemversion"
 
     //魅族标识
-    private static final String KEY_FLYME_ID_FALG_KEY = "ro.build.display.id";
-    private static final String KEY_FLYME_ID_FALG_VALUE_KEYWORD = "Flyme";
-    private static final String KEY_FLYME_ICON_FALG = "persist.sys.use.flyme.icon";
-    private static final String KEY_FLYME_SETUP_FALG = "ro.meizu.setupwizard.flyme";
-    private static final String KEY_FLYME_PUBLISH_FALG = "ro.flyme.published";
+    private const val KEY_FLYME_ID_FALG_KEY = "ro.build.display.id"
+    private const val KEY_FLYME_ID_FALG_VALUE_KEYWORD = "Flyme"
+    private const val KEY_FLYME_ICON_FALG = "persist.sys.use.flyme.icon"
+    private const val KEY_FLYME_SETUP_FALG = "ro.meizu.setupwizard.flyme"
+    private const val KEY_FLYME_PUBLISH_FALG = "ro.flyme.published"
 
     //vivo标识
-    private static final String KEY_VIVO_VERSION = "ro.vivo.os.version";
+    private const val KEY_VIVO_VERSION = "ro.vivo.os.version"
 
     //oppo标识
-    private static final String KEY_OPPO_VERSION_OPPOROM = "ro.build.version.opporom";
+    private const val KEY_OPPO_VERSION_OPPOROM = "ro.build.version.opporom"
 
     //乐视手机的标识
-    private static final String KEY_LETV_PRODUCT_MANUFACTURER = "ro.product.manufacturer";
-
+    private const val KEY_LETV_PRODUCT_MANUFACTURER = "ro.product.manufacturer"
 
     /**
      * 判断是否是小米手机
      *
      * @return true 是小米手机  false 不是小米手机
      */
-    public static boolean isMIUI() {
-        String[] systemProperty = new String[]{KEY_MIUI_VERSION_CODE, KEY_MIUI_VERSION_NAME, KEY_MIUI_INTERNAL_STORAGE};
-        return checkProperty(systemProperty);
-    }
+    val isMIUI: Boolean
+        get() {
+            val systemProperty =
+                arrayOf(KEY_MIUI_VERSION_CODE, KEY_MIUI_VERSION_NAME, KEY_MIUI_INTERNAL_STORAGE)
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 判断是否为华为系统
      *
      * @return true 是华为手机  false 不是华为手机
      */
-    public static boolean isEMUI() {
-        String[] systemProperty = new String[]{KEY_EMUI_VERSION_CODE, KEY_EMUI_API_LEVEL, KEY_EMUI_CONFIG_HW_SYS_VERSION};
-        return checkProperty(systemProperty);
-    }
+    val isEMUI: Boolean
+        get() {
+            val systemProperty =
+                arrayOf(KEY_EMUI_VERSION_CODE, KEY_EMUI_API_LEVEL, KEY_EMUI_CONFIG_HW_SYS_VERSION)
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 判断是否为魅族系统
      *
      * @return
      */
-    public static boolean isFlyme() {
-        String[] systemProperty = new String[]{KEY_FLYME_ID_FALG_VALUE_KEYWORD, KEY_FLYME_ICON_FALG, KEY_FLYME_SETUP_FALG, KEY_FLYME_PUBLISH_FALG};
-        return checkProperty(systemProperty);
-    }
+    val isFlyme: Boolean
+        get() {
+            val systemProperty = arrayOf(
+                KEY_FLYME_ID_FALG_VALUE_KEYWORD,
+                KEY_FLYME_ICON_FALG,
+                KEY_FLYME_SETUP_FALG,
+                KEY_FLYME_PUBLISH_FALG
+            )
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 判断是否是vivo手机
      *
      * @return
      */
-    public static boolean isFuntouchOS() {
-        String[] systemProperty = new String[]{KEY_VIVO_VERSION};
-        return checkProperty(systemProperty);
-    }
+    val isFuntouchOS: Boolean
+        get() {
+            val systemProperty = arrayOf(KEY_VIVO_VERSION)
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 判断是否是oppo手机
      *
      * @return
      */
-    public static boolean isColorOS() {
-        String[] systemProperty = new String[]{KEY_OPPO_VERSION_OPPOROM};
-        return checkProperty(systemProperty);
-    }
+    val isColorOS: Boolean
+        get() {
+            val systemProperty = arrayOf(KEY_OPPO_VERSION_OPPOROM)
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 判断是否是乐视手机
      *
      * @return
      */
-    public static boolean isLeshi() {
-        String[] systemProperty = new String[]{KEY_LETV_PRODUCT_MANUFACTURER};
-        return checkProperty(systemProperty);
-    }
+    val isLeshi: Boolean
+        get() {
+            val systemProperty = arrayOf(KEY_LETV_PRODUCT_MANUFACTURER)
+            return checkProperty(systemProperty)
+        }
 
     /**
      * 检查build.pro
@@ -243,56 +247,52 @@ public class PhoneUtils {
      * @param systemProperty
      * @return
      */
-    private static boolean checkProperty(@NonNull String[] systemProperty) {
+    private fun checkProperty(systemProperty: Array<String>): Boolean {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1) {
-            for (String string : systemProperty) {
+            for (string in systemProperty) {
                 if (!TextUtils.isEmpty(getSystemProperty(string))) {
-                    return true;
+                    return true
                 }
             }
-            return false;
+            return false
         } else {
-            File file = new File(Environment.getRootDirectory(), "build.prop");
+            val file = File(Environment.getRootDirectory(), "build.prop")
             if (file.exists()) {
-                FileInputStream is = null;
+                var `is`: FileInputStream? = null
                 try {
-                    is = new FileInputStream(file);
-                    Properties prop = new Properties();
-                    prop.load(is);
-
-                    for (String string : systemProperty) {
+                    `is` = FileInputStream(file)
+                    val prop = Properties()
+                    prop.load(`is`)
+                    for (string in systemProperty) {
                         if (!TextUtils.isEmpty(prop.getProperty(string))) {
-                            return true;
+                            return true
                         }
                     }
-                    return false;
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    return false
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 } finally {
-                    if (is != null) {
+                    if (`is` != null) {
                         try {
-                            is.close();
-                        } catch (IOException e) {
+                            `is`.close()
+                        } catch (e: IOException) {
                             // ignore all exception
                         }
-
                     }
                 }
             }
         }
-        return false;
+        return false
     }
 
-    private static String getSystemProperty(String key) {
+    private fun getSystemProperty(key: String): String? {
         try {
-            @SuppressLint("PrivateApi")
-            Class<?> clz = Class.forName("android.os.SystemProperties");
-            Method get = clz.getMethod("get", String.class);
-            return (String) get.invoke(clz, key);
-        } catch (Exception e) {
-            e.printStackTrace();
+            @SuppressLint("PrivateApi") val clz = Class.forName("android.os.SystemProperties")
+            val get = clz.getMethod("get", String::class.java)
+            return get.invoke(clz, key) as String
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        return null;
+        return null
     }
-
 }
