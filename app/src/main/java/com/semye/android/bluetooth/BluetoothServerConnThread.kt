@@ -20,9 +20,9 @@ class BluetoothServerConnThread(  //����ͬServiceͨ�ŵ�Handler
         try {
             serverSocket =
                 adapter.listenUsingRfcommWithServiceRecord("Server", BluetoothTools.PRIVATE_UUID)
-            socket = serverSocket.accept()
+            socket = serverSocket?.accept()
         } catch (e: Exception) {
-            //��������ʧ����Ϣ
+
             serviceHandler.obtainMessage(BluetoothTools.MESSAGE_CONNECT_ERROR).sendToTarget()
             e.printStackTrace()
             return
@@ -34,22 +34,16 @@ class BluetoothServerConnThread(  //����ͬServiceͨ�ŵ�Handler
             }
         }
         if (socket != null) {
-            //�������ӳɹ���Ϣ����Ϣ��obj�ֶ�Ϊ���ӵ�socket
             val msg = serviceHandler.obtainMessage()
             msg.what = BluetoothTools.MESSAGE_CONNECT_SUCCESS
             msg.obj = socket
             msg.sendToTarget()
         } else {
-            //��������ʧ����Ϣ
             serviceHandler.obtainMessage(BluetoothTools.MESSAGE_CONNECT_ERROR).sendToTarget()
             return
         }
     }
 
-    /**
-     * ���캯��
-     * @param handler
-     */
     init {
         adapter = BluetoothAdapter.getDefaultAdapter()
     }

@@ -8,7 +8,7 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
 //package com.semye.android.module.bluetooth;
-class BluetoothCommunThread(//��Serviceͨ�ŵ�Handler
+class BluetoothCommunThread(
     private val serviceHandler: Handler, socket: BluetoothSocket
 ) : Thread() {
     private val socket: BluetoothSocket?
@@ -26,30 +26,27 @@ class BluetoothCommunThread(//��Serviceͨ�ŵ�Handler
             }
             try {
                 val obj = inStream!!.readObject()
-                //���ͳɹ���ȡ���������Ϣ����Ϣ��obj����Ϊ��ȡ���Ķ���
                 val msg = serviceHandler.obtainMessage()
                 msg.what = BluetoothTools.MESSAGE_READ_OBJECT
                 msg.obj = obj
                 msg.sendToTarget()
             } catch (ex: Exception) {
-                //��������ʧ����Ϣ
                 serviceHandler.obtainMessage(BluetoothTools.MESSAGE_CONNECT_ERROR).sendToTarget()
                 ex.printStackTrace()
                 return
             }
         }
 
-        //�ر���
         if (inStream != null) {
             try {
-                inStream.close()
+                inStream?.close()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
         if (outStream != null) {
             try {
-                outStream.close()
+                outStream?.close()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -63,27 +60,17 @@ class BluetoothCommunThread(//��Serviceͨ�ŵ�Handler
         }
     }
 
-    /**
-     * д��һ�������л��Ķ���
-     *
-     * @param obj
-     */
+
     fun writeObject(obj: Any?) {
         try {
             outStream!!.flush()
-            outStream.writeObject(obj)
-            outStream.flush()
+            outStream?.writeObject(obj)
+            outStream?.flush()
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
-    /**
-     * ���캯��
-     *
-     * @param handler ���ڽ�����Ϣ
-     * @param socket
-     */
     init {
         this.socket = socket
         try {
@@ -95,7 +82,6 @@ class BluetoothCommunThread(//��Serviceͨ�ŵ�Handler
             } catch (e1: IOException) {
                 e1.printStackTrace()
             }
-            //��������ʧ����Ϣ
             serviceHandler.obtainMessage(BluetoothTools.MESSAGE_CONNECT_ERROR).sendToTarget()
             e.printStackTrace()
         }

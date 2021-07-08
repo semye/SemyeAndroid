@@ -56,11 +56,8 @@ class ClientActivity : Activity() {
                 tvClientState!!.append("���ӳɹ�")
                 btnClientSendMsg!!.isEnabled = true
             } else if (BluetoothTools.ACTION_DATA_TO_GAME == action) {
-                val data = intent.extras
-                    .getSerializable(BluetoothTools.DATA) as MsgBean?
-                val msg = """from remote ${Date().toLocaleString()} :
-${data.getMsg()}
-"""
+                val data = intent.extras?.getSerializable(BluetoothTools.DATA) as MsgBean?
+                val msg = """from remote ${Date().toLocaleString()} :${data?.msg}"""
                 etClientChat!!.append(msg)
             } else if (BluetoothTools.ACTION_FOUND_SERVER_OVER == action) {
                 showDevices()

@@ -17,7 +17,7 @@ class BluetoothClientConnThread
         try {
             socket = serverDevice!!.createRfcommSocketToServiceRecord(BluetoothTools.PRIVATE_UUID)
             BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
-            socket.connect()
+            socket?.connect()
         } catch (ex: Exception) {
             try {
                 socket!!.close()
