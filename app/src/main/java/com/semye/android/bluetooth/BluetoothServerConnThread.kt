@@ -3,18 +3,14 @@ package com.semye.android.bluetooth
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothServerSocket
 import android.bluetooth.BluetoothSocket
-import android.os.*
+import android.os.Handler
 
-/**
- * �����������߳�
- * @author GuoDong
- */
-class BluetoothServerConnThread(  //����ͬServiceͨ�ŵ�Handler
+
+class BluetoothServerConnThread(
     private val serviceHandler: Handler
 ) : Thread() {
-    private val adapter: BluetoothAdapter
-    private var socket //����ͨ�ŵ�Socket
-            : BluetoothSocket? = null
+    private val adapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+    private var socket: BluetoothSocket? = null
     private var serverSocket: BluetoothServerSocket? = null
     override fun run() {
         try {
@@ -44,7 +40,4 @@ class BluetoothServerConnThread(  //����ͬServiceͨ�ŵ�Handler
         }
     }
 
-    init {
-        adapter = BluetoothAdapter.getDefaultAdapter()
-    }
 }

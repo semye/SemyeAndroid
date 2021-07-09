@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.*
 
 class MainActivity2 : Activity() {
+
     private val btnServer: Button? = null
     private val btnClient: Button? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,9 +30,9 @@ class MainActivity2 : Activity() {
     fun openBluetooth() {
         val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (bluetoothAdapter == null) {
-            Toast.makeText(this@MainActivity2, "���豸��֧��������", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity2, "蓝牙适配器为空", Toast.LENGTH_SHORT).show()
         } else {
-            if (!bluetoothAdapter.isEnabled) { // ����δ��������������
+            if (!bluetoothAdapter.isEnabled) {
 //				Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 //				// startActivityForResult(enableIntent, 1);
 //				startActivity(enableIntent);
@@ -46,7 +48,7 @@ class MainActivity2 : Activity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == 1) {
-            Toast.makeText(this@MainActivity2, "�����ѿ�����", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity2, "成功", Toast.LENGTH_SHORT).show()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

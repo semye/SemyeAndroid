@@ -6,11 +6,14 @@ import android.bluetooth.BluetoothSocket
 import android.os.*
 import java.io.IOException
 
-class BluetoothClientConnThread
 /**
  * @param handler
  * @param serverDevice
- */(private val serviceHandler: Handler, private val serverDevice: BluetoothDevice?) : Thread() {
+ */
+class BluetoothClientConnThread(
+    private val serviceHandler: Handler,
+    private val serverDevice: BluetoothDevice?
+) : Thread() {
     private var socket: BluetoothSocket? = null
     override fun run() {
         BluetoothAdapter.getDefaultAdapter().cancelDiscovery()

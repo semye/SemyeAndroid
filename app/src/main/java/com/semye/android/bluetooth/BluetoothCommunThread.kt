@@ -1,24 +1,21 @@
 package com.semye.android.bluetooth
 
 import android.bluetooth.BluetoothSocket
-import android.os.*
+import android.os.Handler
 import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-//package com.semye.android.module.bluetooth;
 class BluetoothCommunThread(
     private val serviceHandler: Handler, socket: BluetoothSocket
 ) : Thread() {
     private val socket: BluetoothSocket?
-    private var inStream //����������
-            : ObjectInputStream? = null
-    private var outStream //���������
-            : ObjectOutputStream? = null
+    private var inStream: ObjectInputStream? = null
+    private var outStream: ObjectOutputStream? = null
 
     @Volatile
-    var isRun = true //���б�־λ
+    var isRun = true
     override fun run() {
         while (true) {
             if (!isRun) {

@@ -29,7 +29,7 @@ class BluetoothClientService : Service() {
             if (BluetoothTools.ACTION_START_DISCOVERY == action) {
                 discoveredDevices.clear()
                 bluetoothAdapter.enable()
-                bluetoothAdapter.startDiscovery() //��ʼ����
+                bluetoothAdapter.startDiscovery()
             } else if (BluetoothTools.ACTION_SELECTED_DEVICE == action) {
                 val device = intent.extras!![BluetoothTools.DEVICE] as BluetoothDevice?
                 BluetoothClientConnThread(handler, device).start()
