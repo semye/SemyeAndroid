@@ -53,7 +53,7 @@ class ClientService : Service() {
             val action = intent.action
             if ("ACTION_START_DISCOVERY" == action) {
             } else if ("ACTION_SELECTED_DEVICE" == action) {
-                val device = intent.extras!!["DEVICE"] as BluetoothDevice?
+                val device = intent.extras!!["DEVICE"] as BluetoothDevice
                 BluetoothClientConnThread(device).start()
             } else if ("ACTION_STOP_SERVICE" == action) {
             } else if ("ACTION_DATA_TO_SERVICE" == action) {
@@ -97,7 +97,7 @@ class ClientService : Service() {
                 socket = serverDevice.createRfcommSocketToServiceRecord(Constants.MY_UUID_SECURE)
                 println("socket接收")
                 bluetoothAdapter.cancelDiscovery()
-                socket.connect()
+                socket?.connect()
             } catch (ex: Exception) {
                 try {
                     println("连接失败")

@@ -97,11 +97,11 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
         }
     }
 
-    override fun send(data: String) {
+    override fun send(data: String?) {
         send(data, null)
     }
 
-    override fun send(data: String, responseCallback: CallBackFunction?) {
+    override fun send(data: String?, responseCallback: CallBackFunction?) {
         doSend(null, data, responseCallback)
     }
 
@@ -112,7 +112,7 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
      * @param data             data
      * @param responseCallback CallBackFunction
      */
-    private fun doSend(handlerName: String?, data: String, responseCallback: CallBackFunction?) {
+    private fun doSend(handlerName: String?, data: String?, responseCallback: CallBackFunction?) {
         val m = Message()
         if (!TextUtils.isEmpty(data)) {
             m.data = data
@@ -152,8 +152,8 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
     fun dispatchMessage(m: Message) {
         var messageJson = m.toJson()
         //escape special characters for json string
-        messageJson = messageJson.replace("(\\\\)([^utrn])".toRegex(), "\\\\\\\\$1$2")
-        messageJson = messageJson.replace("(?<=[^\\\\])(\")".toRegex(), "\\\\\"")
+        messageJson = messageJson?.replace("(\\\\)([^utrn])".toRegex(), "\\\\\\\\$1$2")
+        messageJson = messageJson?.replace("(?<=[^\\\\])(\")".toRegex(), "\\\\\"")
         val javascriptCommand = String.format(BridgeUtil.JS_HANDLE_MESSAGE_FROM_JAVA, messageJson)
         if (Thread.currentThread() === Looper.getMainLooper().thread) {
             this.loadUrl(javascriptCommand)
@@ -165,50 +165,56 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
      */
     fun flushMessageQueue() {
         if (Thread.currentThread() === Looper.getMainLooper().thread) {
-            loadUrl(BridgeUtil.JS_FETCH_QUEUE_FROM_JAVA, CallBackFunction { data ->
-                // deserializeMessage
-                var list: List<Message>? = null
-                list = try {
-                    Message.toArrayList(data)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    return@CallBackFunction
-                }
-                if (list == null || list.size == 0) {
-                    return@CallBackFunction
-                }
-                for (i in list.indices) {
-                    val m = list[i]
-                    val responseId = m.responseId
-                    // 是否是response
-                    if (!TextUtils.isEmpty(responseId)) {
-                        val function = responseCallbacks[responseId]
-                        val responseData = m.responseData
-                        function!!.onCallBack(responseData)
-                        responseCallbacks.remove(responseId)
-                    } else {
-                        var responseFunction: CallBackFunction? = null
-                        // if had callbackId
-                        val callbackId = m.callbackId
-                        if (!TextUtils.isEmpty(callbackId)) {
-                            responseFunction = CallBackFunction { data ->
-                                val responseMsg = Message()
-                                responseMsg.responseId = callbackId
-                                responseMsg.responseData = data
-                                queueMessage(responseMsg)
-                            }
+            loadUrl(BridgeUtil.JS_FETCH_QUEUE_FROM_JAVA, object : CallBackFunction {
+                override fun onCallBack(data: String?) {
+                    // deserializeMessage
+                    var list: List<Message>? = null
+                    list = try {
+                        Message.toArrayList(data)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        return
+                    }
+                    if (list == null || list.size == 0) {
+                        return
+                    }
+                    for (i in list.indices) {
+                        val m = list[i]
+                        val responseId = m.responseId
+                        // 是否是response
+                        if (!TextUtils.isEmpty(responseId)) {
+                            val function = responseCallbacks[responseId]
+                            val responseData = m.responseData
+                            function!!.onCallBack(responseData)
+                            responseCallbacks.remove(responseId)
                         } else {
-                            responseFunction = CallBackFunction {
-                                // do nothing
+                            var responseFunction: CallBackFunction? = null
+                            // if had callbackId
+                            val callbackId = m.callbackId
+                            if (!TextUtils.isEmpty(callbackId)) {
+                                responseFunction = object : CallBackFunction {
+                                    override fun onCallBack(data: String?) {
+                                        val responseMsg = Message()
+                                        responseMsg.responseId = callbackId
+                                        responseMsg.responseData = data
+                                        queueMessage(responseMsg)
+                                    }
+                                }
+                            } else {
+                                responseFunction = object : CallBackFunction {
+                                    override fun onCallBack(data: String?) {
+                                        // do nothing
+                                    }
+                                }
                             }
+                            var handler: BridgeHandler?
+                            handler = if (!TextUtils.isEmpty(m.handlerName)) {
+                                messageHandlers[m.handlerName]
+                            } else {
+                                defaultHandler
+                            }
+                            handler?.handler(m.data, responseFunction)
                         }
-                        var handler: BridgeHandler?
-                        handler = if (!TextUtils.isEmpty(m.handlerName)) {
-                            messageHandlers[m.handlerName]
-                        } else {
-                            defaultHandler
-                        }
-                        handler?.handler(m.data, responseFunction)
                     }
                 }
             })

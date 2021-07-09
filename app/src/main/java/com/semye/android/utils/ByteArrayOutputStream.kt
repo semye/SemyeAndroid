@@ -38,7 +38,7 @@ class ByteArrayOutputStream @JvmOverloads constructor(size: Int = 1024) : Output
     /**
      * The list of buffers, which grows and never reduces.
      */
-    private val buffers: MutableList<*> = ArrayList<Any?>()
+    private val buffers: MutableList<ByteArray> = ArrayList<ByteArray>()
 
     /**
      * The index of the current buffer.
@@ -53,7 +53,7 @@ class ByteArrayOutputStream @JvmOverloads constructor(size: Int = 1024) : Output
     /**
      * The current buffer.
      */
-    private var currentBuffer: ByteArray?
+    private var currentBuffer: ByteArray? = null
 
     /**
      * The total count of bytes written.
@@ -97,7 +97,7 @@ class ByteArrayOutputStream @JvmOverloads constructor(size: Int = 1024) : Output
             }
             currentBufferIndex++
             currentBuffer = ByteArray(newBufferSize)
-            buffers.add(currentBuffer)
+            buffers.add(currentBuffer!!)
         }
     }
 
@@ -247,8 +247,8 @@ class ByteArrayOutputStream @JvmOverloads constructor(size: Int = 1024) : Output
      * @see java.io.ByteArrayOutputStream.toString
      */
     @Throws(UnsupportedEncodingException::class)
-    fun toString(enc: String): String {
-        return String(toByteArray(), enc)
+    fun toString(enc: String): java.lang.String {
+        return java.lang.String(toByteArray(), enc)
     }
 
     companion object {

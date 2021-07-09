@@ -66,6 +66,7 @@ import java.util.*
 import java.util.regex.Pattern
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
+import kotlin.experimental.and
 
 /**
  * String工具类
@@ -322,8 +323,8 @@ object StringUtils {
         }
         val hex = StringBuilder(hash.size * 2)
         for (b in hash) {
-            if (b and 0xFF < 0x10) hex.append("0")
-            hex.append(Integer.toHexString(b and 0xFF))
+//            if (b and (0xFF < 0x10)){ hex.append("0")}
+//            hex.append(Integer.toHexString((b and 0xFF.toByte()).toInt()))
         }
         return hex.toString()
     }
@@ -512,100 +513,13 @@ object StringUtils {
         }
     }
 
-    /**
-     * MD5加密
-     *
-     * @param source 要加密的字符串比特流
-     * @return 经过加密的字符串
-     */
-    fun getMD5(source: ByteArray?): String? {
-        var s: String? = null
-        val hexDigits = charArrayOf( // 用来将字节转换成 16 进制表示的字符
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-        )
-        try {
-            val md = MessageDigest.getInstance("MD5")
-            md.update(source)
-            val tmp = md.digest() // MD5 的计算结果是一个 128 位的长整数，
-            // 用字节表示就是 16 个字节
-            val str = CharArray(16 * 2) // 每个字节用 16 进制表示的话，使用两个字符，
-            // 所以表示成 16 进制需要 32 个字符
-            var k = 0 // 表示转换结果中对应的字符位置
-            for (i in 0..15) { // 从第一个字节开始，对 MD5 的每一个字节
-                // 转换成 16 进制字符的转换
-                val byte0 = tmp[i] // 取第 i 个字节
-                str[k++] = hexDigits[byte0 ushr 4 and 0xf] // 取字节中高 4 位的数字转换,
-                // >>>
-                // 为逻辑右移，将符号位一起右移
-                str[k++] = hexDigits[byte0 and 0xf] // 取字节中低 4 位的数字转换
-            }
-            s = String(str) // 换后的结果转换为字符串
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return s
-    }
 
-    fun toHexString(keyData: ByteArray?): String? {
-        if (keyData == null) {
-            return null
-        }
-        val expectedStringLen = keyData.size * 2
-        val sb = StringBuilder(expectedStringLen)
-        for (i in keyData.indices) {
-            var hexStr = Integer.toString(keyData[i] and 0x00FF, 16)
-            if (hexStr.length == 1) {
-                hexStr = "0$hexStr"
-            }
-            sb.append(hexStr)
-        }
-        return sb.toString()
-    }
 
-    private fun convertToHex(data: ByteArray): String {
-        val buf = StringBuffer()
-        val length = data.size
-        for (i in 0 until length) {
-            var halfbyte: Int = data[i] ushr 4 and 0x0F
-            var two_halfs = 0
-            do {
-                if (0 <= halfbyte && halfbyte <= 9) buf.append(('0'.toInt() + halfbyte).toChar()) else buf.append(
-                    ('a'.toInt() + (halfbyte - 10)).toChar()
-                )
-                halfbyte = data[i] and 0x0F
-            } while (++two_halfs < 1)
-        }
-        return buf.toString()
-    }
 
-    fun bytesToHex(bytes: ByteArray): String {
-        val hexArray = charArrayOf(
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'a',
-            'b',
-            'c',
-            'd',
-            'e',
-            'f'
-        )
-        val hexChars = CharArray(bytes.size * 2)
-        var v: Int
-        for (j in bytes.indices) {
-            v = bytes[j] and 0xFF
-            hexChars[j * 2] = hexArray[v ushr 4]
-            hexChars[j * 2 + 1] = hexArray[v and 0x0F]
-        }
-        return String(hexChars)
-    }
+
+
+
+
 
     fun encodeHex(data: ByteArray): String {
         val DIGITS = charArrayOf(
@@ -1143,40 +1057,9 @@ object StringUtils {
         return false
     }
 
-    /**
-     * SHA1加密
-     *
-     * @param source
-     * @return
-     */
-    fun SHA1(source: ByteArray?): String? {
-        try {
-            val digest = MessageDigest.getInstance("SHA-1")
-            digest.update(source)
-            val messageDigest = digest.digest()
-            return toHexString(messageDigest)
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-        }
-        return ""
-    }
 
-    /**
-     * sha1加密
-     *
-     * @param text
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws UnsupportedEncodingException
-     */
-    @Throws(NoSuchAlgorithmException::class, UnsupportedEncodingException::class)
-    fun SHA1(text: String): String {
-        val md = MessageDigest.getInstance("SHA-1")
-        var sha1hash = ByteArray(40)
-        md.update(text.toByteArray(charset("iso-8859-1")), 0, text.length)
-        sha1hash = md.digest()
-        return convertToHex(sha1hash)
-    }
+
+
 
     fun hmacSha1(value: String, key: String): String {
         return try {
@@ -1519,7 +1402,7 @@ object StringUtils {
         return jsonString.contains("err_msg")
     }
 
-    fun <T> json2Object(jsonStr: String?, className: Class<T>): Any {
+    fun <T> json2Object(jsonStr: String?, className: Class<T>): T {
         val gson = Gson()
         return gson.fromJson(jsonStr, className)
     }
@@ -1809,18 +1692,18 @@ object StringUtils {
      * @param urlStr url
      * @return
      */
-    fun getJsonFromNet(urlStr: String?): String? {
-        var josn: String? = null
+    fun getJsonFromNet(urlStr: java.lang.String?): java.lang.String? {
+        var josn: java.lang.String? = null
         var urlConn: HttpURLConnection? = null
         try {
-            val url = URL(urlStr)
+            val url = URL(urlStr.toString())
             urlConn = url.openConnection() as HttpURLConnection
             urlConn!!.connectTimeout = 5 * 1000
             urlConn.connect()
             if (urlConn.responseCode == 200) {
                 // 获取返回的数据
                 val data = readStream(urlConn.inputStream)
-                josn = String(data, "UTF-8")
+                josn = java.lang.String(data, "UTF-8")
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -2080,7 +1963,7 @@ object StringUtils {
             //当前日期的前一天
             val beforeDate = specifiedDayBefore
             if (spanTime < 3600000) { // xx分钟前
-                return spanTime / 60000.toString() + "分钟前"
+                return spanTime.div( 60000).toString() + "分钟前"
             } else if (equalStr(currDate, timeDate)) {
                 val sdf2 = SimpleDateFormat("HH:mm")
                 return "今天 " + sdf2.format(date)
@@ -2224,7 +2107,7 @@ object StringUtils {
      * @return
      */
     fun getCharacterWidth(text: String?, size: Float): Float {
-        if (null == text || "" == text) return 0
+        if (null == text || "" == text) return 0f
         val paint = Paint()
         paint.textSize = size
         return paint.measureText(text) //得到总体长度

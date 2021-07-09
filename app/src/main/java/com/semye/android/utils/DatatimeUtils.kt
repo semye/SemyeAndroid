@@ -25,7 +25,7 @@ class DatatimeUtils {
         try {
             val timeDate = simpleDateFormat!!.parse(time)
             calendar = Calendar.getInstance()
-            calendar.setTime(timeDate)
+            calendar?.setTime(timeDate)
         } catch (e: ParseException) {
             e.printStackTrace()
         }
@@ -48,7 +48,7 @@ class DatatimeUtils {
         try {
             val timeDate = simpleDateFormat!!.parse(time)
             calendar = Calendar.getInstance()
-            calendar.setTime(timeDate)
+            calendar?.setTime(timeDate)
         } catch (e: ParseException) {
             e.printStackTrace()
         }

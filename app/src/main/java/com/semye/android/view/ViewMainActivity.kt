@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
-import kotlinx.android.synthetic.main.activity_view.view.*
+
 
 class ViewMainActivity : AppCompatActivity(), View.OnTouchListener {
 

@@ -30,7 +30,7 @@ class StatusBarUtils {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(window, true)
-            if (PhoneUtils.isMIUI()) {
+            if (PhoneUtils.isMIUI) {
                 miuiSetStatusBarDarkMode(window, b)
             }
         }
@@ -148,11 +148,11 @@ class StatusBarUtils {
                 window.statusBarColor = statusBarColor
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //设置状态栏为系统默认的透明色
-                if (PhoneUtils.isMIUI()) {
+                if (PhoneUtils.isMIUI) {
                     miuiSetStatusBarDarkMode(window, darkMode)
-                } else if (PhoneUtils.isFlyme()) {
+                } else if (PhoneUtils.isFlyme) {
                     flymeSetStatusBarLightMode(window, darkMode)
-                } else if (PhoneUtils.isColorOS()) {
+                } else if (PhoneUtils.isColorOS) {
                     oppoStatusBarDarkMode(window, statusBarColor, darkMode)
                 } else { //其他类型的手机 vivo 原生android
                     window.decorView.systemUiVisibility = View.VISIBLE
@@ -170,7 +170,7 @@ class StatusBarUtils {
                 }
             } else {
                 //4.4需要设置布局根布局背景颜色和导航一致
-                if (PhoneUtils.isMIUI()) {
+                if (PhoneUtils.isMIUI) {
                     if (darkMode) {
                         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                     } else {

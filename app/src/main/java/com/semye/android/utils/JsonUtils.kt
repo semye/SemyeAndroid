@@ -1,7 +1,12 @@
 package com.semye.android.utils
 
 import android.text.TextUtils
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.reflect.Type
 import java.util.*
 
@@ -86,8 +91,8 @@ object JsonUtils {
     fun <T> newchangeGsonToList(gsonString: String?, clazz: Class<Array<T>?>): List<T>? {
         val gson = Gson()
         try {
-            val arr: Array<T> = gson.fromJson(gsonString, clazz)
-            return Arrays.asList(*arr)
+            val arr: Array<T>? = gson.fromJson(gsonString, clazz)
+            return Arrays.asList(*arr!!)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -123,7 +128,7 @@ object JsonUtils {
         return null
     }
 
-    fun <T> json2Object(jsonStr: String?, className: Class<T>): Any {
+    fun <T> json2Object(jsonStr: String?, className: Class<T>): T {
         val gson = Gson()
         return gson.fromJson(jsonStr, className)
     }

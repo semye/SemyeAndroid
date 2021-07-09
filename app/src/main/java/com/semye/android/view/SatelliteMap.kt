@@ -38,7 +38,7 @@ class SatelliteMap : View {
     private val cx = 0
     private val cy = 0
     private var compassRadius = 920 / 2
-    private var matrix: Matrix? = null
+    private var mMatrix: Matrix? = null
 
     /**
      * 在java代码里new的时候会用到
@@ -71,7 +71,7 @@ class SatelliteMap : View {
             R.drawable.icon_satellite_bg
         )
         compassRadius = compassBitmap!!.getWidth() / 2
-        matrix = Matrix()
+        mMatrix = Matrix()
         bgPaint = Paint()
     }
 
@@ -107,14 +107,14 @@ class SatelliteMap : View {
             if (resizeBitmap == null) {
                 val wscale = width.toFloat() / compassBitmap!!.width.toFloat()
                 val hscale = height.toFloat() / compassBitmap!!.height.toFloat()
-                matrix!!.setScale(wscale, hscale)
+                mMatrix!!.setScale(wscale, hscale)
                 resizeBitmap = Bitmap.createBitmap(
                     compassBitmap!!,
                     0,
                     0,
                     compassBitmap!!.width,
                     compassBitmap!!.height,
-                    matrix,
+                    mMatrix,
                     true
                 )
             }
