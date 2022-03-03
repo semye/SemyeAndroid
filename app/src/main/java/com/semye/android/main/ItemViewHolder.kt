@@ -44,7 +44,7 @@ class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.O
         itemView.setBackgroundColor(
             when (pos) {
                 0 -> Color.parseColor("#48D1CC")
-                1 -> Color.parseColor("#FFFF00")
+                1 -> Color.parseColor("#FB7299")
                 2 -> Color.parseColor("#FF7F50")
                 3 -> Color.parseColor("#4169E1")
                 else -> Color.WHITE

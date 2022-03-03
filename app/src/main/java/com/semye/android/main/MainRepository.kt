@@ -1,5 +1,6 @@
 package com.semye.android.main
 
+import com.semye.android.TestActivity
 import com.semye.android.animation.AnimationMainActivity
 import com.semye.android.app.ActionBarMainActivity
 import com.semye.android.app.service.ServiceMainActivity
@@ -34,7 +35,7 @@ import com.semye.android.view.statusbar.StatusBarActivity
 class MainRepository {
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
-            this["custom"] = CustomViewActivity::class.java
+            this["custom"] = TestActivity::class.java
             this["coroutines"] = CoroutinesMainActivity::class.java
             this["eventbus"] = EventBusMainActivity::class.java
             this["rxjava"] = RxjavaMainActivity::class.java

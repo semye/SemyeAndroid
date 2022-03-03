@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
 
@@ -73,7 +76,6 @@
 
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -220,6 +222,9 @@
         <activity
             android:name=".view.CustomViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestActivity"
+            android:configChanges="orientation|screenSize" />
 
         <service
             android:name=".network.NetworkListenerService"
