@@ -16,7 +16,6 @@ import com.semye.android.R
  */
 class ObjectAnimatorActivity : AppCompatActivity(), View.OnClickListener {
 
-
     private lateinit var mArgb: AppCompatButton
     private lateinit var mValueInt: AppCompatButton
     private lateinit var mValueFloat: AppCompatButton
@@ -61,7 +60,8 @@ class ObjectAnimatorActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun usePropertyValuesHolder() {
-        ObjectAnimator.ofPropertyValuesHolder(mTarget,
+        ObjectAnimator.ofPropertyValuesHolder(
+            mTarget,
             PropertyValuesHolder.ofFloat("alpha", 0f, 0.5f, 1f),
             PropertyValuesHolder.ofFloat("textSize", 10f, 14f, 18f, 20f)
         ).setDuration(2000)
@@ -76,9 +76,11 @@ class ObjectAnimatorActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun useArgbValue() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ObjectAnimator.ofArgb(mTarget, "textColor", 0xff0000ff.toInt(),
+            ObjectAnimator.ofArgb(
+                mTarget, "textColor", 0xff0000ff.toInt(),
                 0xff00ffff.toInt(),
-                0xffff00ff.toInt(), 0xff000000.toInt())
+                0xffff00ff.toInt(), 0xff000000.toInt()
+            )
                 .setDuration(2000)
                 .start()
         }
@@ -91,11 +93,13 @@ class ObjectAnimatorActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun useIntValue() {
-        ObjectAnimator.ofInt(mTarget, "textColor",
+        ObjectAnimator.ofInt(
+            mTarget, "textColor",
             0xff0000ff.toInt(),
             0xff00ffff.toInt(),
             0xffff00ff.toInt(),
-            0xff000000.toInt())
+            0xff000000.toInt()
+        )
             .setDuration(2000)
             .start()
     }

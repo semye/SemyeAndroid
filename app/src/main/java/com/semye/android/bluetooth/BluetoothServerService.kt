@@ -17,11 +17,6 @@ import java.io.Serializable
 class BluetoothServerService : Service() {
     private val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
-    /**
-     * ��ȡͨѶ�߳�
-     * @return
-     */
-    //����ͨѶ�߳�
     var bluetoothCommunThread: BluetoothCommunThread? = null
         private set
 

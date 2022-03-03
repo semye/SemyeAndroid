@@ -30,7 +30,9 @@ class NewBluetoothServerService : Service() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
             if (Constants.ACTION_CONNECT_ERROR == action) {
+
             } else if (Constants.ACTION_CONNECT_SUCCESS == action) {
+
             }
         }
     }

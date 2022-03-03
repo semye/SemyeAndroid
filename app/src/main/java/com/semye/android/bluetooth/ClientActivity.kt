@@ -60,7 +60,7 @@ class ClientActivity : Activity() {
                 etClientChat!!.append(msg)
             } else if (BluetoothTools.ACTION_FOUND_SERVER_OVER == action) {
                 showDevices()
-                Toast.makeText(this@ClientActivity, "������ɣ�", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ClientActivity, "超时", Toast.LENGTH_SHORT).show()
             }
         }
     }
