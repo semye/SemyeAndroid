@@ -2,11 +2,14 @@ package com.semye.android.main
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.DisplayMetrics
 import android.util.TypedValue
+import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.AndroidViewModel
@@ -37,17 +40,34 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    override fun onWindowAttributesChanged(params: WindowManager.LayoutParams?) {
+        super.onWindowAttributesChanged(params)
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return super.dispatchTouchEvent(ev)
+    }
+
     private var mTextView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
         setContentView(R.layout.activity_main)
         mRecyclerView = findViewById(R.id.recyclerview)
 
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        println(connectivityManager.toString())
         mainViewModel.requestListData()
 
         mainViewModel.mList.observe(this, object : Observer<List<Pair<String, Class<*>>>> {
@@ -62,62 +82,6 @@ class MainActivity : AppCompatActivity() {
                 )
                 mRecyclerView.layoutManager = layoutManager
                 mRecyclerView.adapter = mAdapter
-            }
-        })
-
-        // if (delegate.localNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-        //     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
-        // } else {
-        //     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
-        // }
-
-        val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
-        println(
-            metrics.widthPixels
-        )
-        println(
-            "1dp 等于" + TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 1f,
-                metrics
-            ) + "像素"
-        )
-        println(
-            "1sp 等于" + TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP, 1f,
-                metrics
-            ) + "像素"
-        )
-
-        println(
-            "设备开机到现在的毫秒数,包括休眠时间===>" + SystemClock.elapsedRealtime()
-        )
-        println(
-            "设备开机到现在的毫秒数,不包括休眠时间====>" + SystemClock.uptimeMillis()
-        )
-
-        mTextView?.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
-            override fun onLayoutChange(
-                v: View?,
-                left: Int,
-                top: Int,
-                right: Int,
-                bottom: Int,
-                oldLeft: Int,
-                oldTop: Int,
-                oldRight: Int,
-                oldBottom: Int
-            ) {
-                println("left==>" + left)
-                println("top==>" + top)
-                println("right==>" + right)
-                println("bottom==>" + bottom)
-                println("oldLeft==>" + oldLeft)
-                println("oldTop==>" + oldTop)
-                println("oldRight==>" + oldRight)
-                println("oldBottom==>" + oldBottom)
-                println("width==>" + mTextView?.width)
-                println("heigth==>" + mTextView?.height)
             }
         })
     }

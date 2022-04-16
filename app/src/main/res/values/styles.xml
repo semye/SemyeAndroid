@@ -7,7 +7,9 @@
     <style name="AppTheme2" parent="Theme.AppCompat" />
 
     <!-- 随主题变化切换白天黑夜主题  默认为Light主题  -->
-    <style name="AppTheme3" parent="Theme.AppCompat.DayNight" />
+    <style name="AppTheme3" parent="Theme.AppCompat.DayNight" >
+<!--        <item name="android:windowIsFloating">true</item>-->
+    </style>
 
 
     <style name="FitSystemWindow" parent="Theme.AppCompat.Light.NoActionBar">

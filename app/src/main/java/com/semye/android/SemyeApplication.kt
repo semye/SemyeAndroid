@@ -1,12 +1,6 @@
 package com.semye.android
 
-import android.content.Context
 import android.net.ConnectivityManager
-import android.net.LinkProperties
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
-import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
@@ -22,65 +16,7 @@ class SemyeApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "application create")
-        connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        println(connectivityManager.toString())
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            connectivityManager?.defaultProxy?.let {
-                println("代理host:" + it.host)
-                println("代理port:" + it.port)
-            }
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            connectivityManager?.addDefaultNetworkActiveListener { }
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            connectivityManager?.registerNetworkCallback(
-                NetworkRequest.Builder().build(),
-                object : ConnectivityManager.NetworkCallback() {
-                    override fun onBlockedStatusChanged(network: Network, blocked: Boolean) {
-                        super.onBlockedStatusChanged(network, blocked)
-                    }
-
-                    override fun onCapabilitiesChanged(
-                        network: Network,
-                        networkCapabilities: NetworkCapabilities
-                    ) {
-                        super.onCapabilitiesChanged(network, networkCapabilities)
-                        if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
-                            if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                                Log.d(TAG, "wifi网络已连接");
-                            } else {
-                                Log.d(TAG, "移动网络已连接");
-                            }
-                        }
-                    }
-
-                    override fun onLost(network: Network) {
-                        super.onLost(network)
-                        Log.e(TAG, "网络断开了");
-                    }
-
-                    override fun onLinkPropertiesChanged(
-                        network: Network,
-                        linkProperties: LinkProperties
-                    ) {
-                        super.onLinkPropertiesChanged(network, linkProperties)
-                    }
-
-                    override fun onUnavailable() {
-                        super.onUnavailable()
-                    }
-
-                    override fun onLosing(network: Network, maxMsToLive: Int) {
-                        super.onLosing(network, maxMsToLive)
-                    }
-
-                    override fun onAvailable(network: Network) {
-                        super.onAvailable(network)
-                        Log.e(TAG, "网络连接了");
-                    }
-                })
-        }
+        AppNetworkManager.inits(this)
     }
 
     private val cookies: HashMap<String, String>
