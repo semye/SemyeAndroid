@@ -48,7 +48,7 @@ class ServerActivity : Activity() {
                     )
                     fout.write(data)
                     fout.close()
-                } catch (e: Exception) {
+                } catch (e: Exception) {0
                     e.printStackTrace()
                 }
                 etServerMsg!!.append(msg)

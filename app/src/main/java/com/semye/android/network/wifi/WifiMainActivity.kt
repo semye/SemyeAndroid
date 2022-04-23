@@ -5,6 +5,9 @@ import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +16,30 @@ import com.semye.android.R
 class WifiMainActivity : AppCompatActivity() {
 
     private var wifiManager: WifiManager? = null
-    private var mRecyclerView: RecyclerView? = null
+
     
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_wifi)
-        mRecyclerView = findViewById(R.id.recyclerview)
         wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as? WifiManager
+
+        //Q版本后不允许打开关闭wifi
+        findViewById<Button>(R.id.open).setOnClickListener {
+            wifiManager?.isWifiEnabled = true
+        }
+        findViewById<Button>(R.id.close).setOnClickListener {
+            wifiManager?.isWifiEnabled = false
+        }
+
+        findViewById<TextView>(R.id.info).text = wifiManager?.connectionInfo.toString()
+        findViewById<TextView>(R.id.dhcpinfo).text = wifiManager?.dhcpInfo.toString()
+
+
+
+
+
+
         show()
     }
 
@@ -31,10 +51,7 @@ class WifiMainActivity : AppCompatActivity() {
                 println(configuration.toString())
             }
         }
-        val connectionInfo = wifiManager!!.connectionInfo
-        println(connectionInfo.toString())
-        val dhcpInfo = wifiManager!!.dhcpInfo
-        println(dhcpInfo.toString())
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             println("isScanAlwaysAvailable" + wifiManager!!.isScanAlwaysAvailable)
         }

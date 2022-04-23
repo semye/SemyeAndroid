@@ -1,10 +1,6 @@
 package com.semye.annotation
 
-import java.lang.annotation.Documented
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
-
-@Documented
+@MustBeDocumented
 @Target(
     AnnotationTarget.ANNOTATION_CLASS,
     AnnotationTarget.CLASS,
@@ -14,7 +10,5 @@ import java.lang.annotation.RetentionPolicy
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.VALUE_PARAMETER
 )
-@Retention(
-    RetentionPolicy.RUNTIME
-)
+@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class SemyeRuntime(val name: String = "semye", val value: Int = 0)

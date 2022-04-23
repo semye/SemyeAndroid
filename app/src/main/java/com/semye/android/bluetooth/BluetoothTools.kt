@@ -25,13 +25,7 @@ object BluetoothTools {
     const val MESSAGE_CONNECT_SUCCESS = 0x00000002
     const val MESSAGE_CONNECT_ERROR = 0x00000003
     const val MESSAGE_READ_OBJECT = 0x00000004
-    fun openBluetooth() {
-        adapter.enable()
-    }
 
-    fun closeBluetooth() {
-        adapter.disable()
-    }
 
     fun openDiscovery(duration: Int) {
         var duration = duration

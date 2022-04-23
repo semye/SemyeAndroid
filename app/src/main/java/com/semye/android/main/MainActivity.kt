@@ -60,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-    private var mTextView: View? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO

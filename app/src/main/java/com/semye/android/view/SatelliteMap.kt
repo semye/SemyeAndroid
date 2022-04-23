@@ -103,23 +103,22 @@ class SatelliteMap : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (canvas != null) {
-            if (resizeBitmap == null) {
-                val wscale = width.toFloat() / compassBitmap!!.width.toFloat()
-                val hscale = height.toFloat() / compassBitmap!!.height.toFloat()
-                mMatrix!!.setScale(wscale, hscale)
-                resizeBitmap = Bitmap.createBitmap(
-                    compassBitmap!!,
-                    0,
-                    0,
-                    compassBitmap!!.width,
-                    compassBitmap!!.height,
-                    mMatrix,
-                    true
-                )
-            }
-            if (resizeBitmap!!.isRecycled) return
-            canvas.drawBitmap(resizeBitmap!!, 0f, 0f, bgPaint)
+        if (resizeBitmap == null) {
+            if (compassBitmap == null) return
+            val wscale = width.toFloat() / compassBitmap!!.width.toFloat()
+            val hscale = height.toFloat() / compassBitmap!!.height.toFloat()
+            mMatrix?.setScale(wscale, hscale)
+            resizeBitmap = Bitmap.createBitmap(
+                compassBitmap!!,
+                0,
+                0,
+                compassBitmap!!.width,
+                compassBitmap!!.height,
+                mMatrix,
+                true
+            )
         }
+        if (resizeBitmap!!.isRecycled) return
+        canvas.drawBitmap(resizeBitmap!!, 0f, 0f, bgPaint)
     }
 }

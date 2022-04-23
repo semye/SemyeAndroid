@@ -2,55 +2,87 @@ package com.semye.android.bluetooth
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothClass
+import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.semye.android.R
 
 class BluetoothMainActivity : AppCompatActivity() {
 
-    private val btnServer: Button? = null
-    private val btnClient: Button? = null
+    private var openBtn: Button? = null
+    private var closeBtn: Button? = null
+    private var scanBtn: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    private val btnClickListener = View.OnClickListener { v ->
-        val i = v.id
-        if (i == 1) {
-            val serverIntent = Intent(this@BluetoothMainActivity, ServerActivity::class.java)
-            startActivity(serverIntent)
-        } else if (i == 2) {
-            openBluetooth()
-        } else {
+        setContentView(R.layout.activity_bluetooth)
+        val bo = MyBo()
+        val infl = IntentFilter()
+        infl.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED)
+        infl.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
+        infl.addAction(BluetoothDevice.ACTION_FOUND)
+        infl.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
+        registerReceiver(bo, infl)
+        openBtn = findViewById(R.id.open)
+        closeBtn = findViewById(R.id.close)
+        scanBtn = findViewById(R.id.scan)
+        openBtn?.setOnClickListener {
+            val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+            val result = bluetoothAdapter.enable()
+            Log.i("yesheng", "open :$result")
+        }
+        closeBtn?.setOnClickListener {
+            val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+            val result = bluetoothAdapter.disable()
+            Log.i("yesheng", "disable :$result")
+        }
+        scanBtn?.setOnClickListener {
+            val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+            val result = bluetoothAdapter.startDiscovery()//扫描12秒,需要定位权限
+            Log.i("yesheng", "scan :$result")
         }
     }
 
-    fun openBluetooth() {
-        val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        if (bluetoothAdapter == null) {
-            Toast.makeText(this@BluetoothMainActivity, "蓝牙适配器为空", Toast.LENGTH_SHORT).show()
-        } else {
-            if (!bluetoothAdapter.isEnabled) {
-//				Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//				// startActivityForResult(enableIntent, 1);
-//				startActivity(enableIntent);
-                BluetoothTools.openBluetooth()
-                val searchIntent = Intent(this@BluetoothMainActivity, ClientActivity::class.java)
-                startActivity(searchIntent)
-            } else {
-                val searchIntent = Intent(this@BluetoothMainActivity, ClientActivity::class.java)
-                startActivity(searchIntent)
+    class MyBo : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when (intent?.action) {
+                BluetoothAdapter.ACTION_DISCOVERY_STARTED -> {
+                    Log.i("yesheng", "开始扫描蓝牙设备")
+                }
+                BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
+                    Log.i("yesheng", "蓝牙设备扫描完成")
+                }
+                BluetoothDevice.ACTION_FOUND -> {
+
+                    val device =
+                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE) as? BluetoothDevice
+                    Log.i(
+                        "yesheng",
+                        "蓝牙设备列表:" + "mac地址:" + device?.address + ",设备名称:" + device?.name + ",设备别名:" + device?.alias + " " + device?.type
+                    )
+                    val name = intent.getStringExtra(BluetoothDevice.EXTRA_NAME)
+                    Log.i("yesheng", "蓝牙名称:" + name)
+                    val cla =
+                        intent.getParcelableExtra(BluetoothDevice.EXTRA_CLASS) as? BluetoothClass
+                    Log.i("yesheng", "蓝牙class" + cla.toString())
+
+                    val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, 0)
+                    Log.i("yesheng", "rssi:" + rssi)
+
+                    device?.createBond()
+
+                }
+
             }
         }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            Toast.makeText(this@BluetoothMainActivity, "成功", Toast.LENGTH_SHORT).show()
-        }
     }
 }

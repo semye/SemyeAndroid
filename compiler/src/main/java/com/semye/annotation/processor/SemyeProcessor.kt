@@ -34,7 +34,7 @@ class SemyeProcessor : AbstractProcessor() {
     }
 
     override fun process(annotations: Set<TypeElement>, roundEnv: RoundEnvironment): Boolean {
-        if (annotations.size == 0) return false
+        if (annotations.isEmpty()) return false
         val messager = processingEnv.messager
         messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$annotations")
         messager.printMessage(Diagnostic.Kind.NOTE, "=========")

@@ -28,6 +28,13 @@ class StatusBarActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btn1 -> {
                 StatusBarCompat.setTranslucentStatusBar(window)
+                //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                if (color == Color.TRANSPARENT) {
+//                    window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//                } else {
+//                    window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                }
+//            }
             }
             R.id.btn2 -> {
                 StatusBarCompat.setStatusBarColor(window, Color.BLACK)

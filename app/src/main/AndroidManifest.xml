@@ -228,6 +228,7 @@
 
         <activity android:name=".os.OSActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".bluetooth.BluetoothMainActivity" />
 
         <service
             android:name=".network.NetworkListenerService"

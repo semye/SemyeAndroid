@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context=".network.wifi.WifiMainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/open"
         android:layout_width="match_parent"
-        android:text="打开wifi"
+        android:text="打开蓝牙"
         android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/close"
-        android:text="关闭wifi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/dhcpinfo"
+        android:text="关闭蓝牙"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
+    <Button
+        android:id="@+id/scan"
+        android:text="扫描设备"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

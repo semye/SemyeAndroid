@@ -3,6 +3,7 @@ package com.semye.android.main
 import com.semye.android.animation.AnimationMainActivity
 import com.semye.android.app.ActionBarMainActivity
 import com.semye.android.app.service.ServiceMainActivity
+import com.semye.android.bluetooth.BluetoothMainActivity
 import com.semye.android.coroutines.CoroutinesMainActivity
 import com.semye.android.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.jetpack.viewmodel.ViewModelMainActivity
@@ -36,6 +37,7 @@ class MainRepository {
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
             this["os"] = OSActivity::class.java
+            this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java
             this["coroutines"] = CoroutinesMainActivity::class.java
             this["eventbus"] = EventBusMainActivity::class.java
