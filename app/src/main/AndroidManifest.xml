@@ -230,6 +230,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".bluetooth.BluetoothMainActivity" />
 
+        <activity android:name=".lifecycle.LifeCycleActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".lifecycle.LifeCycleTokenActivity"
+            android:screenOrientation="portrait"/>
+
         <service
             android:name=".network.NetworkListenerService"
             android:exported="false" />

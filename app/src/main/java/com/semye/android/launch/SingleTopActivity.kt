@@ -39,4 +39,9 @@ class SingleTopActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        println("SingleTopActivity onNewIntent")
+    }
 }

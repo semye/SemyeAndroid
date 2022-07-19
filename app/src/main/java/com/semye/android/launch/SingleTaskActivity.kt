@@ -41,6 +41,6 @@ class SingleTaskActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        println("StackActivity1 onNewIntent")
+        println("SingleTaskActivity onNewIntent")
     }
 }

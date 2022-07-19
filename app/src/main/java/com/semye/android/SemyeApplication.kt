@@ -1,6 +1,10 @@
 package com.semye.android
 
+import android.app.Activity
+import android.app.Application
+import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
@@ -9,14 +13,21 @@ import androidx.multidex.MultiDexApplication
 /**
  * Created by yesheng on 2020/5/21
  */
-class SemyeApplication : MultiDexApplication() {
+class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCallbacks {
 
     private var connectivityManager: ConnectivityManager? = null
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        Log.e("yesheng1","attachBaseContext:"+ Log.getStackTraceString(Throwable()))
+    }
+
     override fun onCreate() {
         super.onCreate()
+        Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
         AppNetworkManager.inits(this)
+//        registerActivityLifecycleCallbacks(this)
     }
 
     private val cookies: HashMap<String, String>
@@ -52,5 +63,33 @@ class SemyeApplication : MultiDexApplication() {
 
     companion object {
         const val TAG = "SemyeApplication"
+    }
+
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        Log.e("yesheng", "onActivityCreated:$activity")
+    }
+
+    override fun onActivityStarted(activity: Activity) {
+        Log.e("yesheng", "onActivityStarted:$activity")
+    }
+
+    override fun onActivityResumed(activity: Activity) {
+        Log.e("yesheng", "onActivityResumed:$activity")
+    }
+
+    override fun onActivityPaused(activity: Activity) {
+        Log.e("yesheng", "onActivityPaused:$activity")
+    }
+
+    override fun onActivityStopped(activity: Activity) {
+        Log.e("yesheng", "onActivityStopped:$activity")
+    }
+
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+        Log.e("yesheng", "onActivitySaveInstanceState:$activity")
+    }
+
+    override fun onActivityDestroyed(activity: Activity) {
+        Log.e("yesheng", "onActivityDestroyed:$activity")
     }
 }

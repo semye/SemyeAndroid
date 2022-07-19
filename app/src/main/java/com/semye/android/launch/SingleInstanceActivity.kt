@@ -2,6 +2,7 @@ package com.semye.android.launch
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
@@ -38,5 +39,15 @@ class SingleInstanceActivity : AppCompatActivity() {
             val intent = Intent(this@SingleInstanceActivity, SingleInstanceActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("yesheng","SingleInstanceActivity onStop ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("yesheng","SingleInstanceActivity onDestroy ")
     }
 }

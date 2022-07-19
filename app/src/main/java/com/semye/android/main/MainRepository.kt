@@ -8,6 +8,8 @@ import com.semye.android.coroutines.CoroutinesMainActivity
 import com.semye.android.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.jetpack.viewmodel.ViewModelMainActivity
 import com.semye.android.jni.JniActivity
+import com.semye.android.launch.StandardActivity
+import com.semye.android.lifecycle.LifeCycleActivity
 import com.semye.android.network.ConnectMainActivity
 import com.semye.android.network.wifi.WifiMainActivity
 import com.semye.android.os.AsyncTaskActivity
@@ -36,6 +38,8 @@ import com.semye.android.view.statusbar.StatusBarActivity
 class MainRepository {
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
+            this["生命周期"]= LifeCycleActivity::class.java
+            this["启动模式"]= StandardActivity::class.java
             this["os"] = OSActivity::class.java
             this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java
