@@ -1,4 +1,4 @@
-package com.semye.android.view
+package com.semye.android.view.touchevent
 
 import android.annotation.SuppressLint
 import android.content.Context

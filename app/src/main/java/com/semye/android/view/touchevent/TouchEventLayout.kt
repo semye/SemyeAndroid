@@ -1,4 +1,4 @@
-package com.semye.android.view
+package com.semye.android.view.touchevent
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,9 +14,9 @@ class TouchEventLayout @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     /**
-     * false 交给Activity处理
-     * true  拦截不下发
-     * super.dispatchTouchEvent(ev) 交给子view处理
+     * false 交给父容器的onTouch方法处理
+     * true  当前方法消费掉
+     * super 交给onInterceptTouchEvent方法判断是否拦截
      */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         Log.e("yesheng","viewgroup dispatch touch event " + ev?.action)
@@ -24,8 +24,8 @@ class TouchEventLayout @JvmOverloads constructor(
     }
 
     /**
-     * true 拦截分发屏幕触摸事件
-     * false 不拦截屏幕触摸事件
+     * true 拦截分发屏幕触摸事件，当前ViewGroup的onTouch方法
+     * false/super 不拦截屏幕触摸事件,如果有子view,交给处理，没有则回调当前ViewGroup的onTouch方法
      */
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         Log.e("yesheng","viewgroup intercept touch event " + ev?.action)

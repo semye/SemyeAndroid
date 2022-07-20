@@ -27,6 +27,7 @@ import com.semye.android.thirdparty.rxjava.RxjavaMainActivity
 import com.semye.android.view.*
 import com.semye.android.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.view.statusbar.StatusBarActivity
+import com.semye.android.view.touchevent.TouchEventActivity
 
 /**
  *  Created by yesheng on 2020/11/5

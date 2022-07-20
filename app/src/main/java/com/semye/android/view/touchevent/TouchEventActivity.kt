@@ -1,4 +1,4 @@
-package com.semye.android.view
+package com.semye.android.view.touchevent
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 
+/**
+ * Android触摸事件分发
+ */
 class TouchEventActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
@@ -29,6 +32,11 @@ class TouchEventActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * true 当前方法消费掉事件
+     * false 当前方法消费掉事件
+     * super 交给触点的View或者ViewGroup处理
+     */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         Log.e("yesheng","Activity dispatch touch event " + ev?.action)
         return super.dispatchTouchEvent(ev)

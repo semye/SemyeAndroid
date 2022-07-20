@@ -240,7 +240,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".view.TouchEventActivity"
+            android:name=".view.touchevent.TouchEventActivity"
             android:screenOrientation="portrait" />
 
         <service
