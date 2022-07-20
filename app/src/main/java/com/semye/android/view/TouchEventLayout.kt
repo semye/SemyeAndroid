@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
@@ -18,7 +19,7 @@ class TouchEventLayout @JvmOverloads constructor(
      * super.dispatchTouchEvent(ev) 交给子view处理
      */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        println("viewgroup dispatch touch event " + ev?.action)
+        Log.e("yesheng","viewgroup dispatch touch event " + ev?.action)
         return super.dispatchTouchEvent(ev)
     }
 
@@ -27,7 +28,7 @@ class TouchEventLayout @JvmOverloads constructor(
      * false 不拦截屏幕触摸事件
      */
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        println("viewgroup intercept touch event " + ev?.action)
+        Log.e("yesheng","viewgroup intercept touch event " + ev?.action)
         return super.onInterceptTouchEvent(ev)
     }
 
@@ -37,7 +38,7 @@ class TouchEventLayout @JvmOverloads constructor(
      */
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        println("viewgroup consume " + event?.action)
+        Log.e("yesheng","viewgroup consume " + event?.action)
         return super.onTouchEvent(event)
     }
 }

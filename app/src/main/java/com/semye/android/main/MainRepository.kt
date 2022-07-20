@@ -24,10 +24,7 @@ import com.semye.android.thirdparty.glide.GlideMainActivity
 import com.semye.android.thirdparty.okhttp.OkhttpMainActivity
 import com.semye.android.thirdparty.retrofit.Retrofit2MainActivity
 import com.semye.android.thirdparty.rxjava.RxjavaMainActivity
-import com.semye.android.view.CustomViewActivity
-import com.semye.android.view.SystemUiActivity
-import com.semye.android.view.WeightActivity
-import com.semye.android.view.WindowMainActivity
+import com.semye.android.view.*
 import com.semye.android.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.view.statusbar.StatusBarActivity
 
@@ -40,6 +37,7 @@ class MainRepository {
         return mutableMapOf<String, Class<*>>().apply {
             this["生命周期"]= LifeCycleActivity::class.java
             this["启动模式"]= StandardActivity::class.java
+            this["事件分发"]= TouchEventActivity::class.java
             this["os"] = OSActivity::class.java
             this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java

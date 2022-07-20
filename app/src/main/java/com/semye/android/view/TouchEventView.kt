@@ -3,6 +3,7 @@ package com.semye.android.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 
@@ -15,7 +16,7 @@ class TouchEventView @JvmOverloads constructor(
      * false 交给ViewGroup处理
      */
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-        println("view dispatch touch event " + event?.action)
+        Log.e("yesheng","view dispatch touch event " + event?.action)
         return super.dispatchTouchEvent(event)
     }
 
@@ -25,7 +26,7 @@ class TouchEventView @JvmOverloads constructor(
      */
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        println("view consume " + event?.action)
+        Log.e("yesheng","view consume " + event?.action)
         return super.onTouchEvent(event)
     }
 }

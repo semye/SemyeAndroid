@@ -226,15 +226,22 @@
             android:name=".TestActivity"
             android:configChanges="orientation|screenSize" />
 
-        <activity android:name=".os.OSActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".os.OSActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".bluetooth.BluetoothMainActivity" />
 
-        <activity android:name=".lifecycle.LifeCycleActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".lifecycle.LifeCycleActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".lifecycle.LifeCycleTokenActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".lifecycle.LifeCycleTokenActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".view.TouchEventActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".network.NetworkListenerService"
