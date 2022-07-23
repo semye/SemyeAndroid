@@ -261,7 +261,8 @@
 
         <service
             android:name=".app.service.BindService"
-            android:exported="false" />
+            android:exported="true"
+            android:process=":yesheng" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

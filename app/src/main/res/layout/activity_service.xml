@@ -21,6 +21,13 @@
         android:text="启动普通的Service"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/btn22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止普通的Service"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn3"
@@ -43,6 +50,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="启动JobService"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询当前应用正在运行的服务数量"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="调用远程服务"
         android:textAllCaps="false"
         tools:ignore="HardcodedText" />
 

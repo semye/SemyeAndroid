@@ -39,6 +39,7 @@ class MainRepository {
             this["生命周期"]= LifeCycleActivity::class.java
             this["启动模式"]= StandardActivity::class.java
             this["事件分发"]= TouchEventActivity::class.java
+            this["服务"] = ServiceMainActivity::class.java
             this["os"] = OSActivity::class.java
             this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java
@@ -51,7 +52,6 @@ class MainRepository {
             this["Animation"] = AnimationMainActivity::class.java
             this["Handler机制"] = HandlerActivity::class.java
             this["AsyncTask"] = AsyncTaskActivity::class.java
-            this["Service"] = ServiceMainActivity::class.java
             this["environment"] = EnvironmentActivity::class.java
             this["count_down_timer"] = CountDownTimerActivity::class.java
             this["systemui"] = SystemUiActivity::class.java

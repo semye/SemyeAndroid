@@ -19,36 +19,40 @@ class BindService : Service() {
         Log.d(SERVICE_TAG, "onCreate: bindservice created")
     }
 
+    /**
+     * 绑定的service不会执行onStart
+     */
+    override fun onStart(intent: Intent?, startId: Int) {
+        super.onStart(intent, startId)
+        Log.d(SERVICE_TAG, "bindservice onStart")
+    }
+
+    /**
+     * 绑定的service不会执行onStartCommand
+     */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(SERVICE_TAG, "onCreate: bindservice onStartCommand")
+        Log.d(SERVICE_TAG, "bindservice onStartCommand")
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(SERVICE_TAG, "onCreate: bindservice onDestroy")
+        Log.d(SERVICE_TAG, "bindservice onDestroy")
     }
 
     override fun onBind(intent: Intent?): IBinder? {
-        Log.d(SERVICE_TAG, "onBind: bind service")
+        Log.d(SERVICE_TAG, "bindservice: onBind service")
         return MySub()
     }
 
-    override fun unbindService(conn: ServiceConnection) {
-        super.unbindService(conn)
-        Log.d(SERVICE_TAG, "onBind: unbind service")
+    override fun onUnbind(intent: Intent?): Boolean {
+        Log.d(SERVICE_TAG, "bindservice: onUnbind")
+        return super.onUnbind(intent)
     }
 
     class MySub : IMyAidlInterface.Stub() {
-        override fun basicTypes(
-            anInt: Int,
-            aLong: Long,
-            aBoolean: Boolean,
-            aFloat: Float,
-            aDouble: Double,
-            aString: String?
-        ) {
-            Log.d(SERVICE_TAG, "basicTypes: ")
+        override fun basicTypes(aString: String?) {
+            Log.d(SERVICE_TAG, "basicTypes: " + aString)
         }
     }
 }
