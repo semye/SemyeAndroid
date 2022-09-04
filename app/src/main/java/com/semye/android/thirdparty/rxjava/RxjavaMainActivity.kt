@@ -5,31 +5,13 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Completable
-import io.reactivex.CompletableEmitter
-import io.reactivex.CompletableObserver
-import io.reactivex.CompletableOnSubscribe
-import io.reactivex.Flowable
-import io.reactivex.FlowableEmitter
-import io.reactivex.FlowableOnSubscribe
-import io.reactivex.FlowableSubscriber
-import io.reactivex.Maybe
-import io.reactivex.MaybeEmitter
-import io.reactivex.MaybeObserver
-import io.reactivex.MaybeOnSubscribe
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.Observer
-import io.reactivex.Single
-import io.reactivex.SingleEmitter
-import io.reactivex.SingleObserver
-import io.reactivex.SingleOnSubscribe
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import org.reactivestreams.Subscription
+import java.util.concurrent.TimeUnit
 
 /**
  * reactive x 响应式编程
@@ -75,15 +57,16 @@ class RxjavaMainActivity : AppCompatActivity(), View.OnClickListener {
         val id = v.id
         when (id) {
             R.id.btn1 -> {
-                val disposable = Observable.create(object : ObservableOnSubscribe<String> {
+                //ObservableOnSubscribe
+                Observable.create(object : ObservableOnSubscribe<String> {
                     override fun subscribe(emitter: ObservableEmitter<String>) {
                         println("subscribe")
                         emitter.onNext("hello")
                         emitter.onNext("world")
                         emitter.onComplete()
                     }
-                }).subscribeOn(AndroidSchedulers.mainThread()) //订阅在线程
-                    .observeOn(Schedulers.io()) //观察在线程
+                }).subscribeOn(AndroidSchedulers.mainThread()) //订阅在线程 ObservableSubscribeOn
+                    .observeOn(Schedulers.io()) //观察在线程   //ObservableObserveOn
                     .subscribe(object : Observer<String> {
                         override fun onSubscribe(d: Disposable) {
                             println("onSubscribe:" + Thread.currentThread())
@@ -99,7 +82,7 @@ class RxjavaMainActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         override fun onComplete() {
-                            println("onError" + Thread.currentThread())
+                            println("onComplete" + Thread.currentThread())
                         }
 
                     })
