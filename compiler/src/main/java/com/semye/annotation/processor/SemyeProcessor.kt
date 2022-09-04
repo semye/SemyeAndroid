@@ -42,17 +42,17 @@ class SemyeProcessor : AbstractProcessor() {
         messager.printMessage(Diagnostic.Kind.NOTE, "<<=============>>")
         for (typeElement in annotations) {
             for (element in roundEnv.rootElements) {
-                //messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + element.toString());
+                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$element");
                 val elements1 = elements!!.getAllMembers(typeElement)
-                //messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + elements1.toString());
+                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
                 val list = elements!!.getAllAnnotationMirrors(element)
 
-                //messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + list.toString());
-                //messager.printMessage(Diagnostic.Kind.NOTE, "hello=============" + elements1.toString());
+                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$list");
+                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
 
                 //// 在元素上调用接口获取注解值
-                //ButtonType annoValue = element.getAnnotation(ButtonType.class);
-                //messager.printMessage(Diagnostic.Kind.NOTE, "====>" + annoValue.toString());
+//                ButtonType annoValue = element.getAnnotation(ButtonType.class);
+//                messager.printMessage(Diagnostic.Kind.NOTE, "====>" + annoValue.toString());
             }
         }
         return true
