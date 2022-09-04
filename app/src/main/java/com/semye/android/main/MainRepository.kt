@@ -24,6 +24,7 @@ import com.semye.android.thirdparty.glide.GlideMainActivity
 import com.semye.android.thirdparty.okhttp.OkhttpMainActivity
 import com.semye.android.thirdparty.retrofit.Retrofit2MainActivity
 import com.semye.android.thirdparty.rxjava.RxjavaMainActivity
+import com.semye.android.threa.ThreadActivity
 import com.semye.android.view.*
 import com.semye.android.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.view.statusbar.StatusBarActivity
@@ -40,6 +41,7 @@ class MainRepository {
             this["启动模式"]= StandardActivity::class.java
             this["事件分发"]= TouchEventActivity::class.java
             this["服务"] = ServiceMainActivity::class.java
+            this["线程"] = ThreadActivity::class.java
             this["os"] = OSActivity::class.java
             this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java

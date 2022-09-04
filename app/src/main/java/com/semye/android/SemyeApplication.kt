@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
+import leakcanary.LeakCanary
 
 /**
  * Created by yesheng on 2020/5/21
