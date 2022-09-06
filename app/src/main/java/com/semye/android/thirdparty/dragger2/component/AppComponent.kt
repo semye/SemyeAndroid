@@ -1,4 +1,4 @@
-package com.semye.android.thirdparty.dragger2
+package com.semye.android.thirdparty.dragger2.component
 
 import android.app.Application
 import com.semye.android.SemyeApplication

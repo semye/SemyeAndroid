@@ -8,19 +8,33 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.gson.Gson
 import com.semye.android.R
+import com.semye.android.thirdparty.dragger2.component.DaggerMainComponent
+import okhttp3.OkHttpClient
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class Dragger2SampleActivity : AppCompatActivity() {
+
     @JvmField
     @Inject
-    var model: Item? = null
+    var gson: Gson? = null
+
+    @JvmField
+    @Inject
+    var okHttpClient: OkHttpClient? = null
+
+    @JvmField
+    @Inject
+    var myCustom: MyCustom? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DaggerMainComponent.builder().build().inject(this)
+        DaggerMainComponent.builder()
+            .build().inject(this)
         checkPermissions()
-        model!!.println()
+        gson.toString()
     }
 
     private fun checkPermissions() {
@@ -33,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Log.d(TAG, "当前手机没有读写SD卡的权限,去获取")
                 ActivityCompat.requestPermissions(
-                    this@MainActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    this@Dragger2SampleActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     REQUEST_SDCARD_PERMISSION
                 )
             } else {
@@ -66,6 +80,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_SDCARD_PERMISSION = 2
-        val TAG = MainActivity::class.java.simpleName
+        val TAG = Dragger2SampleActivity::class.java.simpleName
     }
 }

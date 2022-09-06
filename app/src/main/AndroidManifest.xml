@@ -243,6 +243,7 @@
             android:name=".view.touchevent.TouchEventActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".threa.ThreadActivity" />
+        <activity android:name=".thirdparty.dragger2.SecondActivity" />
 
         <service
             android:name=".network.NetworkListenerService"
