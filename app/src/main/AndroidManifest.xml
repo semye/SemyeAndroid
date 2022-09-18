@@ -75,7 +75,7 @@
 
         <activity
             android:name=".main.MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
