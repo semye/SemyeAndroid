@@ -30,9 +30,9 @@ class WebViewManager(private val webView: WebView?) {
         webSettings.builtInZoomControls = true
         webSettings.domStorageEnabled = true
         webSettings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
-        webSettings.setAppCacheEnabled(true)
+//        webSettings.setAppCacheEnabled(true)
         webSettings.cacheMode = WebSettings.LOAD_DEFAULT
-        webSettings.setAppCacheMaxSize((1024 * 1024 * 10).toLong()) // 设置缓冲大小
+//        webSettings.setAppCacheMaxSize((1024 * 1024 * 10).toLong()) // 设置缓冲大小
         webSettings.databaseEnabled = true
         webSettings.setGeolocationEnabled(true)
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH)
@@ -238,10 +238,6 @@ class WebViewManager(private val webView: WebView?) {
 
         override fun onExceededDatabaseQuota(url: String, databaseIdentifier: String, quota: Long, estimatedDatabaseSize: Long, totalQuota: Long, quotaUpdater: QuotaUpdater) {
             super.onExceededDatabaseQuota(url, databaseIdentifier, quota, estimatedDatabaseSize, totalQuota, quotaUpdater)
-        }
-
-        override fun onReachedMaxAppCacheSize(requiredStorage: Long, quota: Long, quotaUpdater: QuotaUpdater) {
-            super.onReachedMaxAppCacheSize(requiredStorage, quota, quotaUpdater)
         }
 
         override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback) {
