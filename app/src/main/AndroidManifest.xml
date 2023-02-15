@@ -245,6 +245,8 @@
         <activity android:name=".threa.ThreadActivity" />
         <activity android:name=".thirdparty.dragger2.SecondActivity" />
         <activity android:name=".thirdparty.dragger2.Dragger2SampleActivity" />
+        <activity android:name="com.semye.android.like.LikeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <service
             android:name=".network.NetworkListenerService"

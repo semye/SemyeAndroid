@@ -10,6 +10,7 @@ import com.semye.android.jetpack.viewmodel.ViewModelMainActivity
 import com.semye.android.jni.JniActivity
 import com.semye.android.launch.StandardActivity
 import com.semye.android.lifecycle.LifeCycleActivity
+import com.semye.android.like.LikeActivity
 import com.semye.android.network.ConnectMainActivity
 import com.semye.android.network.wifi.WifiMainActivity
 import com.semye.android.os.AsyncTaskActivity
@@ -69,6 +70,7 @@ class MainRepository {
             this["retrofit"] = Retrofit2MainActivity::class.java
             this["window"] = WindowMainActivity::class.java
             this["statusbar"] = StatusBarActivity::class.java
+            this["点赞特效"] = LikeActivity::class.java
         }.toList()
     }
 }
