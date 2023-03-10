@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -64,9 +65,9 @@ class WindowMainActivity : AppCompatActivity(), View.OnClickListener {
         if (textView1?.isAttachedToWindow == false) {
             val windowManager = windowManager
             val layoutParams = WindowManager.LayoutParams()
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
             layoutParams.flags =
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.gravity = Gravity.LEFT or Gravity.TOP
@@ -81,9 +82,9 @@ class WindowMainActivity : AppCompatActivity(), View.OnClickListener {
         if (textView2?.isAttachedToWindow == false) {
             val windowManager = windowManager
             val layoutParams = WindowManager.LayoutParams()
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
             layoutParams.flags =
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.gravity = Gravity.RIGHT or Gravity.TOP
@@ -99,9 +100,9 @@ class WindowMainActivity : AppCompatActivity(), View.OnClickListener {
             val windowManager = windowManager
             val layoutParams = WindowManager.LayoutParams()
             layoutParams.title = "helloworld"
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
             layoutParams.flags =
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.gravity = Gravity.RIGHT or Gravity.BOTTOM
@@ -116,9 +117,9 @@ class WindowMainActivity : AppCompatActivity(), View.OnClickListener {
         if (textView4?.isAttachedToWindow == false) {
             val windowManager = windowManager
             val layoutParams = WindowManager.LayoutParams()
-            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
             layoutParams.flags =
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.gravity = Gravity.LEFT or Gravity.BOTTOM
@@ -131,6 +132,10 @@ class WindowMainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.add_window -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+                    startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
+                    return
+                }
                 addView1()
                 addView2()
                 addView3()
