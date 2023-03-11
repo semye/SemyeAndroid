@@ -17,13 +17,15 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     private var connectivityManager: ConnectivityManager? = null
 
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-        Log.e("yesheng1","attachBaseContext:"+ Log.getStackTraceString(Throwable()))
+        Log.e("yesheng1", "attachBaseContext:" + Log.getStackTraceString(Throwable()))
     }
 
     override fun onCreate() {
         super.onCreate()
+        application = this
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
         AppNetworkManager.inits(this)
@@ -31,7 +33,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
     }
 
     private val cookies: HashMap<String, String>
-        private get() {
+        get() {
             val cookie = CookieManager.getInstance().getCookie("wdzj.com")
             val hashMap = HashMap<String, String>()
             if (!TextUtils.isEmpty(cookie)) {
@@ -63,6 +65,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     companion object {
         const val TAG = "SemyeApplication"
+        lateinit var application: Application
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

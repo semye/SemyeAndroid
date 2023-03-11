@@ -1,26 +1,35 @@
 package com.semye.android.bluetooth
 
+import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.os.*
+import androidx.core.content.ContextCompat
+import com.semye.android.SemyeApplication
 import java.io.IOException
 
-/**
- * @param handler
- * @param serverDevice
- */
+
 class BluetoothClientConnThread(
     private val serviceHandler: Handler,
     private val serverDevice: BluetoothDevice?
 ) : Thread() {
     private var socket: BluetoothSocket? = null
     override fun run() {
-        BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
+
         try {
-            socket = serverDevice!!.createRfcommSocketToServiceRecord(BluetoothTools.PRIVATE_UUID)
-            BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
-            socket?.connect()
+            if (ContextCompat.checkSelfPermission(
+                    SemyeApplication.application,
+                    Manifest.permission.BLUETOOTH_SCAN
+                ) ==
+                android.content.pm.PackageManager.PERMISSION_GRANTED
+            ) {
+                BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
+                socket =
+                    serverDevice!!.createRfcommSocketToServiceRecord(BluetoothTools.PRIVATE_UUID)
+                BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
+                socket?.connect()
+            }
         } catch (ex: Exception) {
             try {
                 socket!!.close()
