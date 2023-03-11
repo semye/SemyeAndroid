@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import com.google.gson.Gson
 import com.semye.android.R
 import com.semye.android.thirdparty.dagger2.component.DaggerMainComponent
+import com.semye.android.thirdparty.dagger2.model.MyCustom
 import okhttp3.OkHttpClient
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ class Dagger2SampleActivity : AppCompatActivity() {
         DaggerMainComponent.builder()
             .build().inject(this)
         checkPermissions()
-        gson.toString()
+        Log.d(TAG, gson.toString())
     }
 
     private fun checkPermissions() {
@@ -65,7 +66,7 @@ class Dagger2SampleActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            REQUEST_SDCARD_PERMISSION -> if (grantResults.size != 0) {
+            REQUEST_SDCARD_PERMISSION -> if (grantResults.isNotEmpty()) {
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "获取SD卡读写权限失败")
                     Toast.makeText(this, "获取手机SD卡读写权限失败,请在设置中打开相关权限", Toast.LENGTH_SHORT).show()
@@ -80,6 +81,6 @@ class Dagger2SampleActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_SDCARD_PERMISSION = 2
-        val TAG = Dagger2SampleActivity::class.java.simpleName
+        const val TAG = "Dagger2SampleActivity"
     }
 }

@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
+import com.semye.android.thirdparty.dagger2.component.DaggerAppComponent
 
 /**
  * Created by yesheng on 2020/5/21
@@ -28,6 +29,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
         application = this
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
+        DaggerAppComponent.builder().application(this).build()
         AppNetworkManager.inits(this)
 //        registerActivityLifecycleCallbacks(this)
     }

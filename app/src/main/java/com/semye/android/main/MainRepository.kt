@@ -19,6 +19,7 @@ import com.semye.android.os.EnvironmentActivity
 import com.semye.android.os.OSActivity
 import com.semye.android.os.handler.HandlerActivity
 import com.semye.android.thirdparty.arouter.ARouterMainActivity
+import com.semye.android.thirdparty.dagger2.Dagger2SampleActivity
 import com.semye.android.thirdparty.eventbus.EventBusMainActivity
 import com.semye.android.thirdparty.fresco.FrescoMainActivity
 import com.semye.android.thirdparty.glide.GlideMainActivity
@@ -38,9 +39,9 @@ import com.semye.android.view.touchevent.TouchEventActivity
 class MainRepository {
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
-            this["生命周期"]= LifeCycleActivity::class.java
-            this["启动模式"]= StandardActivity::class.java
-            this["事件分发"]= TouchEventActivity::class.java
+            this["生命周期"] = LifeCycleActivity::class.java
+            this["启动模式"] = StandardActivity::class.java
+            this["事件分发"] = TouchEventActivity::class.java
             this["服务"] = ServiceMainActivity::class.java
             this["线程"] = ThreadActivity::class.java
             this["os"] = OSActivity::class.java
@@ -71,6 +72,7 @@ class MainRepository {
             this["window"] = WindowMainActivity::class.java
             this["statusbar"] = StatusBarActivity::class.java
             this["点赞特效"] = LikeActivity::class.java
+            this["dagger2"] = Dagger2SampleActivity::class.java
         }.toList()
     }
 }

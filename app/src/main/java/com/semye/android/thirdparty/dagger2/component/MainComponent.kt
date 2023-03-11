@@ -15,7 +15,7 @@ interface MainComponent {
     /**
      * 注入到Dragger2SampleActivity
      */
-    fun inject(daggerActivity: Dagger2SampleActivity?)
+    fun inject(daggerActivity: Dagger2SampleActivity)
 
 
 }
