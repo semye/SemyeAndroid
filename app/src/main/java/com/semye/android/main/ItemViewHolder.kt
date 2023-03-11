@@ -29,7 +29,7 @@ class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.O
 
         fun createViewHolder(parent: ViewGroup): ItemViewHolder {
             val itemView =
-                LayoutInflater.from(parent.context).inflate(R.layout.main_item, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
             return ItemViewHolder(itemView)
         }
     }

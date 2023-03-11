@@ -12,7 +12,7 @@ class LifeCycleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.lifecycle)
+        setContentView(R.layout.activity_lifecycle)
         Log.e("yesheng", "LifeCycleActivity onCreate")
         findViewById<Button>(R.id.btn1).setOnClickListener(View.OnClickListener {
             val intent = Intent(LifeCycleActivity@ this, LifeCycleTokenActivity::class.java)

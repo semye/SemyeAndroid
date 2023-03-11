@@ -17,7 +17,7 @@ class HeaderViewHolder private constructor(itemView: View) : BaseViewHolder(item
     companion object {
         fun create(parent: ViewGroup): HeaderViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_item_header, parent, false)
+                .inflate(R.layout.item_header, parent, false)
             return HeaderViewHolder(view)
         }
     }

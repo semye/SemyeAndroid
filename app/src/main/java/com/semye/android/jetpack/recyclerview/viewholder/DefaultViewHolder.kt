@@ -21,7 +21,7 @@ class DefaultViewHolder private constructor(itemView: View) : BaseViewHolder(ite
     companion object {
         fun create(parent: ViewGroup): DefaultViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_item_default, parent, false)
+                .inflate(R.layout.item_default, parent, false)
             return DefaultViewHolder(view)
         }
     }

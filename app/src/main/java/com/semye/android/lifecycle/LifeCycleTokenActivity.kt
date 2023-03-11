@@ -9,7 +9,7 @@ class LifeCycleTokenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.lifecycletoken)
+        setContentView(R.layout.activity_lifecycletoken)
         Log.e("yesheng","LifeCycleTokenActivity onCreate")
     }
 
