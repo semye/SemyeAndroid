@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 import java.util.*
@@ -38,10 +39,10 @@ class JniActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn1 -> {
-                println(soLoader.intFromNative)
+                Toast.makeText(this, "从C获取的数字:" + soLoader.intFromNative, Toast.LENGTH_LONG).show()
             }
             R.id.btn2 -> {
-                println(soLoader.stringFromNative)
+                Toast.makeText(this, "进程id:" + soLoader.stringFromNative, Toast.LENGTH_LONG).show()
             }
             R.id.btn3 -> {
                 soLoader.createFile(Environment.getExternalStorageDirectory().path + "/yesheng.txt")

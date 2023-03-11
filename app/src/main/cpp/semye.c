@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <errno.h>
 #include "semye.h"
+#include <sys/types.h>
+#include <unistd.h>
+#include <string.h>
 
 //
 // Created by semye on 2020/11/26.
@@ -28,7 +31,13 @@ Java_com_semye_android_jni_SoLoader_getStringFromNative(JNIEnv *env, jobject thi
     char *a = "hello world!";
     jstring retString = (*env)->NewStringUTF(env, a);
     __android_log_write(ANDROID_LOG_VERBOSE, "Semye", "写入完成");
-    return retString;
+
+    pid_t process = getpid();
+    __android_log_print(ANDROID_LOG_VERBOSE, "Semye", "进程id：%d", process);
+    char str[256] = {0};
+    sprintf(str, "%d", process);
+    jstring retString2 = (*env)->NewStringUTF(env, str);
+    return retString2;
 }
 
 JNIEXPORT void JNICALL
