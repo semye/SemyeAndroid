@@ -1,4 +1,4 @@
-package com.semye.android.thirdparty.dragger2
+package com.semye.android.thirdparty.dagger2
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.gson.Gson
 import com.semye.android.R
-import com.semye.android.thirdparty.dragger2.component.DaggerMainComponent
+import com.semye.android.thirdparty.dagger2.component.DaggerMainComponent
 import okhttp3.OkHttpClient
 import javax.inject.Inject
 
-class Dragger2SampleActivity : AppCompatActivity() {
+class Dagger2SampleActivity : AppCompatActivity() {
 
     @JvmField
     @Inject
@@ -47,7 +47,7 @@ class Dragger2SampleActivity : AppCompatActivity() {
             ) {
                 Log.d(TAG, "当前手机没有读写SD卡的权限,去获取")
                 ActivityCompat.requestPermissions(
-                    this@Dragger2SampleActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    this@Dagger2SampleActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     REQUEST_SDCARD_PERMISSION
                 )
             } else {
@@ -80,6 +80,6 @@ class Dragger2SampleActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_SDCARD_PERMISSION = 2
-        val TAG = Dragger2SampleActivity::class.java.simpleName
+        val TAG = Dagger2SampleActivity::class.java.simpleName
     }
 }

@@ -1,10 +1,8 @@
-package com.semye.android.thirdparty.dragger2.module
+package com.semye.android.thirdparty.dagger2.module
 
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
-import javax.inject.Inject
 
 /**
  * Created by yesheng on 2017/3/9.

@@ -1,4 +1,4 @@
-package com.semye.android.thirdparty.dragger2
+package com.semye.android.thirdparty.dagger2
 
 import javax.inject.Inject
 

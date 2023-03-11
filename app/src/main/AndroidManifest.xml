@@ -243,8 +243,8 @@
             android:name=".view.touchevent.TouchEventActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".threa.ThreadActivity" />
-        <activity android:name=".thirdparty.dragger2.SecondActivity" />
-        <activity android:name=".thirdparty.dragger2.Dragger2SampleActivity" />
+        <activity android:name=".thirdparty.dagger2.SecondActivity" />
+        <activity android:name=".thirdparty.dagger2.Dagger2SampleActivity" />
         <activity android:name="com.semye.android.like.LikeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 

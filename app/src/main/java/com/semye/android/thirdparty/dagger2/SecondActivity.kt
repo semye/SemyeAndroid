@@ -1,8 +1,8 @@
-package com.semye.android.thirdparty.dragger2
+package com.semye.android.thirdparty.dagger2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.semye.android.thirdparty.dragger2.component.DaggerMineComponent
+import com.semye.android.thirdparty.dagger2.component.DaggerMineComponent
 
 class SecondActivity : AppCompatActivity() {
 
