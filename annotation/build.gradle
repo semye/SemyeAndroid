@@ -7,7 +7,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 buildscript {
-    ext.kotlin_version = '1.5.21'
+    ext.kotlin_version = '1.8.0'
     repositories {
         mavenCentral()
     }
