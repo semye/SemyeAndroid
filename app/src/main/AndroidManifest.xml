@@ -51,7 +51,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.NETWORK_SETUP_WIZARD" />
+    <uses-permission android:name="android.permission.NETWORK_SETUP_WIZARD"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".SemyeApplication"
@@ -129,7 +130,7 @@
         <activity android:name=".ui.animation.FrameAnimationActivity" />
         <activity android:name=".ui.animation.AnimationMainActivity" />
         <activity
-            android:name="com.semye.android.thirdparty.glide.GlideMainActivity"
+            android:name=".ui.thirdparty.glide.GlideMainActivity"
             android:theme="@style/AppTheme3" />
 
         <!--启动模式start-->
@@ -151,17 +152,17 @@
         <!--启动模式end-->
 
         <activity
-            android:name="com.semye.android.thirdparty.fresco.FrescoMainActivity"
+            android:name=".ui.thirdparty.fresco.FrescoMainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.jetpack.viewmodel.ViewModelMainActivity" />
         <activity
             android:name=".ui.network.ConnectMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.semye.android.thirdparty.okhttp.OkhttpMainActivity"
+            android:name=".ui.thirdparty.okhttp.OkhttpMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.semye.android.thirdparty.retrofit.Retrofit2MainActivity"
+            android:name=".ui.thirdparty.retrofit.Retrofit2MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.animation.animator.ValueAnimatorActivity"
@@ -204,17 +205,17 @@
             android:name=".ui.thirdparty.arouter.ARouterMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".thirdparty.arouter.Router1Activity"
+            android:name=".ui.thirdparty.arouter.Router1Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".thirdparty.arouter.Router2Activity"
+            android:name=".ui.thirdparty.arouter.Router2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".thirdparty.rxjava.RxjavaMainActivity"
+            android:name=".ui.thirdparty.rxjava.RxjavaMainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".thirdparty.eventbus.EventBusMainActivity"
+            android:name=".ui.thirdparty.eventbus.EventBusMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.coroutines.CoroutinesMainActivity"
@@ -243,8 +244,8 @@
             android:name=".ui.view.touchevent.TouchEventActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.threa.ThreadActivity" />
-        <activity android:name=".thirdparty.dagger2.SecondActivity" />
-        <activity android:name=".thirdparty.dagger2.Dagger2SampleActivity" />
+        <activity android:name=".ui.thirdparty.dagger2.SecondActivity" />
+        <activity android:name=".ui.thirdparty.dagger2.Dagger2SampleActivity" />
         <activity android:name="com.semye.android.ui.like.LikeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
