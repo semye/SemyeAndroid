@@ -69,7 +69,8 @@ android {
 }
 
 ext {
-    lifecycle_version = "2.2.0"
+    lifecycle_version = "2.6.0"
+    retrofit="2.9.0"
 }
 
 kapt {
@@ -82,15 +83,15 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    testImplementation 'junit:junit:4.13'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.6.0'  //自带了
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'junit:junit:4.13.2'
 
     //jetpack lifecycle
     implementation "androidx.lifecycle:lifecycle-common:$lifecycle_version"
@@ -112,9 +113,9 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.4'
 
     //glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
     implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
     // glide 第三方库解析webp 主要是支持动图 https://github.com/zjupure/GlideWebpDecoder
     implementation "com.zlc.glide:webpdecoder:2.0.4.11.0"
 
@@ -128,9 +129,9 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
 
     //retrofit2
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
@@ -148,7 +149,7 @@ dependencies {
     // your project's other dependencies
     implementation "com.facebook.fresco:imagepipeline-okhttp3:0.12.0"
 
-    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
 
 //    implementation project(":annotation")
 //    kapt project(":compiler")
@@ -158,17 +159,20 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.5.1'
 
     //eventbus
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
 
 
     // Kotlin Android Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+
+    debugImplementation 'com.guolindev.glance:glance:1.1.0' //数据库调试助手
 
 }
 

@@ -113,7 +113,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom">
 
-        <com.semye.android.view.CustomView
+        <com.semye.android.ui.view.CustomView
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

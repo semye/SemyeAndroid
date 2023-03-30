@@ -9,7 +9,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
-import com.semye.android.thirdparty.dagger2.component.DaggerAppComponent
+import com.semye.android.module.network.AppNetworkManager
+import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
 
 /**
  * Created by yesheng on 2020/5/21

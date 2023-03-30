@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
 
-        <com.semye.android.jetpack.nestedscroll.ChildNestedView
+        <com.semye.android.ui.jetpack.nestedscroll.ChildNestedView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
