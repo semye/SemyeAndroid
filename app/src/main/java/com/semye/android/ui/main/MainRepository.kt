@@ -3,7 +3,6 @@ package com.semye.android.ui.main
 import com.semye.android.ui.animation.AnimationMainActivity
 import com.semye.android.ui.app.ActionBarMainActivity
 import com.semye.android.ui.app.service.ServiceMainActivity
-import com.semye.android.module.bluetooth.BluetoothMainActivity
 import com.semye.android.ui.coroutines.CoroutinesMainActivity
 import com.semye.android.ui.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.ui.jetpack.viewmodel.ViewModelMainActivity
@@ -47,7 +46,6 @@ class MainRepository {
             this["服务"] = ServiceMainActivity::class.java
             this["线程"] = ThreadActivity::class.java
             this["os"] = OSActivity::class.java
-            this["蓝牙"] = BluetoothMainActivity::class.java
             this["custom"] = CustomViewActivity::class.java
             this["coroutines"] = CoroutinesMainActivity::class.java
             this["eventbus"] = EventBusMainActivity::class.java

@@ -5,7 +5,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+
     <uses-permission
         android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
@@ -13,8 +14,6 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
@@ -50,8 +49,9 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.NETWORK_SETUP_WIZARD"
+
+    <uses-permission
+        android:name="android.permission.NETWORK_SETUP_WIZARD"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -230,7 +230,7 @@
         <activity
             android:name=".ui.os.OSActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.bluetooth.BluetoothMainActivity" />
+
 
         <activity
             android:name=".ui.lifecycle.LifeCycleActivity"
@@ -246,8 +246,9 @@
         <activity android:name=".ui.threa.ThreadActivity" />
         <activity android:name=".ui.thirdparty.dagger2.SecondActivity" />
         <activity android:name=".ui.thirdparty.dagger2.Dagger2SampleActivity" />
-        <activity android:name="com.semye.android.ui.like.LikeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name="com.semye.android.ui.like.LikeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
             android:name=".module.network.NetworkListenerService"

@@ -12,12 +12,11 @@ import com.facebook.drawee.backends.pipeline.Fresco
  */
 const val TAG = "Initializer_tag"
 
-class FrescoInitializer : Initializer<Any> {
-    override fun create(context: Context): Any {
+class FrescoInitializer : Initializer<Unit> {
+    override fun create(context: Context) {
         Log.d(TAG, "初始化fresco")
         Fresco.initialize(context)
         FLog.setMinimumLoggingLevel(FLog.VERBOSE)
-        return Any()
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {
