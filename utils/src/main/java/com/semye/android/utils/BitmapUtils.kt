@@ -11,23 +11,29 @@ import java.io.ByteArrayOutputStream
 /**
  * Created by yesheng on 15/10/28.
  */
-class BitmapUtils {
+object BitmapUtils {
     /**
      * Get bitmap from specified image path
      *
      * @param imgPath
      * @return
      */
-    fun getBitmap(imgPath: String?): Bitmap {
-        // Get bitmap through image path
-        val newOpts = BitmapFactory.Options()
-        newOpts.inJustDecodeBounds = false
-        newOpts.inPurgeable = true
-        newOpts.inInputShareable = true
-        // Do not compress
-        newOpts.inSampleSize = 1
-        newOpts.inPreferredConfig = Bitmap.Config.RGB_565
-        return BitmapFactory.decodeFile(imgPath, newOpts)
+    @JvmStatic
+    fun getBitmap(imgPath: String): Bitmap? {
+        try {
+            // Get bitmap through image path
+            val newOpts = BitmapFactory.Options()
+            newOpts.inJustDecodeBounds = false
+            newOpts.inPurgeable = true
+            newOpts.inInputShareable = true
+            // Do not compress
+            newOpts.inSampleSize = 1
+            newOpts.inPreferredConfig = Bitmap.Config.RGB_565
+            return BitmapFactory.decodeFile(imgPath, newOpts)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     /**
@@ -38,9 +44,9 @@ class BitmapUtils {
      * @throws FileNotFoundException
      */
     @Throws(FileNotFoundException::class)
-    fun storeImage(bitmap: Bitmap?, outPath: String?) {
+    fun storeImage(bitmap: Bitmap, outPath: String?) {
         val os = FileOutputStream(outPath)
-        bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
     }
 
     /**
@@ -171,12 +177,14 @@ class BitmapUtils {
      */
     @Throws(IOException::class)
     fun compressAndGenImage(
-        imgPath: String?,
-        outPath: String?,
-        maxSize: Int,
-        needsDelete: Boolean
+            imgPath: String?,
+            outPath: String?,
+            maxSize: Int,
+            needsDelete: Boolean
     ) {
-        compressAndGenImage(getBitmap(imgPath), outPath, maxSize)
+        if (imgPath == null) return
+        val bitmap = getBitmap(imgPath) ?: return
+        compressAndGenImage(bitmap, outPath, maxSize)
 
         // Delete original file
         if (needsDelete) {
@@ -199,7 +207,9 @@ class BitmapUtils {
     @Throws(FileNotFoundException::class)
     fun ratioAndGenThumb(image: Bitmap, outPath: String?, pixelW: Float, pixelH: Float) {
         val bitmap = ratio(image, pixelW, pixelH)
-        storeImage(bitmap, outPath)
+        bitmap?.let {
+            storeImage(it, outPath)
+        }
     }
 
     /**
@@ -213,11 +223,11 @@ class BitmapUtils {
      */
     @Throws(FileNotFoundException::class)
     fun ratioAndGenThumb(
-        imgPath: String?,
-        outPath: String?,
-        pixelW: Float,
-        pixelH: Float,
-        needsDelete: Boolean
+            imgPath: String?,
+            outPath: String?,
+            pixelW: Float,
+            pixelH: Float,
+            needsDelete: Boolean
     ) {
         val bitmap = ratio(imgPath, pixelW, pixelH)
         storeImage(bitmap, outPath)
@@ -231,72 +241,72 @@ class BitmapUtils {
         }
     }
 
-    companion object {
-        /**
-         * Bitmap → Drawable
-         *
-         * @param bitmap bitmap
-         * @return drawable
-         */
-        fun convertBitmap2Drawable(bitmap: Bitmap?): Drawable {
-            return BitmapDrawable(null, bitmap)
-        }
 
-        fun compressQuality(imagePath: String?, file: File?): Bitmap? {
-            val baos = ByteArrayOutputStream()
-            //指定缩略图
-            val bitmaps = BitmapFactory.decodeFile(imagePath)
-            if (bitmaps != null) {
-                bitmaps.compress(Bitmap.CompressFormat.JPEG, 85, baos)
-                return bitmaps
-            }
-            return null
-        }
+    /**
+     * Bitmap → Drawable
+     *
+     * @param bitmap bitmap
+     * @return drawable
+     */
+    fun convertBitmap2Drawable(bitmap: Bitmap?): Drawable {
+        return BitmapDrawable(null, bitmap)
+    }
 
-        fun transImage(fromFile: String?, toFile: String?) {
-            try {
-                val bitmap = BitmapFactory.decodeFile(fromFile)
-                val bitmapWidth = bitmap.width
-                val bitmapHeight = bitmap.height
-                val ratio = Math.sqrt(1100000.toDouble() / (bitmapWidth * bitmapHeight)).toFloat()
-                // 缩放图片的尺寸
-                val scaleWidth = ratio * bitmapWidth
-                val scaleHeight = ratio * bitmapHeight
-                val w = scaleWidth / bitmapWidth.toFloat()
-                val h = scaleHeight / bitmapHeight.toFloat()
-                val matrix = Matrix()
-                matrix.postScale(w, h)
-                // 产生缩放后的Bitmap对象
-                val resizeBitmap =
+    fun compressQuality(imagePath: String?, file: File?): Bitmap? {
+        val baos = ByteArrayOutputStream()
+        //指定缩略图
+        val bitmaps = BitmapFactory.decodeFile(imagePath)
+        if (bitmaps != null) {
+            bitmaps.compress(Bitmap.CompressFormat.JPEG, 85, baos)
+            return bitmaps
+        }
+        return null
+    }
+
+    fun transImage(fromFile: String?, toFile: String?) {
+        try {
+            val bitmap = BitmapFactory.decodeFile(fromFile)
+            val bitmapWidth = bitmap.width
+            val bitmapHeight = bitmap.height
+            val ratio = Math.sqrt(1100000.toDouble() / (bitmapWidth * bitmapHeight)).toFloat()
+            // 缩放图片的尺寸
+            val scaleWidth = ratio * bitmapWidth
+            val scaleHeight = ratio * bitmapHeight
+            val w = scaleWidth / bitmapWidth.toFloat()
+            val h = scaleHeight / bitmapHeight.toFloat()
+            val matrix = Matrix()
+            matrix.postScale(w, h)
+            // 产生缩放后的Bitmap对象
+            val resizeBitmap =
                     Bitmap.createBitmap(bitmap, 0, 0, bitmapWidth, bitmapHeight, matrix, false)
-                // save file
-                val myCaptureFile = File(toFile)
-                val out = FileOutputStream(myCaptureFile)
-                if (resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 85, out)) {
-                    out.flush()
-                    out.close()
-                }
-                if (!bitmap.isRecycled) {
-                    bitmap.recycle() //记得释放资源，否则会内存溢出
-                }
-                if (!resizeBitmap.isRecycled) {
-                    resizeBitmap.recycle()
-                }
-            } catch (ex: IOException) {
-                ex.printStackTrace()
+            // save file
+            val myCaptureFile = File(toFile)
+            val out = FileOutputStream(myCaptureFile)
+            if (resizeBitmap.compress(Bitmap.CompressFormat.JPEG, 85, out)) {
+                out.flush()
+                out.close()
             }
-        }
-
-        const val SUFFIX = "png"
-
-        /**
-         * 替换图片后缀名
-         *
-         * @param fileName 图片名
-         * @return
-         */
-        fun switchSuffix(fileName: String): String {
-            return fileName.substring(0, fileName.indexOf(".")) + "-1" + SUFFIX
+            if (!bitmap.isRecycled) {
+                bitmap.recycle() //记得释放资源，否则会内存溢出
+            }
+            if (!resizeBitmap.isRecycled) {
+                resizeBitmap.recycle()
+            }
+        } catch (ex: IOException) {
+            ex.printStackTrace()
         }
     }
+
+    const val SUFFIX = "png"
+
+    /**
+     * 替换图片后缀名
+     *
+     * @param fileName 图片名
+     * @return
+     */
+    fun switchSuffix(fileName: String): String {
+        return fileName.substring(0, fileName.indexOf(".")) + "-1" + SUFFIX
+    }
+
 }
