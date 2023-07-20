@@ -11,6 +11,9 @@ import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
 import com.semye.android.module.network.AppNetworkManager
 import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 
 /**
  * Created by yesheng on 2020/5/21
@@ -18,6 +21,8 @@ import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
 class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCallbacks {
 
     private var connectivityManager: ConnectivityManager? = null
+
+    lateinit var flutterEngine: FlutterEngine
 
 
     override fun attachBaseContext(base: Context?) {
@@ -27,12 +32,30 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     override fun onCreate() {
         super.onCreate()
+        createFlutterEngine()
         application = this
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
         DaggerAppComponent.builder().application(this).build()
         AppNetworkManager.inits(this)
 //        registerActivityLifecycleCallbacks(this)
+    }
+
+    private fun createFlutterEngine() {
+        flutterEngine = FlutterEngine(this)
+        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
+            override fun onPreEngineRestart() {
+                Log.d(TAG, "onPreEngineRestart")
+            }
+
+            override fun onEngineWillDestroy() {
+                Log.d(TAG, "onEngineWillDestroy")
+            }
+
+        })
+        FlutterEngineCache.getInstance().put("semye", flutterEngine)
+//        flutterEngine.destroy()
     }
 
     private val cookies: HashMap<String, String>

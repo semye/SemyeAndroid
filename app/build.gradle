@@ -18,13 +18,13 @@ android {
         multiDexKeepFile file('multiDexKeep.txt')  //保留指定的class文件到主dex
 
         ndk {
-            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
 
         externalNativeBuild {
             cmake {
                 cppFlags ""
-                abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
         }
 
@@ -50,9 +50,20 @@ android {
     ndkVersion '25.2.9519653'
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility 11
+        targetCompatibility 11
     }
+
+    splits {
+        //abi进行包拆分
+        abi {
+            enable true
+            reset()
+            include 'arm64-v8a', 'armeabi-v7a'
+            universalApk true
+        }
+    }
+
     dexOptions {
     }
 
@@ -178,6 +189,8 @@ dependencies {
     debugImplementation 'com.guolindev.glance:glance:1.1.0' //数据库调试助手
 
     implementation project(":utils")
+
+    implementation project(':flutter')
 
 }
 

@@ -6,7 +6,6 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
-
     <uses-permission
         android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
@@ -249,6 +248,15 @@
         <activity
             android:name="com.semye.android.ui.like.LikeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name="com.semye.android.ui.flutter.FlutterMainActivity" />
 
         <service
             android:name=".module.network.NetworkListenerService"

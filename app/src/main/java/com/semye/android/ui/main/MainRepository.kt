@@ -4,6 +4,7 @@ import com.semye.android.ui.animation.AnimationMainActivity
 import com.semye.android.ui.app.ActionBarMainActivity
 import com.semye.android.ui.app.service.ServiceMainActivity
 import com.semye.android.ui.coroutines.CoroutinesMainActivity
+import com.semye.android.ui.flutter.FlutterMainActivity
 import com.semye.android.ui.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.ui.jetpack.viewmodel.ViewModelMainActivity
 import com.semye.android.ui.jni.JniActivity
@@ -32,6 +33,7 @@ import com.semye.android.ui.view.WindowMainActivity
 import com.semye.android.ui.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.view.statusbar.StatusBarActivity
 import com.semye.android.ui.view.touchevent.TouchEventActivity
+import io.flutter.embedding.android.FlutterActivity
 
 /**
  *  Created by yesheng on 2020/11/5
@@ -73,6 +75,7 @@ class MainRepository {
             this["statusbar"] = StatusBarActivity::class.java
             this["点赞特效"] = LikeActivity::class.java
             this["dagger2"] = Dagger2SampleActivity::class.java
+            this["打开flutter界面"] = FlutterMainActivity::class.java
         }.toList()
     }
 }
