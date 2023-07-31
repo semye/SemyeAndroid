@@ -9,8 +9,7 @@ android {
     defaultConfig {
         applicationId "com.semye.android"
         minSdkVersion 21
-        targetSdkVersion 33
-        compileSdkPreview "UpsideDownCake"
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
