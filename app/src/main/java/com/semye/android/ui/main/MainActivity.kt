@@ -17,11 +17,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.semye.android.R
+import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.ui.view.WindowMainActivity
+import com.semye.annotation.SemyeClass
 
 /**
  *  Created by yesheng on 2020/9/23
  */
+@SemyeClass
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
@@ -68,6 +71,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
         setContentView(R.layout.activity_main)
+
+        DatabaseOperator.readableDatabase
+
         Log.e("yesheng", Log.getStackTraceString(Throwable()))
         Log.e("yesheng", "===========>" + Thread.currentThread().name)
 

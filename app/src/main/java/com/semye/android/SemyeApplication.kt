@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
+import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.module.network.AppNetworkManager
 import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
 import io.flutter.embedding.engine.FlutterEngine
@@ -34,6 +35,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
         super.onCreate()
         createFlutterEngine()
         application = this
+        DatabaseOperator.init(this)
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
         DaggerAppComponent.builder().application(this).build()

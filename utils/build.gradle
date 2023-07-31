@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.semye.android.utils'
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 21

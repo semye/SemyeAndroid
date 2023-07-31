@@ -10,5 +10,5 @@ package com.semye.annotation
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.VALUE_PARAMETER
 )
-@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.SOURCE)
 annotation class SemyeSource(val name: String = "semye", val value: Int = 0)

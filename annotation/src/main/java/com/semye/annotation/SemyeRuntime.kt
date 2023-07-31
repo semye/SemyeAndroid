@@ -10,5 +10,5 @@ package com.semye.annotation
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.VALUE_PARAMETER
 )
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class SemyeRuntime(val name: String = "semye", val value: Int = 0)

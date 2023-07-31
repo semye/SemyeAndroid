@@ -1,26 +1,36 @@
 package com.semye.android.module.database
 
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 
 /**
  * Created by yesheng on 2015/4/27.
  */
-class DatabaseOperator private constructor() {
+object DatabaseOperator {
+
+    private lateinit var mDatabaseHelper: DatabaseHelper
+
+    fun init(context: Context) {
+        mDatabaseHelper = DatabaseHelper(context)
+    }
+
     // 数据库对象
     private var mSqLiteDatabase: SQLiteDatabase? = null
-    val writableDatabase: SQLiteDatabase?
+
+    val writableDatabase: SQLiteDatabase
         get() {
             if (mSqLiteDatabase == null) {
-                mSqLiteDatabase = mDatabaseHelper?.writableDatabase
+                mSqLiteDatabase = mDatabaseHelper.writableDatabase
             }
-            return mSqLiteDatabase
+            return mSqLiteDatabase!!
         }
-    val readableDatabase: SQLiteDatabase?
+
+    val readableDatabase: SQLiteDatabase
         get() {
             if (mSqLiteDatabase == null) {
-                mSqLiteDatabase = mDatabaseHelper?.readableDatabase
+                mSqLiteDatabase = mDatabaseHelper.readableDatabase
             }
-            return mSqLiteDatabase
+            return mSqLiteDatabase!!
         }
 
     /**
@@ -28,9 +38,8 @@ class DatabaseOperator private constructor() {
      */
     fun openDatabase() {
         try {
-            if (mSqLiteDatabase == null || !mSqLiteDatabase!!.isOpen) {
-//                mDatabaseHelper = DatabaseHelper.getInstance(BaseApplication.getInstance().getApplicationContext());
-                mSqLiteDatabase = mDatabaseHelper?.writableDatabase
+            if (mSqLiteDatabase == null || mSqLiteDatabase?.isOpen != true) {
+                mSqLiteDatabase = mDatabaseHelper.writableDatabase
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -41,11 +50,9 @@ class DatabaseOperator private constructor() {
      * 关闭数据库
      */
     fun closeDatabase() {
-        if (mSqLiteDatabase!!.isOpen) {
-            mSqLiteDatabase!!.close()
+        if (mSqLiteDatabase?.isOpen == true) {
+            mSqLiteDatabase?.close()
             mSqLiteDatabase = null
-            mDatabaseHelper?.close()
-            mDatabaseHelper = null
         }
     }
 
@@ -56,7 +63,7 @@ class DatabaseOperator private constructor() {
      */
     fun ifOpen(): Boolean {
         var flag = true
-        if (mSqLiteDatabase == null || !mSqLiteDatabase!!.isOpen) {
+        if (mSqLiteDatabase == null || mSqLiteDatabase?.isOpen != true) {
             flag = false
         }
         return flag
@@ -67,24 +74,7 @@ class DatabaseOperator private constructor() {
      *
      * @param strSql 要执行的SQL语句
      */
-    fun executeSQL(strSql: String?) {
-        if (mSqLiteDatabase != null) {
-            mSqLiteDatabase!!.execSQL(strSql)
-        }
-    }
-
-    companion object {
-        var instance: DatabaseOperator? = null
-
-        // 由SQLiteOpenHelper继承过来
-        private var mDatabaseHelper: DatabaseHelper? = null
-
-        @JvmName("getInstance1")
-        fun getInstance(): DatabaseOperator? {
-            if (instance == null) {
-                instance = DatabaseOperator()
-            }
-            return instance
-        }
+    fun executeSQL(strSql: String) {
+        mSqLiteDatabase?.execSQL(strSql)
     }
 }
