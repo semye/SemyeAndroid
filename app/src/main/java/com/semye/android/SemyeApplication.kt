@@ -12,9 +12,9 @@ import androidx.multidex.MultiDexApplication
 import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.module.network.AppNetworkManager
 import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
+//import io.flutter.embedding.engine.FlutterEngine
+//import io.flutter.embedding.engine.FlutterEngineCache
+//import io.flutter.embedding.engine.dart.DartExecutor
 
 /**
  * Created by yesheng on 2020/5/21
@@ -23,7 +23,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     private var connectivityManager: ConnectivityManager? = null
 
-    lateinit var flutterEngine: FlutterEngine
+//    lateinit var flutterEngine: FlutterEngine
 
 
     override fun attachBaseContext(base: Context?) {
@@ -33,7 +33,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     override fun onCreate() {
         super.onCreate()
-        createFlutterEngine()
+//        createFlutterEngine()
         application = this
         DatabaseOperator.init(this)
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
@@ -43,22 +43,22 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 //        registerActivityLifecycleCallbacks(this)
     }
 
-    private fun createFlutterEngine() {
-        flutterEngine = FlutterEngine(this)
-        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
-            override fun onPreEngineRestart() {
-                Log.d(TAG, "onPreEngineRestart")
-            }
-
-            override fun onEngineWillDestroy() {
-                Log.d(TAG, "onEngineWillDestroy")
-            }
-
-        })
-        FlutterEngineCache.getInstance().put("semye", flutterEngine)
-//        flutterEngine.destroy()
-    }
+//    private fun createFlutterEngine() {
+//        flutterEngine = FlutterEngine(this)
+//        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+//        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
+//            override fun onPreEngineRestart() {
+//                Log.d(TAG, "onPreEngineRestart")
+//            }
+//
+//            override fun onEngineWillDestroy() {
+//                Log.d(TAG, "onEngineWillDestroy")
+//            }
+//
+//        })
+//        FlutterEngineCache.getInstance().put("semye", flutterEngine)
+////        flutterEngine.destroy()
+//    }
 
     private val cookies: HashMap<String, String>
         get() {

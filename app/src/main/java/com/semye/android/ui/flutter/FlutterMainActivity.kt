@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
-import io.flutter.embedding.android.FlutterActivity
+//import io.flutter.embedding.android.FlutterActivity
 
 class FlutterMainActivity: AppCompatActivity() {
 
@@ -13,11 +13,11 @@ class FlutterMainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_flutter_main)
 
         findViewById<View>(R.id.rootview)?.setOnClickListener {
-            startActivity(
-                FlutterActivity
-                    .withCachedEngine("semye")
-                    .build(this)
-            );
+//            startActivity(
+//                FlutterActivity
+//                    .withCachedEngine("semye")
+//                    .build(this)
+//            );
         }
     }
 }

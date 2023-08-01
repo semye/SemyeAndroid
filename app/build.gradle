@@ -189,7 +189,7 @@ dependencies {
 
     implementation project(":utils")
 
-    implementation project(':flutter')
+//    implementation project(':flutter')
 
 }
 

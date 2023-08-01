@@ -33,7 +33,7 @@ import com.semye.android.ui.view.WindowMainActivity
 import com.semye.android.ui.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.view.statusbar.StatusBarActivity
 import com.semye.android.ui.view.touchevent.TouchEventActivity
-import io.flutter.embedding.android.FlutterActivity
+//import io.flutter.embedding.android.FlutterActivity
 
 /**
  *  Created by yesheng on 2020/11/5
