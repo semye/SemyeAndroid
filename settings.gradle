@@ -2,7 +2,6 @@ include ':annotation'
 include ':compiler'
 include ':app'
 include ':utils'
-include ':base'
 
 //将 Flutter 模块作为子项目添加到
 
