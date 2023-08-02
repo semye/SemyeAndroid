@@ -9,7 +9,7 @@ import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.parsers.ParserConfigurationException
 
-class DomXml(`is`: InputStream?) {
+class DomXml(inputStream: InputStream?) {
     private var doc: Document? = null
     val products: List<HashMap<String, String>>
         get() {
@@ -34,7 +34,7 @@ class DomXml(`is`: InputStream?) {
         try {
             val factory = DocumentBuilderFactory.newInstance()
             val builder = factory.newDocumentBuilder()
-            doc = builder.parse(`is`)
+            doc = builder.parse(inputStream)
         } catch (e: ParserConfigurationException) {
             e.printStackTrace()
         } catch (e: SAXException) {

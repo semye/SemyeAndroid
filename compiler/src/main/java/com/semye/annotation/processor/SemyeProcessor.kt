@@ -25,6 +25,7 @@ class SemyeProcessor : AbstractProcessor() {
     private var elements: Elements? = null
     private var filer: Filer? = null
     private var types: Types? = null
+
     @Synchronized
     override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
@@ -36,25 +37,29 @@ class SemyeProcessor : AbstractProcessor() {
     override fun process(annotations: Set<TypeElement>, roundEnv: RoundEnvironment): Boolean {
         if (annotations.isEmpty()) return false
         val messager = processingEnv.messager
-        messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$annotations")
-        messager.printMessage(Diagnostic.Kind.NOTE, "=========")
-        messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$roundEnv")
-        messager.printMessage(Diagnostic.Kind.NOTE, "<<=============>>")
-        for (typeElement in annotations) {
-            for (element in roundEnv.rootElements) {
-                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$element");
-                val elements1 = elements!!.getAllMembers(typeElement)
-                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
-                val list = elements!!.getAllAnnotationMirrors(element)
-
-                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$list");
-                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
-
-                //// 在元素上调用接口获取注解值
-//                ButtonType annoValue = element.getAnnotation(ButtonType.class);
-//                messager.printMessage(Diagnostic.Kind.NOTE, "====>" + annoValue.toString());
-            }
+        messager.printMessage(Diagnostic.Kind.NOTE, "hello=============${annotations.size}")
+        annotations.forEach {
+            messager.printMessage(Diagnostic.Kind.NOTE, "hello=============${it}")
         }
+//        messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$annotations")
+//        messager.printMessage(Diagnostic.Kind.NOTE, "=========")
+//        messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$roundEnv")
+//        messager.printMessage(Diagnostic.Kind.NOTE, "<<=============>>")
+//        for (typeElement in annotations) {
+//            for (element in roundEnv.rootElements) {
+//                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$element");
+//                val elements1 = elements!!.getAllMembers(typeElement)
+//                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
+//                val list = elements!!.getAllAnnotationMirrors(element)
+//
+//                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$list");
+//                messager.printMessage(Diagnostic.Kind.NOTE, "hello=============$elements1");
+//
+//                //// 在元素上调用接口获取注解值
+////                ButtonType annoValue = element.getAnnotation(ButtonType.class);
+////                messager.printMessage(Diagnostic.Kind.NOTE, "====>" + annoValue.toString());
+//            }
+//        }
         return true
     }
 }
