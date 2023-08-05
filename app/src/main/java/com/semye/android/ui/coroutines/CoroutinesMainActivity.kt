@@ -5,7 +5,10 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -46,11 +49,24 @@ class CoroutinesMainActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
             }
+
             R.id.btn2 -> {
-                val job = GlobalScope.launch {
-                    println("协程" + Thread.currentThread().name)
+                val scope1 = CoroutineScope(Dispatchers.IO)
+                val scope2 = CoroutineScope(Dispatchers.Default)
+                val scope3 = CoroutineScope(Dispatchers.Main)
+                scope1.launch {
+                    println("scope1线程:" + Thread.currentThread().name)
+                    for (a in 1..100) {
+                        println("scope1:" + a)
+                    }
                 }
-                println(job)
+                scope2.launch {
+                    println("scope2线程:" + Thread.currentThread().name)
+                }
+                scope3.launch {
+                    println("scope3线程:" + Thread.currentThread().name)
+
+                }
             }
         }
     }
