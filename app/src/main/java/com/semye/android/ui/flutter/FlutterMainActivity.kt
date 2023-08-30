@@ -1,10 +1,13 @@
 package com.semye.android.ui.flutter
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.idlefish.flutterboost.FlutterBoost
+import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.semye.android.R
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragment
@@ -24,9 +27,8 @@ class FlutterMainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.tv_jump)?.setOnClickListener {
             startActivity(
-                FlutterActivity
-                    .withCachedEngine("semye")
-                    .build(this)
+                Intent(this,
+                FlutterBoostActivity::class.java)
             )
         }
         viewPager2 = findViewById(R.id.container)
