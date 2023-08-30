@@ -18,6 +18,7 @@ import com.semye.android.ui.os.CountDownTimerActivity
 import com.semye.android.ui.os.EnvironmentActivity
 import com.semye.android.ui.os.OSActivity
 import com.semye.android.ui.os.handler.HandlerActivity
+import com.semye.android.ui.thirdparty.arouter.ARouterMainActivity
 import com.semye.android.ui.thirdparty.dagger2.Dagger2SampleActivity
 import com.semye.android.ui.thirdparty.eventbus.EventBusMainActivity
 import com.semye.android.ui.thirdparty.fresco.FrescoMainActivity
@@ -33,7 +34,7 @@ import com.semye.android.ui.view.WindowMainActivity
 import com.semye.android.ui.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.view.statusbar.StatusBarActivity
 import com.semye.android.ui.view.touchevent.TouchEventActivity
-//import io.flutter.embedding.android.FlutterActivity
+
 
 /**
  *  Created by yesheng on 2020/11/5
@@ -52,7 +53,7 @@ class MainRepository {
             this["coroutines"] = CoroutinesMainActivity::class.java
             this["eventbus"] = EventBusMainActivity::class.java
             this["rxjava"] = RxjavaMainActivity::class.java
-            this["arouter"] = com.semye.android.ui.thirdparty.arouter.ARouterMainActivity::class.java
+            this["arouter"] = ARouterMainActivity::class.java
             this["jni"] = JniActivity::class.java
             this["weight"] = WeightActivity::class.java
             this["Animation"] = AnimationMainActivity::class.java

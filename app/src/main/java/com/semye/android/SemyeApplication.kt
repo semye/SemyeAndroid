@@ -3,18 +3,25 @@ package com.semye.android
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
+import com.idlefish.flutterboost.FlutterBoost
+import com.idlefish.flutterboost.FlutterBoostDelegate
+import com.idlefish.flutterboost.FlutterBoostRouteOptions
+import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.module.network.AppNetworkManager
 import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
-//import io.flutter.embedding.engine.FlutterEngine
-//import io.flutter.embedding.engine.FlutterEngineCache
-//import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.embedding.android.FlutterActivityLaunchConfigs
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
+
 
 /**
  * Created by yesheng on 2020/5/21
@@ -23,7 +30,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     private var connectivityManager: ConnectivityManager? = null
 
-//    lateinit var flutterEngine: FlutterEngine
+    lateinit var flutterEngine: FlutterEngine
 
 
     override fun attachBaseContext(base: Context?) {
@@ -33,7 +40,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     override fun onCreate() {
         super.onCreate()
-//        createFlutterEngine()
+        createFlutterEngine2()
         application = this
         DatabaseOperator.init(this)
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
@@ -43,22 +50,44 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 //        registerActivityLifecycleCallbacks(this)
     }
 
-//    private fun createFlutterEngine() {
-//        flutterEngine = FlutterEngine(this)
-//        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-//        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
-//            override fun onPreEngineRestart() {
-//                Log.d(TAG, "onPreEngineRestart")
-//            }
-//
-//            override fun onEngineWillDestroy() {
-//                Log.d(TAG, "onEngineWillDestroy")
-//            }
-//
-//        })
-//        FlutterEngineCache.getInstance().put("semye", flutterEngine)
-////        flutterEngine.destroy()
-//    }
+    private fun createFlutterEngine2() {
+        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
+            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
+
+            }
+
+            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
+                val intent = FlutterBoostActivity.CachedEngineIntentBuilder(
+                    FlutterBoostActivity::class.java
+                )
+                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
+                    .destroyEngineWithActivity(false)
+                    .uniqueId(options.uniqueId())
+                    .url(options.pageName())
+                    .urlParams(options.arguments())
+                    .build(FlutterBoost.instance().currentActivity())
+                FlutterBoost.instance().currentActivity().startActivity(intent)
+            }
+        }) { engine: FlutterEngine? -> }
+    }
+
+    private fun createFlutterEngine() {
+        flutterEngine = FlutterEngine(this)
+        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
+            override fun onPreEngineRestart() {
+                Log.d(TAG, "onPreEngineRestart")
+            }
+
+            override fun onEngineWillDestroy() {
+                Log.d(TAG, "onEngineWillDestroy")
+            }
+
+        })
+        //单例保存flutter引擎
+        FlutterEngineCache.getInstance().put("semye", flutterEngine)
+//        flutterEngine.destroy()
+    }
 
     private val cookies: HashMap<String, String>
         get() {

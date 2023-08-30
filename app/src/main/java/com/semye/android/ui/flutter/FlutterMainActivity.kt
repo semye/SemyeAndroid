@@ -1,23 +1,36 @@
 package com.semye.android.ui.flutter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.semye.android.R
-//import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragment
 
-class FlutterMainActivity: AppCompatActivity() {
+class FlutterMainActivity : AppCompatActivity() {
+
+    lateinit var viewPager2: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flutter_main)
-
-        findViewById<View>(R.id.rootview)?.setOnClickListener {
-//            startActivity(
-//                FlutterActivity
-//                    .withCachedEngine("semye")
-//                    .build(this)
-//            );
+        savedInstanceState?.let {
+            supportFragmentManager.fragments.forEach {
+                Log.d("yesheng", it.toString())
+            }
         }
+
+        findViewById<View>(R.id.tv_jump)?.setOnClickListener {
+            startActivity(
+                FlutterActivity
+                    .withCachedEngine("semye")
+                    .build(this)
+            )
+        }
+        viewPager2 = findViewById(R.id.container)
+        viewPager2.offscreenPageLimit = 2
+        viewPager2.adapter = TabPagerAdapter(this)
     }
 }
