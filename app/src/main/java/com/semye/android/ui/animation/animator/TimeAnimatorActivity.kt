@@ -13,7 +13,6 @@ import com.semye.android.R
 /**
  *  Created by yesheng on 2020/11/9
  *  @see TimeAnimator
- *  弄不懂这个动画到底有什么用，启动了就不断的运行。
  */
 class TimeAnimatorActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mStart: AppCompatButton

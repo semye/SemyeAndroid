@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 
-class LifeCycleTokenActivity : AppCompatActivity() {
+class LifecycleTokenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

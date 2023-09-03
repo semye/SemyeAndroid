@@ -3,7 +3,6 @@ package com.semye.android
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.TextUtils
@@ -46,7 +45,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
         DaggerAppComponent.builder().application(this).build()
-        AppNetworkManager.inits(this)
+        AppNetworkManager.init(this)
 //        registerActivityLifecycleCallbacks(this)
     }
 

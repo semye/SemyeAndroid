@@ -24,7 +24,7 @@ object AppNetworkManager {
         }
     }
 
-    fun inits(context: Context) {
+    fun init(context: Context) {
         connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         Log.d(TAG, connectivityManager.toString())
@@ -36,7 +36,9 @@ object AppNetworkManager {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            connectivityManager?.addDefaultNetworkActiveListener { }
+            connectivityManager?.addDefaultNetworkActiveListener {
+                println("network active")
+            }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             connectivityManager?.registerNetworkCallback(

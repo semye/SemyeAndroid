@@ -244,11 +244,11 @@
 
 
         <activity
-            android:name=".ui.lifecycle.LifeCycleActivity"
+            android:name=".ui.lifecycle.LifecycleActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.lifecycle.LifeCycleTokenActivity"
+            android:name=".ui.lifecycle.LifecycleTokenActivity"
             android:screenOrientation="portrait" />
 
         <activity

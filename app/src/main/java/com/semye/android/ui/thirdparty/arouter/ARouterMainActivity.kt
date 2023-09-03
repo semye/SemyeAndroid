@@ -32,7 +32,7 @@ class ARouterMainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn2 -> {
                 //如果有多个service实现类,默认使用最后一个注册的实现类
-                val rout = ARouter.getInstance().navigation(com.semye.android.ui.thirdparty.arouter.RouteService::class.java)
+                val rout = ARouter.getInstance().navigation(RouteService::class.java)
                 println(rout)
             }
         }

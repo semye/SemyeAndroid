@@ -12,6 +12,9 @@ class ThreadActivity : AppCompatActivity() {
 
         override fun run() {
             super.run()
+            for (a in 0..100000000) {
+                println(a)
+            }
         }
 
     }
@@ -24,14 +27,18 @@ class ThreadActivity : AppCompatActivity() {
         findViewById<Button>(R.id.start).setOnClickListener(View.OnClickListener {
             myThread.start()
         })
-        findViewById<Button>(R.id.start).setOnClickListener(View.OnClickListener {
-            myThread.stop()
+        findViewById<Button>(R.id.stop).setOnClickListener(View.OnClickListener {
+            try {
+                myThread.stop()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         })
-        findViewById<Button>(R.id.start).setOnClickListener(View.OnClickListener {
+        findViewById<Button>(R.id.join).setOnClickListener(View.OnClickListener {
             myThread.join()
         })
-        findViewById<Button>(R.id.start).setOnClickListener(View.OnClickListener {
-            myThread.stop()
+        findViewById<Button>(R.id.interrupt).setOnClickListener(View.OnClickListener {
+            myThread.interrupt()
         })
     }
 }

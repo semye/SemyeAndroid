@@ -9,7 +9,7 @@ import com.semye.android.ui.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.ui.jetpack.viewmodel.ViewModelMainActivity
 import com.semye.android.ui.jni.JniActivity
 import com.semye.android.ui.launch.StandardActivity
-import com.semye.android.ui.lifecycle.LifeCycleActivity
+import com.semye.android.ui.lifecycle.LifecycleActivity
 import com.semye.android.ui.like.LikeActivity
 import com.semye.android.ui.network.ConnectMainActivity
 import com.semye.android.ui.wifi.WifiMainActivity
@@ -41,9 +41,10 @@ import com.semye.android.ui.view.touchevent.TouchEventActivity
  *  请求网络或者查询数据库获取数据
  */
 class MainRepository {
+
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
-            this["生命周期"] = LifeCycleActivity::class.java
+            this["生命周期"] = LifecycleActivity::class.java
             this["启动模式"] = StandardActivity::class.java
             this["事件分发"] = TouchEventActivity::class.java
             this["服务"] = ServiceMainActivity::class.java
