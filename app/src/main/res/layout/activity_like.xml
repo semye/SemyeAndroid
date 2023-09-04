@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.semye.android.ui.like.LikeView
+    <com.semye.android.ui.item32_like.LikeView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

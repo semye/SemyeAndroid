@@ -96,25 +96,25 @@
         </activity>
 
         <activity
-            android:name=".ui.view.SystemUiActivity"
+            android:name=".ui.item19_systemui.SystemUiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name="com.semye.android.ui.os.handler.HandlerActivity"
+            android:name="com.semye.android.ui.item15_handler.HandlerActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.os.AsyncTaskActivity"
+            android:name=".ui.item16_asynctask.AsyncTaskActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.os.EnvironmentActivity"
+            android:name=".ui.item17_environment.EnvironmentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.os.CountDownTimerActivity"
+            android:name=".ui.item18_countdowntimer.CountDownTimerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.view.fitsystemwindow.FitSystemWindowActivity"
+            android:name=".ui.item20_fitsystemwindow.FitSystemWindowActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.semye.android.ui.jetpack.nestedscroll.ChildNestScrollActivity"
@@ -122,26 +122,26 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name="com.semye.android.ui.jetpack.recyclerview.RecyclerViewActivity"
+            android:name="com.semye.android.ui.item21_recyclerview.RecyclerViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.semye.android.ui.jetpack.recyclerview.RecyclerViewMainActivity"
+            android:name="com.semye.android.ui.item21_recyclerview.RecyclerViewMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.app.ActionBarMainActivity"
+            android:name=".ui.item22_actionbar.ActionBarMainActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".ui.wifi.WifiMainActivity"
+            android:name=".ui.item25_wifi.WifiMainActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.animation.TweenAnimationActivity" />
-        <activity android:name=".ui.animation.PropertyAnimationActivity" />
-        <activity android:name=".ui.animation.FrameAnimationActivity" />
-        <activity android:name=".ui.animation.AnimationMainActivity" />
+        <activity android:name=".ui.item14_animation.TweenAnimationActivity" />
+        <activity android:name=".ui.item14_animation.PropertyAnimationActivity" />
+        <activity android:name=".ui.item14_animation.FrameAnimationActivity" />
+        <activity android:name=".ui.item14_animation.AnimationMainActivity" />
         <activity
-            android:name=".ui.thirdparty.glide.GlideMainActivity"
+            android:name=".ui.item24_glide.GlideMainActivity"
             android:theme="@style/AppTheme3" />
 
         <!--启动模式start-->
@@ -163,29 +163,29 @@
         <!--启动模式end-->
 
         <activity
-            android:name=".ui.thirdparty.fresco.FrescoMainActivity"
+            android:name=".ui.item23_fresco.FrescoMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.jetpack.viewmodel.ViewModelMainActivity" />
+        <activity android:name=".ui.item26_viewmodel.ViewModelMainActivity" />
         <activity
-            android:name=".ui.network.ConnectMainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.thirdparty.okhttp.OkhttpMainActivity"
+            android:name=".ui.item27_connectivitymanager.ConnectMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.thirdparty.retrofit.Retrofit2MainActivity"
+            android:name=".ui.item28_okhttp.OkhttpMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.animation.animator.ValueAnimatorActivity"
+            android:name=".ui.item29_retrofit.Retrofit2MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.animation.animator.ObjectAnimatorActivity"
+            android:name=".ui.item14_animation.animator.ValueAnimatorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.animation.animator.TimeAnimatorActivity"
+            android:name=".ui.item14_animation.animator.ObjectAnimatorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.view.WindowMainActivity"
+            android:name=".ui.item14_animation.animator.TimeAnimatorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.item30_window.WindowMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.TokenActivity"
@@ -195,19 +195,19 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.view.fitsystemwindow.FitSystemWindowFalseActivity"
+            android:name=".ui.item20_fitsystemwindow.FitSystemWindowFalseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FitSystemWindow" />
 
         <activity
-            android:name=".ui.view.fitsystemwindow.FitSystemWindowTrueActivity"
+            android:name=".ui.item20_fitsystemwindow.FitSystemWindowTrueActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FitSystemWindow" />
         <activity
-            android:name=".ui.view.statusbar.StatusBarActivity"
+            android:name=".ui.item31_statusbar.StatusBarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.view.WeightActivity"
+            android:name=".ui.item13_weight.WeightActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.item12_jni.JniActivity"
@@ -258,7 +258,7 @@
         <activity android:name=".ui.thirdparty.dagger2.SecondActivity" />
         <activity android:name=".ui.thirdparty.dagger2.Dagger2SampleActivity" />
         <activity
-            android:name="com.semye.android.ui.like.LikeActivity"
+            android:name="com.semye.android.ui.item32_like.LikeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
 
@@ -268,7 +268,7 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name="com.semye.android.ui.flutter.FlutterMainActivity" />
+        <activity android:name="com.semye.android.ui.item33_flutter.FlutterMainActivity" />
 
         <service
             android:name=".module.network.NetworkListenerService"

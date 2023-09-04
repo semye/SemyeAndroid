@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.wifi.WifiMainActivity">
+    tools:context=".ui.item25_wifi.WifiMainActivity">
 
     <Button
         android:id="@+id/open"
