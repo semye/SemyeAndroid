@@ -38,9 +38,9 @@ class ConnectMainActivity : AppCompatActivity() {
                         super.onCapabilitiesChanged(network, networkCapabilities)
                         if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
                             if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                                Log.e(TAG, "wifi网络已连接");
+                                Log.e(TAG, "wifi网络已连接")
                             } else {
-                                Log.e(TAG, "移动网络已连接");
+                                Log.e(TAG, "移动网络已连接")
                             }
                         }
                     }

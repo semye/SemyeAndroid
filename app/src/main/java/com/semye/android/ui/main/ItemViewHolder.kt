@@ -54,9 +54,13 @@ class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.O
     }
 
     override fun onClick(v: View?) {
-        pair?.second?.let {
-            val intent = Intent(mContext, it)
-            mContext.startActivity(intent)
+        try {
+            pair?.second?.let {
+                val intent = Intent(mContext, it)
+                mContext.startActivity(intent)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

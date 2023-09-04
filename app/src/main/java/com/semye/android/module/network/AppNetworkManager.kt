@@ -55,9 +55,9 @@ object AppNetworkManager {
                         super.onCapabilitiesChanged(network, networkCapabilities)
                         if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
                             if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                                Log.d(SemyeApplication.TAG, "wifi网络已连接");
+                                Log.d(SemyeApplication.TAG, "wifi网络已连接")
                             } else {
-                                Log.d(SemyeApplication.TAG, "移动网络已连接");
+                                Log.d(SemyeApplication.TAG, "移动网络已连接")
                             }
                         }
                     }

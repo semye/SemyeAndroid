@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.uiState.collect {
-                    // Update UI elements
                     mAdapter.mutableMap = it.list
                     val layoutManager = LinearLayoutManager(this@MainActivity)
                     mRecyclerView.addItemDecoration(
