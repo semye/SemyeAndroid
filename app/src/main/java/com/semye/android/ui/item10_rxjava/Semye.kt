@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.rxjava
+package com.semye.android.ui.item10_rxjava
 
 import io.reactivex.Observable
 import io.reactivex.ObservableSource

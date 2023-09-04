@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.rxjava
+package com.semye.android.ui.item10_rxjava
 
 import android.os.Bundle
 import android.view.View
@@ -8,10 +8,8 @@ import com.semye.android.R
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import org.reactivestreams.Subscription
-import java.util.concurrent.TimeUnit
 
 /**
  * reactive x 响应式编程

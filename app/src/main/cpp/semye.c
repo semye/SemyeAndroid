@@ -19,7 +19,7 @@
 JNIEXPORT jint
 
 JNICALL
-Java_com_semye_android_jni_SoLoader_getIntFromNative(JNIEnv *env, jobject thiz) {
+Java_com_semye_android_ui_item12_1jni_SoLoader_getIntFromNative(JNIEnv *env, jobject thiz) {
     return 1;
 }
 
@@ -27,7 +27,7 @@ Java_com_semye_android_jni_SoLoader_getIntFromNative(JNIEnv *env, jobject thiz) 
 JNIEXPORT jstring
 
 JNICALL
-Java_com_semye_android_jni_SoLoader_getStringFromNative(JNIEnv *env, jobject thiz) {
+Java_com_semye_android_ui_item12_1jni_SoLoader_getStringFromNative(JNIEnv *env, jobject thiz) {
     char *a = "hello world!";
     jstring retString = (*env)->NewStringUTF(env, a);
     __android_log_write(ANDROID_LOG_VERBOSE, "Semye", "写入完成");
@@ -41,7 +41,7 @@ Java_com_semye_android_jni_SoLoader_getStringFromNative(JNIEnv *env, jobject thi
 }
 
 JNIEXPORT void JNICALL
-Java_com_semye_android_jni_SoLoader_createFile(JNIEnv *env, jobject thiz, jstring file_name) {
+Java_com_semye_android_ui_item12_1jni_SoLoader_createFile(JNIEnv *env, jobject thiz, jstring file_name) {
     const char *text = (*env)->GetStringUTFChars(env, file_name, NULL);
     __android_log_write(ANDROID_LOG_VERBOSE, "Semye", text);
     FILE *file = fopen(text, "w");
@@ -57,7 +57,7 @@ Java_com_semye_android_jni_SoLoader_createFile(JNIEnv *env, jobject thiz, jstrin
 }
 
 JNIEXPORT jintArray JNICALL
-Java_com_semye_android_jni_SoLoader_bubbleSort(JNIEnv *env, jobject thiz, jintArray array) {
+Java_com_semye_android_ui_item12_1jni_SoLoader_bubbleSort(JNIEnv *env, jobject thiz, jintArray array) {
     // 冒泡排序
     jint *arrays = (*env)->GetIntArrayElements(env, array, NULL);
     jint length = (*env)->GetArrayLength(env, array);

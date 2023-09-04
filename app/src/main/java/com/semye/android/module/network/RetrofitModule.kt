@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RetrofitModule {
+object RetrofitModule {
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

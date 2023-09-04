@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.arouter
+package com.semye.android.ui.item11_arouter
 
 import com.alibaba.android.arouter.facade.template.IProvider
 

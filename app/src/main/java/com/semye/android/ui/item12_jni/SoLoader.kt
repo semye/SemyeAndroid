@@ -1,4 +1,4 @@
-package com.semye.android.ui.jni
+package com.semye.android.ui.item12_jni
 
 /**
  * Created by yesheng on 2020/11/26
@@ -10,11 +10,8 @@ class SoLoader {
         }
     }
 
-    val stringFromNative: String?
-        external get
-    val intFromNative: Int
-        external get
-
+    external fun getStringFromNative(): String
+    external fun getIntFromNative(): Int
     external fun createFile(fileName: String?)
     external fun bubbleSort(array: IntArray?): IntArray?
 }

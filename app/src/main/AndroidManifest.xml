@@ -210,23 +210,23 @@
             android:name=".ui.view.WeightActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.jni.JniActivity"
+            android:name=".ui.item12_jni.JniActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.thirdparty.arouter.ARouterMainActivity"
+            android:name=".ui.item11_arouter.ARouterMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.thirdparty.arouter.Router1Activity"
+            android:name=".ui.item11_arouter.Router1Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.thirdparty.arouter.Router2Activity"
+            android:name=".ui.item11_arouter.Router2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.thirdparty.rxjava.RxjavaMainActivity"
+            android:name=".ui.item10_rxjava.RxjavaMainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.thirdparty.eventbus.EventBusMainActivity"
+            android:name=".ui.item9_eventbus.EventBusMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.item8_coroutines.CoroutinesMainActivity"

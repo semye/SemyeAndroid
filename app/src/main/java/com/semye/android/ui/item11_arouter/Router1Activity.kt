@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.arouter
+package com.semye.android.ui.item11_arouter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

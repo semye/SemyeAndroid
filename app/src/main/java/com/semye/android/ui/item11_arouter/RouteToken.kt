@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.arouter
+package com.semye.android.ui.item11_arouter
 
 /**
  *  Created by yesheng on 2020/11/27

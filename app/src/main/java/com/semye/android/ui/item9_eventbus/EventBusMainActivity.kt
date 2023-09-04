@@ -1,4 +1,4 @@
-package com.semye.android.ui.thirdparty.eventbus
+package com.semye.android.ui.item9_eventbus
 
 import android.os.Bundle
 import android.view.View
