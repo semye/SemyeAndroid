@@ -2,20 +2,20 @@ package com.semye.android.module.main.datasource
 
 import com.semye.android.ui.animation.AnimationMainActivity
 import com.semye.android.ui.app.ActionBarMainActivity
-import com.semye.android.ui.app.service.ServiceMainActivity
-import com.semye.android.ui.coroutines.CoroutinesMainActivity
+import com.semye.android.ui.item4_service.ServiceMainActivity
+import com.semye.android.ui.item8_coroutines.CoroutinesMainActivity
 import com.semye.android.ui.flutter.FlutterMainActivity
 import com.semye.android.ui.jetpack.recyclerview.RecyclerViewMainActivity
 import com.semye.android.ui.jetpack.viewmodel.ViewModelMainActivity
 import com.semye.android.ui.jni.JniActivity
-import com.semye.android.ui.launch.StandardActivity
-import com.semye.android.ui.lifecycle.LifecycleActivity
+import com.semye.android.ui.item2_launch.StandardActivity
+import com.semye.android.ui.item1_lifecycle.LifecycleActivity
 import com.semye.android.ui.like.LikeActivity
 import com.semye.android.ui.network.ConnectMainActivity
 import com.semye.android.ui.os.AsyncTaskActivity
 import com.semye.android.ui.os.CountDownTimerActivity
 import com.semye.android.ui.os.EnvironmentActivity
-import com.semye.android.ui.os.OSActivity
+import com.semye.android.ui.item6_os.OSActivity
 import com.semye.android.ui.os.handler.HandlerActivity
 import com.semye.android.ui.thirdparty.arouter.ARouterMainActivity
 import com.semye.android.ui.thirdparty.eventbus.EventBusMainActivity
@@ -24,14 +24,14 @@ import com.semye.android.ui.thirdparty.glide.GlideMainActivity
 import com.semye.android.ui.thirdparty.okhttp.OkhttpMainActivity
 import com.semye.android.ui.thirdparty.retrofit.Retrofit2MainActivity
 import com.semye.android.ui.thirdparty.rxjava.RxjavaMainActivity
-import com.semye.android.ui.threa.ThreadActivity
-import com.semye.android.ui.view.CustomViewActivity
+import com.semye.android.ui.item5_thread.ThreadActivity
+import com.semye.android.ui.item7_custom_view.CustomViewActivity
 import com.semye.android.ui.view.SystemUiActivity
 import com.semye.android.ui.view.WeightActivity
 import com.semye.android.ui.view.WindowMainActivity
 import com.semye.android.ui.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.view.statusbar.StatusBarActivity
-import com.semye.android.ui.view.touchevent.TouchEventActivity
+import com.semye.android.ui.item3_vieweventdispatch.TouchEventActivity
 import com.semye.android.ui.wifi.WifiMainActivity
 import javax.inject.Inject
 

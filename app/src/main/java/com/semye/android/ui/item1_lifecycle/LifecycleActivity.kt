@@ -1,4 +1,4 @@
-package com.semye.android.ui.lifecycle
+package com.semye.android.ui.item1_lifecycle
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 
+/**
+ * 生命周期
+ */
 class LifecycleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

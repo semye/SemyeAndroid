@@ -1,6 +1,5 @@
-package com.semye.android.ui.app.service
+package com.semye.android.ui.item4_service
 
-import android.app.Activity
 import android.app.ActivityManager
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
@@ -18,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.IMyAidlInterface
 import com.semye.android.R
 import com.semye.android.SERVICE_TAG
-import com.semye.android.ui.app.service.job.SemyeJobService
+import com.semye.android.ui.item4_service.job.SemyeJobService
 
 /**
  *  Created by yesheng on 2020/11/12

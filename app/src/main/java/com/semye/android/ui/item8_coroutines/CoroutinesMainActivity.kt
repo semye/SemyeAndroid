@@ -1,4 +1,4 @@
-package com.semye.android.ui.coroutines
+package com.semye.android.ui.item8_coroutines
 
 import android.os.Bundle
 import android.view.View

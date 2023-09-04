@@ -1,4 +1,4 @@
-package com.semye.android.ui.app.service.job
+package com.semye.android.ui.item4_service.job
 
 import android.app.job.JobParameters
 import android.app.job.JobService

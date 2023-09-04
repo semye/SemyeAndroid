@@ -147,16 +147,16 @@
         <!--启动模式start-->
 
         <activity
-            android:name=".ui.launch.SingleTaskActivity"
+            android:name=".ui.item2_launch.SingleTaskActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ui.launch.SingleTopActivity"
+            android:name=".ui.item2_launch.SingleTopActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ui.launch.StandardActivity"
+            android:name=".ui.item2_launch.StandardActivity"
             android:launchMode="standard" />
         <activity
-            android:name=".ui.launch.SingleInstanceActivity"
+            android:name=".ui.item2_launch.SingleInstanceActivity"
             android:launchMode="singleInstance" />
 
 
@@ -191,7 +191,7 @@
             android:name=".ui.TokenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.app.service.ServiceMainActivity"
+            android:name=".ui.item4_service.ServiceMainActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -229,32 +229,32 @@
             android:name=".ui.thirdparty.eventbus.EventBusMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.coroutines.CoroutinesMainActivity"
+            android:name=".ui.item8_coroutines.CoroutinesMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.view.CustomViewActivity"
+            android:name=".ui.item7_custom_view.CustomViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.TestActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".ui.os.OSActivity"
+            android:name=".ui.item6_os.OSActivity"
             android:screenOrientation="portrait" />
 
 
         <activity
-            android:name=".ui.lifecycle.LifecycleActivity"
+            android:name=".ui.item1_lifecycle.LifecycleActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.lifecycle.LifecycleTokenActivity"
+            android:name=".ui.item1_lifecycle.LifecycleTokenActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.view.touchevent.TouchEventActivity"
+            android:name=".ui.item3_vieweventdispatch.TouchEventActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.threa.ThreadActivity" />
+        <activity android:name=".ui.item5_thread.ThreadActivity" />
         <activity android:name=".ui.thirdparty.dagger2.SecondActivity" />
         <activity android:name=".ui.thirdparty.dagger2.Dagger2SampleActivity" />
         <activity
@@ -275,19 +275,19 @@
             android:exported="false" />
 
         <service
-            android:name="com.semye.android.ui.app.service.job.SemyeJobService"
+            android:name="com.semye.android.ui.item4_service.job.SemyeJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
-            android:name=".ui.app.service.SemyeService"
+            android:name=".ui.item4_service.SemyeService"
             android:exported="false" />
 
         <service
-            android:name=".ui.app.service.NormalService"
+            android:name=".ui.item4_service.NormalService"
             android:exported="false" />
 
         <service
-            android:name=".ui.app.service.BindService"
+            android:name=".ui.item4_service.BindService"
             android:exported="true"
             android:process=":yesheng" />
 

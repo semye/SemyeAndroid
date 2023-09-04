@@ -1,4 +1,4 @@
-package com.semye.android.ui.view.touchevent
+package com.semye.android.ui.item3_vieweventdispatch
 
 import android.annotation.SuppressLint
 import android.os.Bundle

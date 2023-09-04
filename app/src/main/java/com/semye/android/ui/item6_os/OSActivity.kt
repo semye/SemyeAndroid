@@ -1,4 +1,4 @@
-package com.semye.android.ui.os
+package com.semye.android.ui.item6_os
 
 import android.os.Build
 import android.os.Bundle

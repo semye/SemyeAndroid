@@ -1,4 +1,4 @@
-package com.semye.android.ui.threa
+package com.semye.android.ui.item5_thread
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 
+/**
+ * 线程
+ */
 class ThreadActivity : AppCompatActivity() {
 
     class MyThread : Thread("yesheng-thread") {

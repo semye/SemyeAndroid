@@ -1,8 +1,7 @@
-package com.semye.android.ui.app.service
+package com.semye.android.ui.item4_service
 
 import android.app.Service
 import android.content.Intent
-import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
 import com.semye.android.IMyAidlInterface

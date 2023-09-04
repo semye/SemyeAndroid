@@ -1,4 +1,4 @@
-package com.semye.android.ui.lifecycle
+package com.semye.android.ui.item1_lifecycle
 
 import android.os.Bundle
 import android.util.Log

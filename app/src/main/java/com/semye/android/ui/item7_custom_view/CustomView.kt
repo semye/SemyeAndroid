@@ -1,4 +1,4 @@
-package com.semye.android.ui.view
+package com.semye.android.ui.item7_custom_view
 
 import android.annotation.SuppressLint
 import android.content.Context
