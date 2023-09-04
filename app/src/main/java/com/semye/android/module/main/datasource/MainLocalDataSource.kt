@@ -1,4 +1,4 @@
-package com.semye.android.ui.main
+package com.semye.android.module.main.datasource
 
 import com.semye.android.ui.animation.AnimationMainActivity
 import com.semye.android.ui.app.ActionBarMainActivity
@@ -12,14 +12,12 @@ import com.semye.android.ui.launch.StandardActivity
 import com.semye.android.ui.lifecycle.LifecycleActivity
 import com.semye.android.ui.like.LikeActivity
 import com.semye.android.ui.network.ConnectMainActivity
-import com.semye.android.ui.wifi.WifiMainActivity
 import com.semye.android.ui.os.AsyncTaskActivity
 import com.semye.android.ui.os.CountDownTimerActivity
 import com.semye.android.ui.os.EnvironmentActivity
 import com.semye.android.ui.os.OSActivity
 import com.semye.android.ui.os.handler.HandlerActivity
 import com.semye.android.ui.thirdparty.arouter.ARouterMainActivity
-import com.semye.android.ui.thirdparty.dagger2.Dagger2SampleActivity
 import com.semye.android.ui.thirdparty.eventbus.EventBusMainActivity
 import com.semye.android.ui.thirdparty.fresco.FrescoMainActivity
 import com.semye.android.ui.thirdparty.glide.GlideMainActivity
@@ -34,13 +32,10 @@ import com.semye.android.ui.view.WindowMainActivity
 import com.semye.android.ui.view.fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.view.statusbar.StatusBarActivity
 import com.semye.android.ui.view.touchevent.TouchEventActivity
+import com.semye.android.ui.wifi.WifiMainActivity
+import javax.inject.Inject
 
-
-/**
- *  Created by yesheng on 2020/11/5
- *  请求网络或者查询数据库获取数据
- */
-class MainRepository {
+class MainLocalDataSource @Inject constructor() {
 
     fun requestListData(): List<Pair<String, Class<*>>> {
         return mutableMapOf<String, Class<*>>().apply {
@@ -76,7 +71,7 @@ class MainRepository {
             this["window"] = WindowMainActivity::class.java
             this["statusbar"] = StatusBarActivity::class.java
             this["点赞特效"] = LikeActivity::class.java
-            this["dagger2"] = Dagger2SampleActivity::class.java
+//            this["dagger2"] = Dagger2SampleActivity::class.java
             this["打开flutter界面"] = FlutterMainActivity::class.java
         }.toList()
     }

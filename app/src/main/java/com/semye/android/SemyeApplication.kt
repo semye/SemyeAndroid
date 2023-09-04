@@ -15,7 +15,7 @@ import com.idlefish.flutterboost.FlutterBoostRouteOptions
 import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.module.network.AppNetworkManager
-import com.semye.android.ui.thirdparty.dagger2.component.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -25,6 +25,7 @@ import io.flutter.embedding.engine.dart.DartExecutor
 /**
  * Created by yesheng on 2020/5/21
  */
+@HiltAndroidApp
 class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCallbacks {
 
     private var connectivityManager: ConnectivityManager? = null
@@ -44,7 +45,6 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
         DatabaseOperator.init(this)
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
         Log.d(TAG, "application create")
-        DaggerAppComponent.builder().application(this).build()
         AppNetworkManager.init(this)
 //        registerActivityLifecycleCallbacks(this)
     }

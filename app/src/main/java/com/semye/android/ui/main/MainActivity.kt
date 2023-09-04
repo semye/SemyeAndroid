@@ -8,11 +8,15 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,32 +24,29 @@ import com.semye.android.R
 import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.ui.view.WindowMainActivity
 import com.semye.annotation.SemyeClass
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  *  Created by yesheng on 2020/9/23
  */
 @SemyeClass
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: MainItemAdapter
+
+    @Inject
+    lateinit var mAdapter: MainItemAdapter
 
     private var textView1: TextView? = null
     private var textView2: TextView? = null
     private var textView3: TextView? = null
     private var textView4: TextView? = null
 
-    private val mainViewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(
-            MainViewModel::class.java
-        )
-    }
+    val mainViewModel: MainViewModel by viewModels()
 
-    private val androidViewModel: AndroidViewModel by lazy {
-        ViewModelProvider.AndroidViewModelFactory.getInstance(this.application).create(
-            AndroidViewModel::class.java
-        )
-    }
 
     override fun onWindowAttributesChanged(params: WindowManager.LayoutParams?) {
         super.onWindowAttributesChanged(params)
@@ -72,7 +73,23 @@ class MainActivity : AppCompatActivity() {
         delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
         setContentView(R.layout.activity_main)
 
-        DatabaseOperator.readableDatabase
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.uiState.collect {
+                    // Update UI elements
+                    mAdapter.mutableMap = it.list
+                    val layoutManager = LinearLayoutManager(this@MainActivity)
+                    mRecyclerView.addItemDecoration(
+                        DividerItemDecoration(
+                            this@MainActivity,
+                            DividerItemDecoration.VERTICAL
+                        )
+                    )
+                    mRecyclerView.layoutManager = layoutManager
+                    mRecyclerView.adapter = mAdapter
+                }
+            }
+        }
 
         Log.e("yesheng", Log.getStackTraceString(Throwable()))
         Log.e("yesheng", "===========>" + Thread.currentThread().name)
@@ -88,22 +105,6 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.requestListData()
 
 //        startActivity(Intent())
-
-        mainViewModel.mList.observe(this, object : Observer<List<Pair<String, Class<*>>>> {
-            override fun onChanged(t: List<Pair<String, Class<*>>>) {
-
-                mAdapter = MainItemAdapter(t)
-                val layoutManager = LinearLayoutManager(this@MainActivity)
-                mRecyclerView.addItemDecoration(
-                    DividerItemDecoration(
-                        this@MainActivity,
-                        DividerItemDecoration.VERTICAL
-                    )
-                )
-                mRecyclerView.layoutManager = layoutManager
-                mRecyclerView.adapter = mAdapter
-            }
-        })
     }
 
     override fun onResume() {
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             val layoutParams = WindowManager.LayoutParams()
             layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
             layoutParams.flags =
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
             layoutParams.gravity = Gravity.LEFT or Gravity.BOTTOM
