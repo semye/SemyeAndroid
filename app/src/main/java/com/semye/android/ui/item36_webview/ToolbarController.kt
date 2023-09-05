@@ -15,24 +15,14 @@
  *
  *
  */
-package com.semye.android.ui.webview
+package com.semye.android.ui.item36_webview
 
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.os.Bundle
 import android.view.View
-import android.webkit.WebView
-import com.semye.android.R
 
 /**
  * Created by yesheng on 2018/9/30.
  */
-class SampleWebActivity : BaseWebViewToolBarActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setToolBarBackgroundColor(R.color.colorPrimary)
-        setNavigationIcon(R.drawable.icon_back_white)
-        setToolbarTitleColor(Color.parseColor("#FFFFFF"))
-        WebView.setWebContentsDebuggingEnabled(true)
-    }
+interface ToolbarController {
+    fun onBackClick(view: View?)
+    fun onCloseClick(view: View?)
 }

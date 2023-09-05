@@ -1,4 +1,4 @@
-package com.semye.android.ui.webview.jsbridge
+package com.semye.android.ui.item36_webview.jsbridge
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -8,10 +8,9 @@ import android.os.SystemClock
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.webkit.WebView
-import com.semye.android.ui.webview.jsbridge.BridgeUtil.getDataFromReturnUrl
-import com.semye.android.ui.webview.jsbridge.BridgeUtil.getFunctionFromReturnUrl
-import com.semye.android.ui.webview.jsbridge.BridgeUtil.parseFunctionName
-import com.semye.android.ui.webview.jsbridge.CallBackFunction
+import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.getDataFromReturnUrl
+import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.getFunctionFromReturnUrl
+import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.parseFunctionName
 import java.util.*
 
 open class BridgeWebView : WebView, WebViewJavascriptBridge {

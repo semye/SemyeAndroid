@@ -1,4 +1,4 @@
-package com.semye.android.ui.webview
+package com.semye.android.ui.item36_webview
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap

@@ -1,4 +1,4 @@
-package com.semye.android.ui.webview.jsbridge
+package com.semye.android.ui.item36_webview.jsbridge
 
 /**
  * 默认的handler处理的实现

@@ -234,9 +234,7 @@
         <activity
             android:name=".ui.item7_custom_view.CustomViewActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.TestActivity"
-            android:configChanges="orientation|screenSize" />
+
 
         <activity
             android:name=".ui.item6_os.OSActivity"

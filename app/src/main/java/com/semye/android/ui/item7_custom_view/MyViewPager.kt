@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2018. Semye
  */
-package com.semye.android.widget
+package com.semye.android.ui.item7_custom_view
 
 import android.annotation.SuppressLint
 import android.content.Context

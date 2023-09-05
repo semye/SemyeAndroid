@@ -1,4 +1,4 @@
-package com.semye.android.ui.webview.jsbridge
+package com.semye.android.ui.item36_webview.jsbridge
 
 import org.json.JSONArray
 import org.json.JSONException

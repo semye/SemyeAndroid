@@ -1,4 +1,4 @@
-package com.semye.android.ui.webview
+package com.semye.android.ui.item36_webview
 
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -12,8 +12,8 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
-import com.semye.android.ui.webview.WebViewManager.PageStatusListener
-import com.semye.android.ui.webview.WebViewManager.ProgressBarListener
+import com.semye.android.ui.item36_webview.WebViewManager.PageStatusListener
+import com.semye.android.ui.item36_webview.WebViewManager.ProgressBarListener
 
 /**
  * Created by yesheng on 2018/9/30.

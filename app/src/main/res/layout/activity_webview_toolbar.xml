@@ -61,14 +61,14 @@
         android:layout_height="1dp"
         android:layout_below="@+id/toolbar" />
 
-    <com.semye.android.ui.webview.BaseWebView
+    <com.semye.android.ui.item36_webview.BaseWebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/progress_bar"
         android:layout_alignParentBottom="true">
 
-    </com.semye.android.ui.webview.BaseWebView>
+    </com.semye.android.ui.item36_webview.BaseWebView>
 
 
 </RelativeLayout>

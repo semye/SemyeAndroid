@@ -1,8 +1,7 @@
-package com.semye.android.ui.webview.jsbridge
+package com.semye.android.ui.item36_webview.jsbridge
 
 import android.content.Context
 import android.webkit.WebView
-import com.semye.android.ui.webview.jsbridge.BridgeUtil
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream

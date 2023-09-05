@@ -15,11 +15,11 @@
  *
  *
  */
-package com.semye.android.ui.webview
+package com.semye.android.ui.item36_webview
 
 import android.content.Context
 import android.util.AttributeSet
-import com.semye.android.ui.webview.jsbridge.BridgeWebView
+import com.semye.android.ui.item36_webview.jsbridge.BridgeWebView
 
 /**
  * Created by yesheng on 2018/9/23.

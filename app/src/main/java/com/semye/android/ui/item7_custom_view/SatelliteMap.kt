@@ -1,4 +1,4 @@
-package com.semye.android.ui.view
+package com.semye.android.ui.item7_custom_view
 
 import android.content.Context
 import android.graphics.Bitmap
