@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.semye.android.R
-import com.semye.android.ui.item21_recyclerview.base.BaseViewHolder
+import com.semye.android.module.item21_recyclerview.base.BaseViewHolder
 
 class HeaderViewHolder private constructor(itemView: View) : BaseViewHolder(itemView) {
 

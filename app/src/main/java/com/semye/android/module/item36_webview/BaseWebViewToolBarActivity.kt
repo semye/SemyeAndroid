@@ -12,13 +12,12 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
-import com.semye.android.ui.item36_webview.WebViewManager.PageStatusListener
-import com.semye.android.ui.item36_webview.WebViewManager.ProgressBarListener
 
 /**
  * Created by yesheng on 2018/9/30.
  */
-abstract class BaseWebViewToolBarActivity : AppCompatActivity(), ToolbarController, ProgressBarListener, PageStatusListener {
+abstract class BaseWebViewToolBarActivity : AppCompatActivity(), ToolbarController,
+    WebViewManager.ProgressBarListener, WebViewManager.PageStatusListener {
     private var mWebView: BaseWebView? = null
     private var mProgressBar: ProgressBar? = null
     private var mBack: ImageView? = null

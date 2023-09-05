@@ -5,10 +5,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.semye.android.R
-import com.semye.android.ui.item28_okhttp.OkHttpUtils
-import com.semye.android.ui.item29_retrofit.calladapter.SemyeCallAdapterFactory
-import com.semye.android.ui.item29_retrofit.converter.SemyeConverterFactory
-import com.semye.android.ui.item29_retrofit.converter.SemyeResponse
+import com.semye.android.module.item28_okhttp.OkHttpUtils
+import com.semye.android.module.item29_retrofit.calladapter.SemyeCallAdapterFactory
+import com.semye.android.module.item29_retrofit.converter.SemyeConverterFactory
+import com.semye.android.module.item29_retrofit.converter.SemyeResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -8,9 +8,9 @@ import android.os.SystemClock
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.webkit.WebView
-import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.getDataFromReturnUrl
-import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.getFunctionFromReturnUrl
-import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.parseFunctionName
+import com.semye.android.module.item36_webview.jsbridge.BridgeUtil.getDataFromReturnUrl
+import com.semye.android.module.item36_webview.jsbridge.BridgeUtil.getFunctionFromReturnUrl
+import com.semye.android.module.item36_webview.jsbridge.BridgeUtil.parseFunctionName
 import java.util.*
 
 open class BridgeWebView : WebView, WebViewJavascriptBridge {

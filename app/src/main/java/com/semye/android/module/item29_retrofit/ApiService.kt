@@ -1,7 +1,7 @@
 package com.semye.android.module.item29_retrofit
 
-import com.semye.android.ui.item29_retrofit.calladapter.SemyeCall
-import com.semye.android.ui.item29_retrofit.converter.SemyeResponse
+import com.semye.android.module.item29_retrofit.calladapter.SemyeCall
+import com.semye.android.module.item29_retrofit.converter.SemyeResponse
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call

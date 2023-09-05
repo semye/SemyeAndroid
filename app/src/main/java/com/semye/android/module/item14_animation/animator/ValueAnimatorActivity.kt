@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.semye.android.R
-import com.semye.android.ui.item14_animation.StringEvaluator
+import com.semye.android.module.item14_animation.StringEvaluator
 
 /**
  *  Created by yesheng on 2020/11/9

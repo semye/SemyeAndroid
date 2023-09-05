@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.IMyAidlInterface
 import com.semye.android.R
 import com.semye.android.SERVICE_TAG
-import com.semye.android.ui.item4_service.job.SemyeJobService
+import com.semye.android.module.item4_service.job.SemyeJobService
 
 /**
  *  Created by yesheng on 2020/11/12
@@ -84,17 +84,15 @@ class ServiceMainActivity : AppCompatActivity(), View.OnClickListener, ServiceCo
                 }
             }
             R.id.btn5 -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    val jobScheduler: JobScheduler =
-                        getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-                    val componentName = ComponentName(this, SemyeJobService::class.java)
-                    val jobinfo = JobInfo.Builder(100001, componentName)
-                        .setPeriodic(
-                            15 * 60 * 1000L // 15 minutes
-                        )
-                        .build()
-                    jobScheduler.schedule(jobinfo)
-                }
+                val jobScheduler: JobScheduler =
+                    getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+                val componentName = ComponentName(this, SemyeJobService::class.java)
+                val jobinfo = JobInfo.Builder(100001, componentName)
+                    .setPeriodic(
+                        15 * 60 * 1000L // 15 minutes
+                    )
+                    .build()
+                jobScheduler.schedule(jobinfo)
             }
             R.id.btn6 -> {
                 val acs = getSystemService(ACTIVITY_SERVICE) as ActivityManager

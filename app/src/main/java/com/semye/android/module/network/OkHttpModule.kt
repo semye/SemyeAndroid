@@ -1,7 +1,7 @@
 package com.semye.android.module.network
 
-import com.semye.android.ui.item28_okhttp.CustomCookieJar
-import com.semye.android.ui.item28_okhttp.HeaderInterceptor
+import com.semye.android.module.item28_okhttp.CustomCookieJar
+import com.semye.android.module.item28_okhttp.HeaderInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

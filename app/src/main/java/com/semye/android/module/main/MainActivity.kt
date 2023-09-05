@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.semye.android.R
-import com.semye.android.ui.item30_window.WindowMainActivity
+import com.semye.android.module.item30_window.WindowMainActivity
 import com.semye.annotation.SemyeClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

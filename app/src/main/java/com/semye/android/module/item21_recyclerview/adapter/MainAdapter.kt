@@ -1,10 +1,11 @@
 package com.semye.android.module.item21_recyclerview.adapter
 
 import android.view.ViewGroup
-import com.semye.android.ui.item21_recyclerview.base.BaseAdapter
-import com.semye.android.ui.item21_recyclerview.base.BaseViewHolder
-import com.semye.android.ui.item21_recyclerview.viewholder.DefaultViewHolder
-import com.semye.android.ui.item21_recyclerview.viewholder.HeaderViewHolder
+import com.semye.android.module.item21_recyclerview.base.BaseAdapter
+import com.semye.android.module.item21_recyclerview.base.BaseViewHolder
+import com.semye.android.module.item21_recyclerview.viewholder.DefaultViewHolder
+import com.semye.android.module.item21_recyclerview.viewholder.HeaderViewHolder
+
 
 /**
  * Created by yesheng on 2019-09-12

@@ -5,7 +5,7 @@ import android.os.Build
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.semye.android.ui.item36_webview.jsbridge.BridgeUtil.webViewLoadLocalJs
+import com.semye.android.module.item36_webview.jsbridge.BridgeUtil.webViewLoadLocalJs
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 

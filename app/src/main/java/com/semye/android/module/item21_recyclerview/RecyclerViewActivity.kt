@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.semye.android.R
-import com.semye.android.ui.item21_recyclerview.adapter.MainAdapter
+import com.semye.android.module.item21_recyclerview.adapter.MainAdapter
 import kotlinx.coroutines.launch
 
 /**

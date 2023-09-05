@@ -1,10 +1,9 @@
 package com.semye.android.module.item4_service.job
 
+import android.annotation.SuppressLint
 import android.app.job.JobParameters
 import android.app.job.JobService
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.semye.android.SERVICE_TAG
 
 /**
@@ -14,7 +13,7 @@ import com.semye.android.SERVICE_TAG
  *
  *  adb shell dumpsys jobscheduler
  */
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+@SuppressLint("SpecifyJobSchedulerIdRange")
 class SemyeJobService : JobService() {
 
     override fun onCreate() {

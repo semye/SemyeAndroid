@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 
 /**
- * singleTask launchMode 一个栈中只能有一个
+ * singleTask launchMode 一个栈中只能有一个实例
  */
 class SingleTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

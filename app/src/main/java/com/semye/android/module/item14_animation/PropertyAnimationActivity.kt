@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.semye.android.R
-import com.semye.android.ui.item14_animation.animator.ObjectAnimatorActivity
-import com.semye.android.ui.item14_animation.animator.TimeAnimatorActivity
-import com.semye.android.ui.item14_animation.animator.ValueAnimatorActivity
+import com.semye.android.module.item14_animation.animator.ObjectAnimatorActivity
+import com.semye.android.module.item14_animation.animator.TimeAnimatorActivity
+import com.semye.android.module.item14_animation.animator.ValueAnimatorActivity
 
 /**
  * 属性动画
@@ -24,7 +24,8 @@ import com.semye.android.ui.item14_animation.animator.ValueAnimatorActivity
  * @see android.animation.TimeInterpolator
  * 类的属性随插值器变化
  */
-class PropertyAnimationActivity : AppCompatActivity(), View.OnClickListener, LayoutTransition.TransitionListener {
+class PropertyAnimationActivity : AppCompatActivity(), View.OnClickListener,
+    LayoutTransition.TransitionListener {
 
     private lateinit var valueAnimator: AppCompatTextView
     private lateinit var objectAnimator: AppCompatTextView
@@ -52,11 +53,13 @@ class PropertyAnimationActivity : AppCompatActivity(), View.OnClickListener, Lay
                     Intent(this@PropertyAnimationActivity, ValueAnimatorActivity::class.java)
                 startActivity(intent)
             }
+
             R.id.objectanimator -> {
                 val intent =
                     Intent(this@PropertyAnimationActivity, ObjectAnimatorActivity::class.java)
                 startActivity(intent)
             }
+
             R.id.timeanimator -> {
                 val intent =
                     Intent(this@PropertyAnimationActivity, TimeAnimatorActivity::class.java)
@@ -65,9 +68,19 @@ class PropertyAnimationActivity : AppCompatActivity(), View.OnClickListener, Lay
         }
     }
 
-    override fun startTransition(transition: LayoutTransition?, container: ViewGroup?, view: View?, transitionType: Int) {
+    override fun startTransition(
+        transition: LayoutTransition?,
+        container: ViewGroup?,
+        view: View?,
+        transitionType: Int
+    ) {
     }
 
-    override fun endTransition(transition: LayoutTransition?, container: ViewGroup?, view: View?, transitionType: Int) {
+    override fun endTransition(
+        transition: LayoutTransition?,
+        container: ViewGroup?,
+        view: View?,
+        transitionType: Int
+    ) {
     }
 }
