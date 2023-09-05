@@ -1,43 +1,48 @@
-package com.semye.android.ui.xml
+package com.semye.android.ui.item35_xml
 
 import android.os.Bundle
 import android.util.Xml
 import android.view.View
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.semye.android.R
 import org.xml.sax.SAXException
 import java.io.IOException
 import java.io.InputStream
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+/**
+ * 安卓XML的三种解析方式
+ */
+class XMLMainActivity : AppCompatActivity(), View.OnClickListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_xml)
-        initWidget()
+        findViewById<TextView>(R.id.tv_parse).setOnClickListener(this)
     }
 
-    private fun initWidget() {}
+
     override fun onClick(v: View) {
-        val `is` = resources.openRawResource(R.raw.products)
-        executeSaxParse(`is`)
-        executeDomParse(`is`)
-        executePullParse(`is`)
+        val inputStream = resources.openRawResource(R.raw.products)
+        executeSaxParse(inputStream)
+        val inputStream2 = resources.openRawResource(R.raw.products)
+        executeDomParse(inputStream2)
+        val inputStream3 = resources.openRawResource(R.raw.products)
+        executePullParse(inputStream3)
     }
 
     /**
      * pull解析 android 推荐的解析方式
      * PULL解析器小巧轻便，解析速度快，简单易用，非常适合在Android移动设备中使用 pull可以随时停止
      *
-     * @param is
+     * @param inputStream
      */
-    private fun executePullParse(`is`: InputStream) {
+    private fun executePullParse(inputStream: InputStream) {
         try {
             val start = System.currentTimeMillis()
-            val list = XmlPull.parseXML(`is`)
+            val list = PullXmlParser.parseXML(inputStream)
             val end = System.currentTimeMillis()
             println("pull=====>" + (end - start))
-            Toast.makeText(this, "Pull解析====>$list", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -46,38 +51,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * Dom解析
      *
-     * @param is
+     * @param inputStream
      */
-    private fun executeDomParse(`is`: InputStream) {
+    private fun executeDomParse(inputStream: InputStream) {
         val start = System.currentTimeMillis()
-        val myDomDemo = DomXml(`is`)
-        val list = myDomDemo.products
+        val list = DomXmlParser.parse(inputStream)
         val end = System.currentTimeMillis()
         println("dom=====>" + (end - start))
-        Toast.makeText(this, "Dom解析====>$list", Toast.LENGTH_SHORT).show()
     }
 
     /**
      * sax解析  基于事件驱动
      * 优点：解析速度快，占用内存少。非常适合在Android移动设备中使用。
      *
-     * @param is
+     * @param inputStream
      */
-    private fun executeSaxParse(`is`: InputStream) {
+    private fun executeSaxParse(inputStream: InputStream) {
         try {
             val start = System.currentTimeMillis()
             val productHandler = ProductHandler()
-            Xml.parse(`is`, Xml.Encoding.UTF_8, productHandler)
-            val list = productHandler.product
+            Xml.parse(inputStream, Xml.Encoding.UTF_8, productHandler)
             val end = System.currentTimeMillis()
             println("sax=====>" + (end - start))
-            if (list != null) {
-                Toast.makeText(this, "Sax解析====>$list", Toast.LENGTH_SHORT).show()
-            }
         } catch (e: IOException) {
             e.printStackTrace()
         } catch (e: SAXException) {
             e.printStackTrace()
+        } finally {
+            inputStream.close()
         }
     }
 }

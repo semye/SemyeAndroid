@@ -33,6 +33,7 @@ import com.semye.android.ui.item20_fitsystemwindow.FitSystemWindowActivity
 import com.semye.android.ui.item31_statusbar.StatusBarActivity
 import com.semye.android.ui.item3_vieweventdispatch.TouchEventActivity
 import com.semye.android.ui.item25_wifi.WifiMainActivity
+import com.semye.android.ui.item35_xml.XMLMainActivity
 import javax.inject.Inject
 
 class MainLocalDataSource @Inject constructor() {
@@ -73,6 +74,7 @@ class MainLocalDataSource @Inject constructor() {
             this["点赞特效"] = LikeActivity::class.java
 //            this["dagger2"] = Dagger2SampleActivity::class.java
             this["打开flutter界面"] = FlutterMainActivity::class.java
+            this["xml解析方式"] = XMLMainActivity::class.java
         }.toList()
     }
 }

@@ -13,7 +13,6 @@ import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.semye.android.ui.thirdparty.glide.GlideApp
 
 /**
  * Created by yesheng on 2018/9/3.

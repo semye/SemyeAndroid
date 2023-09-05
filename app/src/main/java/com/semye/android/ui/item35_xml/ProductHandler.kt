@@ -1,4 +1,4 @@
-package com.semye.android.ui.xml
+package com.semye.android.ui.item35_xml
 
 import org.xml.sax.Attributes
 import org.xml.sax.SAXException
@@ -7,8 +7,9 @@ import java.util.*
 
 class ProductHandler : DefaultHandler() {
     private var list: MutableList<HashMap<String, String?>>? = null
-    private var hm: HashMap<String, String?>? = null
+    private var hashMap: HashMap<String, String?>? = null
     private var s: String? = null
+
     @Throws(SAXException::class)
     override fun characters(ch: CharArray, start: Int, length: Int) {
         super.characters(ch, start, length)
@@ -35,29 +36,24 @@ class ProductHandler : DefaultHandler() {
     ) {
         super.startElement(uri, localName, qName, attributes)
         if (localName == "product") {
-            hm = HashMap()
+            hashMap = HashMap()
         }
     }
 
     @Throws(SAXException::class)
     override fun endElement(uri: String, localName: String, qName: String) {
         super.endElement(uri, localName, qName)
-        if (hm != null && list != null) {
-            if (localName == "id") {
-                hm!!["id"] = s
-            }
-            if (localName == "name") {
-                hm!!["name"] = s
-            }
-            if (localName == "price") {
-                hm!!["price"] = s
-            }
-            if (localName == "product") {
-                list!!.add(hm!!)
-            }
+        if (localName == "id") {
+            hashMap?.put("id", s)
+        }
+        if (localName == "name") {
+            hashMap?.put("name", s)
+        }
+        if (localName == "price") {
+            hashMap?.put("price", s)
+        }
+        if (localName == "product") {
+            list?.add(hashMap!!)
         }
     }
-
-    val product: List<HashMap<String, String?>>?
-        get() = list
 }

@@ -1,4 +1,4 @@
-package com.semye.android.ui.xml
+package com.semye.android.ui.item35_xml
 
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -9,16 +9,20 @@ import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.parsers.ParserConfigurationException
 
-class DomXml(inputStream: InputStream?) {
-    private var doc: Document? = null
-    val products: List<HashMap<String, String>>
-        get() {
-            val root = doc!!.documentElement
-            val lstNodes = root.getElementsByTagName("product")
+object DomXmlParser {
+
+
+    @JvmStatic
+    fun parse(inputStream: InputStream): List<HashMap<String, String>> {
+        try {
+            val factory = DocumentBuilderFactory.newInstance()
+            val builder = factory.newDocumentBuilder()
+            val document = builder.parse(inputStream)
+            val rootElement = document.documentElement.getElementsByTagName("product")
             val products: MutableList<HashMap<String, String>> = ArrayList()
-            for (i in 0 until lstNodes.length) {
+            for (i in 0 until rootElement.length) {
                 val map = HashMap<String, String>()
-                val element = lstNodes.item(i) as Element
+                val element = rootElement.item(i) as Element
                 val elemId = element.getElementsByTagName("id").item(0) as Element
                 map["id"] = elemId.textContent
                 val elemName = element.getElementsByTagName("name").item(0) as Element
@@ -28,19 +32,17 @@ class DomXml(inputStream: InputStream?) {
                 products.add(map)
             }
             return products
-        }
-
-    init {
-        try {
-            val factory = DocumentBuilderFactory.newInstance()
-            val builder = factory.newDocumentBuilder()
-            doc = builder.parse(inputStream)
         } catch (e: ParserConfigurationException) {
             e.printStackTrace()
         } catch (e: SAXException) {
             e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
+        } finally {
+            inputStream.close()
         }
+        return emptyList()
     }
+
+
 }

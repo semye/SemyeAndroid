@@ -269,6 +269,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity android:name="com.semye.android.ui.item33_flutter.FlutterMainActivity" />
+        <activity android:name="com.semye.android.ui.item35_xml.XMLMainActivity" />
 
         <service
             android:name=".module.network.NetworkListenerService"
