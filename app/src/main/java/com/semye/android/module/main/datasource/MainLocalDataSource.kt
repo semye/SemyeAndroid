@@ -23,7 +23,7 @@ import com.semye.android.ui.item23_fresco.FrescoMainActivity
 import com.semye.android.ui.item24_glide.GlideMainActivity
 import com.semye.android.ui.item28_okhttp.OkhttpMainActivity
 import com.semye.android.ui.item29_retrofit.Retrofit2MainActivity
-import com.semye.android.ui.item10_rxjava.RxjavaMainActivity
+import com.semye.android.module.item10_rxjava.RxjavaMainActivity
 import com.semye.android.ui.item5_thread.ThreadActivity
 import com.semye.android.ui.item7_custom_view.CustomViewActivity
 import com.semye.android.ui.item19_systemui.SystemUiActivity
@@ -49,7 +49,7 @@ class MainLocalDataSource @Inject constructor() {
             this["custom"] = CustomViewActivity::class.java
             this["coroutines"] = CoroutinesMainActivity::class.java
             this["eventbus"] = EventBusMainActivity::class.java
-            this["rxjava"] = RxjavaMainActivity::class.java
+            this["rxjava"] = com.semye.android.module.item10_rxjava.RxjavaMainActivity::class.java
             this["arouter"] = ARouterMainActivity::class.java
             this["jni"] = JniActivity::class.java
             this["weight"] = WeightActivity::class.java

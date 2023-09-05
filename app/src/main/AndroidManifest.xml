@@ -188,7 +188,7 @@
             android:name=".ui.item30_window.WindowMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.TokenActivity"
+            android:name=".base.TokenActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.item4_service.ServiceMainActivity"
@@ -222,7 +222,7 @@
             android:name=".ui.item11_arouter.Router2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.item10_rxjava.RxjavaMainActivity"
+            android:name=".module.item10_rxjava.RxjavaMainActivity"
             android:screenOrientation="portrait" />
 
         <activity
