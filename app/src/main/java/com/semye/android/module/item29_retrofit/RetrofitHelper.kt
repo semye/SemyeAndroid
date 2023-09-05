@@ -1,7 +1,7 @@
 package com.semye.android.module.item29_retrofit
 
 
-import com.semye.android.ui.item29_retrofit.calladapter.SemyeCallAdapterFactory
+import com.semye.android.module.item29_retrofit.calladapter.SemyeCallAdapterFactory
 import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

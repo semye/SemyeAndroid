@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.semye.android.ui.item3_vieweventdispatch.TouchEventLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.semye.android.module.item3_vieweventdispatch.TouchEventLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/event_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.semye.android.ui.item3_vieweventdispatch.TouchEventView
+    <com.semye.android.module.item3_vieweventdispatch.TouchEventView
         android:id="@+id/event_view"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@color/colorAccent" />
 
-</com.semye.android.ui.item3_vieweventdispatch.TouchEventLayout>
+</com.semye.android.module.item3_vieweventdispatch.TouchEventLayout>
