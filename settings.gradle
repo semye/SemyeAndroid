@@ -1,11 +1,3 @@
 include ':annotation'
 include ':compiler'
 include ':app'
-
-//将 Flutter 模块作为子项目添加到
-
-setBinding(new Binding([gradle: this]))
-evaluate(new File(
-        settingsDir.parentFile,
-        'myfluttermodule/.android/include_flutter.groovy'
-))

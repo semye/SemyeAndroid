@@ -1,12 +1,10 @@
 package com.semye.android.module.item33_flutter
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.semye.android.R
 
 class FlutterMainActivity : AppCompatActivity() {
@@ -23,10 +21,10 @@ class FlutterMainActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.tv_jump)?.setOnClickListener {
-            startActivity(
-                Intent(this,
-                FlutterBoostActivity::class.java)
-            )
+//            startActivity(
+//                Intent(this,
+//                FlutterBoostActivity::class.java)
+//            )
         }
         viewPager2 = findViewById(R.id.container)
         viewPager2.offscreenPageLimit = 2

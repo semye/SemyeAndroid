@@ -204,9 +204,6 @@ dependencies {
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
 
-
-    implementation project(':flutter')
-    implementation project(':flutter_boost')
 }
 
 // Allow references to generated code

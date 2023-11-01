@@ -9,20 +9,9 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.CookieManager
 import androidx.multidex.MultiDexApplication
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
-import androidx.work.WorkerParameters
-import com.idlefish.flutterboost.FlutterBoost
-import com.idlefish.flutterboost.FlutterBoostDelegate
-import com.idlefish.flutterboost.FlutterBoostRouteOptions
-import com.idlefish.flutterboost.containers.FlutterBoostActivity
 import com.semye.android.module.database.DatabaseOperator
 import com.semye.android.module.network.AppNetworkManager
 import dagger.hilt.android.HiltAndroidApp
-import io.flutter.embedding.android.FlutterActivityLaunchConfigs
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
 
 
 /**
@@ -33,7 +22,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     private var connectivityManager: ConnectivityManager? = null
 
-    lateinit var flutterEngine: FlutterEngine
+//    lateinit var flutterEngine: FlutterEngine
 
 
     override fun attachBaseContext(base: Context?) {
@@ -43,7 +32,7 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 
     override fun onCreate() {
         super.onCreate()
-        createFlutterEngine2()
+//        createFlutterEngine2()
         application = this
         DatabaseOperator.init(this)
         Log.e("yesheng1", Log.getStackTraceString(Throwable()))
@@ -52,44 +41,44 @@ class SemyeApplication : MultiDexApplication(), Application.ActivityLifecycleCal
 //        registerActivityLifecycleCallbacks(this)
     }
 
-    private fun createFlutterEngine2() {
-        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
-            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
-
-            }
-
-            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
-                val intent = FlutterBoostActivity.CachedEngineIntentBuilder(
-                    FlutterBoostActivity::class.java
-                )
-                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
-                    .destroyEngineWithActivity(false)
-                    .uniqueId(options.uniqueId())
-                    .url(options.pageName())
-                    .urlParams(options.arguments())
-                    .build(FlutterBoost.instance().currentActivity())
-                FlutterBoost.instance().currentActivity().startActivity(intent)
-            }
-        }) { engine: FlutterEngine? -> }
-    }
-
-    private fun createFlutterEngine() {
-        flutterEngine = FlutterEngine(this)
-        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
-            override fun onPreEngineRestart() {
-                Log.d(TAG, "onPreEngineRestart")
-            }
-
-            override fun onEngineWillDestroy() {
-                Log.d(TAG, "onEngineWillDestroy")
-            }
-
-        })
-        //单例保存flutter引擎
-        FlutterEngineCache.getInstance().put("semye", flutterEngine)
-//        flutterEngine.destroy()
-    }
+//    private fun createFlutterEngine2() {
+//        FlutterBoost.instance().setup(this, object : FlutterBoostDelegate {
+//            override fun pushNativeRoute(options: FlutterBoostRouteOptions) {
+//
+//            }
+//
+//            override fun pushFlutterRoute(options: FlutterBoostRouteOptions) {
+//                val intent = FlutterBoostActivity.CachedEngineIntentBuilder(
+//                    FlutterBoostActivity::class.java
+//                )
+//                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
+//                    .destroyEngineWithActivity(false)
+//                    .uniqueId(options.uniqueId())
+//                    .url(options.pageName())
+//                    .urlParams(options.arguments())
+//                    .build(FlutterBoost.instance().currentActivity())
+//                FlutterBoost.instance().currentActivity().startActivity(intent)
+//            }
+//        }) { engine: FlutterEngine? -> }
+//    }
+//
+//    private fun createFlutterEngine() {
+//        flutterEngine = FlutterEngine(this)
+//        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+//        flutterEngine.addEngineLifecycleListener(object : FlutterEngine.EngineLifecycleListener {
+//            override fun onPreEngineRestart() {
+//                Log.d(TAG, "onPreEngineRestart")
+//            }
+//
+//            override fun onEngineWillDestroy() {
+//                Log.d(TAG, "onEngineWillDestroy")
+//            }
+//
+//        })
+//        //单例保存flutter引擎
+//        FlutterEngineCache.getInstance().put("semye", flutterEngine)
+////        flutterEngine.destroy()
+//    }
 
     private val cookies: HashMap<String, String>
         get() {
